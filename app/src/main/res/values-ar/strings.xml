@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">يلا معنا</string>
+    <string name="connect_with" translatable="false">تواصل من خلال:</string>
+    <string name="driver" translatable="false">سائق</string>
+    <string name="email" translatable="false">البريدالالكتروني</string>
+    <string name="last_name" translatable="false">الاسم الاخير</string>
+    <string name="mobile_number" translatable="false">"الهاتف "</string>
+    <string name="rider" translatable="false">راكب</string>
+    <string name="first_name">الاسم الاول</string>
+    <string name="sign_up">مستخدم جديد؟</string>
+    <string name="yalla">يلا</string>
+    <string name="new_user">مستخدم جديد</string>
+    <string name="skip">تخطى</string>
+    <string name="id_image"> صورةهوية السائق</string>
+    <string name="license_image">صورةرخصة السائق</string>
+    <string name="account_number">رقم حساب البنك</string>
+    <string name="car_information">معلومات السيارة</string>
+    <string name="car_id_image">صورة لرقم السيارة</string>
+    <string name="car_license_image">صورة رخصة السيارة</string>
+    <string name="car_image">صورة السيارة</string>
+    <string name="try_again">اعادة ارسال !</string>
+</resources>
