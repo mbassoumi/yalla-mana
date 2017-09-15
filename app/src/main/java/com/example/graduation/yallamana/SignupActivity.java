@@ -16,9 +16,8 @@ public class SignupActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ButterKnife.bind(this);
-
         setContentView(R.layout.activity_signup);
+        appToolbar=(Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(appToolbar);
         appToolbar.setTitle(R.string.new_user);
     }
