@@ -6,10 +6,8 @@
     tools:context="com.journaldev.tablayoutviewpager.MainActivity">
 
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/backButton"
+        android:title="Back Button"
         android:icon="@drawable/ic_arrow_back_black_24dp"
-        android:orderInCategory="100"
-        android:title="Setting"
-        app:showAsAction="ifRoom" />
-
+        app:showAsAction="ifRoom"></item>
 </menu>
