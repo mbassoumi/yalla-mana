@@ -22,5 +22,6 @@
     <string name="car_license_image">Car license image</string>
     <string name="car_image">Car image</string>
     <string name="try_again">Try again!</string>
+    <string name="driver_toolbar">Driver</string>
 
 </resources>
