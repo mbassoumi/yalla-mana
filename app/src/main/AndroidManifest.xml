@@ -20,6 +20,9 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".SignupActivity" />
         <activity android:name=".DriverActivity" />
+        <activity android:name=".Request_trip" />
+        <activity android:name=".Trip_information" />
+        <activity android:name=".Edit_informatio"></activity>
     </application>
 
 </manifest>

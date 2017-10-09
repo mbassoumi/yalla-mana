@@ -21,4 +21,24 @@
     <string name="car_image">صورة السيارة</string>
     <string name="try_again">اعادة ارسال !</string>
     <string name="driver_toolbar">السائق</string>
+
+    <string name="request_toolbar">طلب رحلة</string>
+    <string name="From_req" > تبدأ من :</string>
+    <string name="hFrom_req" > أدخل مكان البدأ </string>
+    <string name="To_req"> تنتهي إلى : :</string>
+    <string name="hTo_req"> أدخل  مكان الوجهة  </string>
+    <string name="time_req"> موعد البدأ  : </string>
+    <string name="Num_of_rider"> عدد الركاب : </string>
+    <string name="button_req"> طلب </string>
+
+    <string name="trip_information"> معلومات عن الرحلة </string>
+    <string name="from_info">من :</string>
+    <string name="to_info"> إلى :</string>
+    <string name="time_info"> تاريخ و وقت البدأ :</string>
+    <string name="price_info"> التكلفة : </string>
+    <string name="still_time_info">الوقت المتبقي </string>
+    <string name="car_info">معلومات عن السيارة</string>
+
+
+
 </resources>

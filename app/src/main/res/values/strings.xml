@@ -4,6 +4,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="driver" translatable="false">Driver</string>
+
     <string name="connect_with" translatable="false">Connect with:</string>
     <string name="rider" translatable="false">Rider</string>
     <string name="mobile_number" translatable="false">Mobile number</string>
@@ -23,5 +24,22 @@
     <string name="car_image" translatable="false">Car image</string>
     <string name="try_again" translatable="false">Try again!</string>
     <string name="driver_toolbar" translatable="false">Driver</string>
+
+    <string name="request_toolbar" translatable="false">Request Trip</string>
+    <string name="From_req" translatable="false">Your trip start from :</string>
+    <string name="hFrom_req"> Enter your start location </string>
+    <string name="To_req" translatable="false">Your trip end to : </string>
+    <string name="hTo_req"> Enter your destination </string>
+    <string name="time_req">Date of your trip : </string>
+    <string name="Num_of_rider"> Num. of riders :</string>
+    <string name="button_req">Request </string>
+
+    <string name="trip_information">Information trip</string>
+    <string name="from_info">From :</string>
+    <string name="to_info"> To :</string>
+    <string name="time_info"> Date and time :</string>
+    <string name="price_info">Price :</string>
+    <string name="still_time_info">Still time : </string>
+    <string name="car_info">Car information</string>
 
 </resources>
