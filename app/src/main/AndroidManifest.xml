@@ -22,7 +22,9 @@
         <activity android:name=".DriverActivity" />
         <activity android:name=".Request_trip" />
         <activity android:name=".Trip_information" />
-        <activity android:name=".Edit_informatio"></activity>
+        <activity android:name=".Edit_informatio" />
+        <activity android:name=".Edit_account" />
+        <activity android:name=".offer_trip"></activity>
     </application>
 
 </manifest>

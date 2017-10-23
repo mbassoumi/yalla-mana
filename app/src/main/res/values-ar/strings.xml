@@ -7,7 +7,7 @@
     <string name="last_name" translatable="false">الاسم الاخير</string>
     <string name="mobile_number" translatable="false">"الهاتف "</string>
     <string name="rider" translatable="false">راكب</string>
-    <string name="first_name">الاسم الاول</string>
+    <string name="first_name">الاسم الاول :</string>
     <string name="sign_up">مستخدم جديد؟</string>
     <string name="yalla">يلا</string>
     <string name="new_user">مستخدم جديد</string>
@@ -40,5 +40,14 @@
     <string name="car_info">معلومات عن السيارة</string>
 
 
+    <string name="Edit_account"> إعدادات الحساب </string>
+    <string name="name"> الاسم </string>
+    <string name="phone"> الهاتف : </string>
+    <string name="password"> كلمة السر : </string>
+    <string name="save"> حفظ </string>
+
+    <string name="Offer_trip"> عرض رحلة </string>
+    <string name="req_from_offer">أنت تريد رحلة من : </string>
+    <string name="req_to_offer"> أنت تريد رحلة من : </string>
 
 </resources>

@@ -219,16 +219,48 @@
             android:layout_below="@+id/vnum_rider_info" />
 
         <ImageButton
-            android:id="@+id/imageButton6"
+            android:id="@+id/imageButton_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/VDriver_name_info"
             android:layout_marginLeft="39dp"
             android:layout_marginStart="39dp"
-            android:autofillHints=""
-            app:srcCompat="@drawable/ic_directions_car_black_24dp"
-            android:layout_alignTop="@+id/VDriver_name_info"
+            android:layout_toEndOf="@+id/Vtime_info"
             android:layout_toRightOf="@+id/Vtime_info"
-            android:layout_toEndOf="@+id/Vtime_info" />
+            android:autofillHints=""
+            app:srcCompat="@drawable/ic_directions_car_black_24dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/Vnum_rider_info"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="15dp"
+            android:weightSum="1">
+
+            <ImageButton
+                android:id="@+id/image_music_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight=".33"
+                app:srcCompat="@drawable/ic_music_note_black_24dp" />
+
+            <ImageButton
+                android:id="@+id/image_smoke_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight=".33"
+                app:srcCompat="@drawable/ic_smoke_free_black_24dp" />
+
+            <ImageButton
+                android:id="@+id/image_wifi_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight=".33"
+                app:srcCompat="@drawable/wifi_high" />
+        </LinearLayout>
 
 
     </RelativeLayout>

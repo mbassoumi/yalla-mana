@@ -9,9 +9,12 @@
     <RelativeLayout
         android:layout_width="368dp"
         android:layout_height="551dp"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="19dp"
-        tools:layout_editor_absoluteY="-1dp">
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.875"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:ignore="MissingConstraints">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
@@ -27,30 +30,39 @@
             android:titleTextColor="#FFFFFF"
             app:title="@string/request_toolbar" />
 
+        <Space
+            android:id="@+id/s0"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/toolbar" />
+
         <TextView
             android:id="@+id/vstart_req"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/toolbar"
-            android:layout_marginTop="21dp"
             android:text="@string/From_req"
             android:textColor="@drawable/ic_add_black_24dp"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:layout_below="@+id/s0"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
 
         <EditText
-            android:id="@+id/start_req"
+            android:id="@+id/Start_E_req"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/destination_req"
-            android:layout_alignStart="@+id/destination_req"
             android:layout_below="@+id/vstart_req"
-            android:layout_marginTop="24dp"
+            android:layout_centerHorizontal="true"
             android:hint="@string/hFrom_req"
             android:inputType="textAutoCorrect"
             android:textSize="18sp" />
+
+        <Space
+            android:id="@+id/s1"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_below="@+id/Start_E_req" />
 
         <TextView
             android:id="@+id/vTo_req"
@@ -58,25 +70,27 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/start_req"
-            android:layout_marginTop="20dp"
+            android:layout_below="@+id/s1"
             android:text="@string/To_req"
             android:textColor="@drawable/ic_add_black_24dp"
             android:textSize="18sp" />
 
         <EditText
-            android:id="@+id/destination_req"
+            android:id="@+id/Destination_E_req"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
+            android:layout_alignLeft="@+id/Start_E_req"
+            android:layout_alignStart="@+id/Start_E_req"
             android:layout_below="@+id/vTo_req"
-            android:layout_marginLeft="58dp"
-            android:layout_marginStart="58dp"
-            android:layout_marginTop="22dp"
             android:hint="@string/hTo_req"
             android:inputType="textAutoCorrect"
             android:textSize="18sp" />
+
+        <Space
+            android:id="@+id/s2"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_below="@+id/Destination_E_req" />
 
         <TextView
             android:id="@+id/vtime_req"
@@ -84,96 +98,111 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/destination_req"
-            android:layout_marginTop="19dp"
+            android:layout_below="@+id/s2"
             android:text="@string/time_req"
             android:textColor="@drawable/ic_add_black_24dp"
             android:textSize="18sp" />
 
-        <EditText
-            android:id="@+id/year_req"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:hint="  2017"
-            android:inputType="date"
-            android:textSize="18sp"
-            android:layout_marginRight="24dp"
-            android:layout_marginEnd="24dp"
-            android:layout_below="@+id/vtime_req"
-            android:layout_alignRight="@+id/vnum_of_ride_req"
-            android:layout_alignEnd="@+id/vnum_of_ride_req" />
 
-        <EditText
-            android:id="@+id/month_req"
+        <LinearLayout
+            android:id="@+id/L1_req"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/vnum_of_ride_req"
-            android:hint="09"
-            android:inputType="date"
-            android:textSize="18sp"
-            android:layout_toLeftOf="@+id/numofrider_req"
-            android:layout_toRightOf="@+id/vTo_req"
-            android:layout_toEndOf="@+id/vTo_req" />
+            android:orientation="horizontal"
+            android:layout_below="@id/vtime_req">
 
-        <EditText
-            android:id="@+id/day_req"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="31"
-            android:inputType="date"
-            android:textSize="18sp"
-            android:layout_alignBaseline="@+id/month_req"
-            android:layout_alignBottom="@+id/month_req"
-            android:layout_toRightOf="@+id/numofrider_req"
-            android:layout_toEndOf="@+id/numofrider_req" />
+            <Space
+                android:layout_width="80dp"
+                android:layout_height="wrap_content" />
 
-        <EditText
-            android:id="@+id/time_req"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="07:00am"
-            android:inputType="time"
-            android:textSize="18sp"
-            android:layout_alignBaseline="@+id/day_req"
-            android:layout_alignBottom="@+id/day_req"
-            android:layout_toRightOf="@+id/start_req"
-            android:layout_toEndOf="@+id/start_req" />
 
+            <EditText
+                android:id="@+id/Year_E_req"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/vtime_req"
+                android:layout_alignRight="@+id/vtime_req"
+                android:hint="  2017"
+                android:inputType="date"
+                android:textSize="18sp"
+                android:layout_alignLeft="@+id/Destination_E_req"
+                android:layout_alignStart="@+id/Destination_E_req"
+                android:layout_below="@+id/vtime_req" />
+
+            <EditText
+                android:id="@+id/Month_E_req"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/vnum_of_ride_req"
+                android:layout_alignLeft="@+id/numofrider_req"
+                android:layout_alignStart="@+id/numofrider_req"
+                android:layout_toLeftOf="@+id/numofrider_req"
+                android:hint="09"
+                android:inputType="date"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/Day_E_req"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/month_req"
+                android:layout_alignBottom="@+id/month_req"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginEnd="23dp"
+                android:layout_marginRight="23dp"
+                android:hint="31"
+                android:inputType="date"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/Time_E_req"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/vnum_of_ride_req"
+                android:layout_below="@+id/vtime_req"
+                android:hint="07:00am"
+                android:inputType="time"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <Space
+            android:id="@+id/s3"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_below="@+id/L1_req" />
         <TextView
             android:id="@+id/vnum_of_ride_req"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/year_req"
-            android:layout_marginTop="29dp"
             android:text="@string/Num_of_rider"
             android:textColor="@drawable/ic_add_black_24dp"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:layout_below="@+id/s3" />
 
         <EditText
-            android:id="@+id/numofrider_req"
+            android:id="@+id/Numofrider_E_req"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/vnum_of_ride_req"
-            android:layout_alignBottom="@+id/vnum_of_ride_req"
-            android:layout_toEndOf="@+id/vstart_req"
-            android:layout_toRightOf="@+id/vstart_req"
-            android:hint="0"
+            android:hint=" 0"
             android:inputType="numberDecimal"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:layout_below="@+id/vnum_of_ride_req"
+            android:layout_alignLeft="@+id/Destination_E_req"
+            android:layout_alignStart="@+id/Destination_E_req" />
 
         <Button
-            android:id="@+id/reqest_button"
+            android:id="@+id/Reqest_button_req"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/button_request"
             android:text="@string/button_req"
             android:textSize="18sp"
             android:layout_alignParentBottom="true"
-            android:layout_alignRight="@+id/day_req"
-            android:layout_alignEnd="@+id/day_req" />
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
     </RelativeLayout>
 

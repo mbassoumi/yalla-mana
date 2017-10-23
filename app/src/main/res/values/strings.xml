@@ -7,10 +7,10 @@
 
     <string name="connect_with" translatable="false">Connect with:</string>
     <string name="rider" translatable="false">Rider</string>
-    <string name="mobile_number" translatable="false">Mobile number</string>
-    <string name="email" translatable="false">Email</string>
-    <string name="last_name" translatable="false">Last name</string>
-    <string name="first_name" translatable="false">First name</string>
+    <string name="mobile_number" translatable="false">Mobile number : </string>
+    <string name="email" translatable="false">Email : </string>
+    <string name="last_name" translatable="false">Last name : </string>
+    <string name="first_name" translatable="false">First name :</string>
     <string name="sign_up" translatable="false">Sign up?</string>
     <string name="yalla" translatable="false">Yalla</string>
     <string name="new_user" translatable="false">New User</string>
@@ -42,4 +42,14 @@
     <string name="still_time_info">Still time : </string>
     <string name="car_info">Car information</string>
 
+    <string name="Edit_account"> Edit Account </string>
+    <string name="name"> name </string>
+    <string name="phone">phone :</string>
+    <string name="password"> password : </string>
+    <string name="save"> save </string>
+
+
+    <string name="Offer_trip">Offer trip</string>
+    <string name="req_from_offer">Your Requested Trip From :</string>
+    <string name="req_to_offer">Your Requested Trip To :</string>
 </resources>
