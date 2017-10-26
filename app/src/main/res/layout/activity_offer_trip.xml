@@ -9,9 +9,10 @@
     <RelativeLayout
         android:layout_width="368dp"
         android:layout_height="551dp"
-        tools:layout_editor_absoluteY="8dp"
-        tools:layout_editor_absoluteX="8dp">
-
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <android.support.v7.widget.Toolbar
@@ -26,17 +27,329 @@
             android:theme="?attr/actionBarTheme"
             android:title="@string/new_user"
             android:titleTextColor="#FFFFFF"
-            app:title="@string/Offer_trip" />
+            app:title="@string/Offer_trip"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="0dp" />
+
+        <Space
+            android:id="@+id/s00"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/toolbar_offer"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="0dp" />
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/from_V_offer"
-            android:text=""
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/s00"
+            android:text="@string/req_from_offer"
+            android:textColor="@drawable/ic_add_black_24dp"
+            android:textSize="18sp"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp" />
+
+
+        <EditText
+            android:id="@+id/from_E_offer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/from_V_offer"
+            android:layout_centerHorizontal="true"
+            android:hint="@string/hFrom_req"
+            android:inputType="textAutoCorrect"
+            android:textSize="18sp"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp" />
+
+        <Space
+            android:id="@+id/s01"
+            android:layout_width="0dp"
+            android:layout_height="10dp"
+            android:layout_below="@+id/from_E_offer"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="0dp" />
+
+        <TextView
+            android:id="@+id/To_V_offer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/s01"
+            android:text="@string/req_to_offer"
+            android:textColor="@drawable/ic_add_black_24dp"
+            android:textSize="18sp"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp" />
+
+        <EditText
+            android:id="@+id/Destination_E_offer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/from_E_offer"
+            android:layout_alignStart="@+id/from_E_offer"
+            android:layout_below="@+id/To_V_offer"
+            android:hint="@string/hTo_req"
+            android:inputType="textAutoCorrect"
+            android:textSize="18sp"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp" />
+
+        <Space
+            android:id="@+id/s02"
+            android:layout_width="0dp"
+            android:layout_height="10dp"
+            android:layout_below="@+id/Destination_E_offer"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="0dp" />
+
+        <TextView
+            android:id="@+id/vtime_req"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/s02"
+            android:text="@string/time_req"
+            android:textColor="@drawable/ic_add_black_24dp"
+            android:textSize="18sp"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp" />
+
+
+        <LinearLayout
+            android:id="@+id/L1_offer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/vtime_req"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp">
+
+            <Space
+                android:layout_width="80dp"
+                android:layout_height="wrap_content" />
+
+
+            <EditText
+                android:id="@+id/Year_E_offer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/vtime_req"
+                android:layout_alignLeft="@+id/Destination_E_req"
+                android:layout_alignRight="@+id/vtime_req"
+                android:layout_alignStart="@+id/Destination_E_req"
+                android:layout_below="@+id/vtime_req"
+                android:hint="  2017"
+                android:inputType="date"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/Month_E_offer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/vnum_of_ride_req"
+                android:layout_alignLeft="@+id/numofrider_req"
+                android:layout_alignStart="@+id/numofrider_req"
+                android:layout_toLeftOf="@+id/numofrider_req"
+                android:hint="09"
+                android:inputType="date"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/Day_E_offer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/month_req"
+                android:layout_alignBottom="@+id/month_req"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginEnd="23dp"
+                android:layout_marginRight="23dp"
+                android:hint="31"
+                android:inputType="date"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/Time_E_offer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/vnum_of_ride_req"
+                android:layout_below="@+id/vtime_req"
+                android:hint="07:00am"
+                android:inputType="time"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <Space
+            android:id="@+id/s03"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_below="@+id/L1_offer"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="0dp" />
+
+        <TextView
+            android:id="@+id/price_V_offer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/s03"
+            android:text="@string/price_offer"
+            android:textColor="@drawable/ic_add_black_24dp"
+            android:textSize="18sp"
+
             />
 
+        <EditText
+            android:id="@+id/price_E_offer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="_NIS_"
+            android:background="@drawable/number_edit"
+            android:layout_below="@+id/s03"
+            android:layout_alignLeft="@+id/Destination_E_offer"
+            android:layout_alignStart="@+id/Destination_E_offer"
+            android:layout_toStartOf="@+id/numofrider_E_offer"
+            android:layout_toLeftOf="@+id/numofrider_E_offer" />
 
 
+        <Space
+            android:id="@+id/s3_f"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_below="@+id/price_E_offer"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+
+        <TextView
+            android:id="@+id/num_of_rider_V_offer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:text="@string/Num_of_rider"
+            android:textColor="@drawable/ic_add_black_24dp"
+            android:textSize="18sp"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp"
+            android:layout_below="@+id/s3_f" />
+
+        <EditText
+            android:id="@+id/numofrider_E_offer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="____"
+            android:background="@drawable/number_edit"
+            android:layout_below="@+id/s3_f"
+            android:layout_toRightOf="@+id/vtime_req"
+            android:layout_toEndOf="@+id/vtime_req" />
+
+        <Space
+            android:id="@+id/s4_f"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_below="@id/num_of_rider_V_offer"/>
+
+        <TableLayout
+            android:id="@+id/LT_offer"
+            android:layout_below="@id/s4_f"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <TextView
+                    android:id="@+id/proparites_V_offer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/proparties"
+                    android:textSize="20sp"
+                    android:textColor="@drawable/ic_add_black_24dp"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <CheckBox
+                    android:id="@+id/wifi_check_offer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/wifi"
+                    android:textSize="18sp"/>
+
+                <Space
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content" />
+
+                <CheckBox
+                    android:id="@+id/wmen_check_offer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/wmen"
+                    android:textSize="18sp"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <CheckBox
+                    android:id="@+id/misc_offer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/misc"
+                    android:textSize="18sp"/>
+
+                <Space
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content" />
+
+                <CheckBox
+                    android:id="@+id/men_check_offer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/man"
+                    android:textSize="18sp"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <CheckBox
+                    android:id="@+id/smoke_check_offer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/smoke"
+                    android:textSize="18sp"/>
+
+                <Space
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content" />
+
+            </TableRow>
+        </TableLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/trip_Button_offer"
+            android:text="@string/Offer_trip"
+            android:background="@drawable/button_request"
+            android:layout_below="@id/LT_offer"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
 
     </RelativeLayout>

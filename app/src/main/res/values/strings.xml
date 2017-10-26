@@ -43,13 +43,20 @@
     <string name="car_info">Car information</string>
 
     <string name="Edit_account"> Edit Account </string>
-    <string name="name"> name </string>
-    <string name="phone">phone :</string>
-    <string name="password"> password : </string>
-    <string name="save"> save </string>
+    <string name="name"> Name </string>
+    <string name="phone">Phone :</string>
+    <string name="password"> Password : </string>
+    <string name="save"> Save </string>
 
 
     <string name="Offer_trip">Offer trip</string>
-    <string name="req_from_offer">Your Requested Trip From :</string>
-    <string name="req_to_offer">Your Requested Trip To :</string>
+    <string name="req_from_offer">Your  Trip From :</string>
+    <string name="req_to_offer">Your  Trip To :</string>
+    <string name="price_offer">Price : </string>
+    <string name="smoke">Smoking</string>
+    <string name="misc">Misc</string>
+    <string name="man">Men only</string>
+    <string name="wmen">Wmen only</string>
+    <string name="wifi">Wifi</string>
+    <string name="proparties"> proprties </string>
 </resources>

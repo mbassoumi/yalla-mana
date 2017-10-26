@@ -49,5 +49,11 @@
     <string name="Offer_trip"> عرض رحلة </string>
     <string name="req_from_offer">أنت تريد رحلة من : </string>
     <string name="req_to_offer"> أنت تريد رحلة من : </string>
+    <string name="smoke">التدخين</string>
+    <string name="misc">misc</string>
+    <string name="man">فقط رجال</string>
+    <string name="wmen">فقط نساء</string>
+    <string name="wifi">wifi</string>
+    <string name="proparties"> خصائص </string>
 
 </resources>
