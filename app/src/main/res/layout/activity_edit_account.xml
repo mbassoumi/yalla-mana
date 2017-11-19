@@ -15,19 +15,9 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.625">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/_edit_account"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:background="#4CAF50"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme"
-            android:title="@string/new_user"
-            android:titleTextColor="#FFFFFF"
-            app:title="@string/Edit_account" />
+        <include layout="@layout/toolbar"
+            android:id="@+id/toolbar_edit_account"
+         />
 
         <ImageButton
             android:id="@+id/imageButton_edit"
@@ -54,7 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/first_name"
-            android:textColor="@drawable/ic_add_black_24dp"
+            android:textColor="@color/black"
             android:textSize="18sp"
             android:layout_below="@+id/space2"
             android:layout_alignParentLeft="true"
@@ -83,7 +73,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/last_name"
-            android:textColor="@drawable/ic_add_black_24dp"
+            android:textColor="@color/black"
             android:textSize="18sp"
             android:layout_below="@+id/space3"
             android:layout_alignParentLeft="true"
@@ -115,7 +105,7 @@
             android:layout_width="match_parent"
             android:text="@string/mobile_number"
             android:textSize="18sp"
-            android:textColor="@drawable/ic_add_black_24dp"
+            android:textColor="@color/black"
             android:layout_below="@+id/space4"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
@@ -144,7 +134,7 @@
             android:id="@+id/Email_V_edit"
             android:layout_height="wrap_content"
             android:textSize="18sp"
-            android:textColor="@drawable/ic_add_black_24dp"
+            android:textColor="@color/black"
             android:text="@string/email"
             android:layout_below="@+id/space5"
             android:layout_alignParentLeft="true"
@@ -172,7 +162,7 @@
             android:id="@+id/Password_V_edit"
             android:layout_height="wrap_content"
             android:textSize="18sp"
-            android:textColor="@drawable/ic_add_black_24dp"
+            android:textColor="@color/black"
             android:text="@string/password"
             android:layout_below="@+id/space6"/>
         <EditText
@@ -187,12 +177,12 @@
             android:id="@+id/Save_Button_edit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/button_request"
-            android:text="@string/save"
             android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
-
+            android:background="@drawable/button_animation"
+            android:text="@string/save"
+            android:textColor="#4CAF50"/>
 
 
 

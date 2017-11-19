@@ -15,26 +15,14 @@
         app:layout_constraintTop_toTopOf="parent">
 
 
-        <android.support.v7.widget.Toolbar
+        <include layout="@layout/toolbar"
             android:id="@+id/toolbar_offer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:background="#4CAF50"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme"
-            android:title="@string/new_user"
-            android:titleTextColor="#FFFFFF"
-            app:title="@string/Offer_trip"
-            tools:layout_editor_absoluteX="8dp"
-            tools:layout_editor_absoluteY="0dp" />
+            />
 
         <Space
             android:id="@+id/s00"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="10dp"
             android:layout_below="@+id/toolbar_offer"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="0dp" />
@@ -47,7 +35,7 @@
             android:layout_alignParentStart="true"
             android:layout_below="@+id/s00"
             android:text="@string/req_from_offer"
-            android:textColor="@drawable/ic_add_black_24dp"
+            android:textColor="@color/black"
             android:textSize="18sp"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="0dp" />
@@ -81,7 +69,7 @@
             android:layout_alignParentStart="true"
             android:layout_below="@+id/s01"
             android:text="@string/req_to_offer"
-            android:textColor="@drawable/ic_add_black_24dp"
+            android:textColor="@color/black"
             android:textSize="18sp"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="0dp" />
@@ -115,7 +103,7 @@
             android:layout_alignParentStart="true"
             android:layout_below="@+id/s02"
             android:text="@string/time_req"
-            android:textColor="@drawable/ic_add_black_24dp"
+            android:textColor="@color/black"
             android:textSize="18sp"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="0dp" />
@@ -199,10 +187,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/s03"
             android:text="@string/price_offer"
-            android:textColor="@drawable/ic_add_black_24dp"
-            android:textSize="18sp"
-
-            />
+            android:textColor="@color/black"
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/price_E_offer"
@@ -233,7 +219,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:text="@string/Num_of_rider"
-            android:textColor="@drawable/ic_add_black_24dp"
+            android:textColor="@color/black"
             android:textSize="18sp"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="0dp"
@@ -272,7 +258,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/proparties"
                     android:textSize="20sp"
-                    android:textColor="@drawable/ic_add_black_24dp"/>
+                    android:textColor="@color/black"/>
             </TableRow>
 
             <TableRow
@@ -346,7 +332,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/trip_Button_offer"
             android:text="@string/Offer_trip"
-            android:background="@drawable/button_request"
+            android:textColor="#4CAF50"
+            android:background="@drawable/button_animation"
             android:layout_below="@id/LT_offer"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
@@ -354,3 +341,4 @@
 
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
+

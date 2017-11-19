@@ -17,8 +17,9 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="-16dp"
-            android:background="@drawable/button_request"
             android:text="cancel"
+            android:textColor="#4CAF50"
+            android:background="@drawable/button_animation"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -53,7 +54,7 @@
                 android:paddingTop="10dp"
                 android:text="number of seats"
                 android:textSize="18sp"
-                android:textColor="@drawable/ic_add_black_24dp"/>
+                android:textColor="@color/black"/>
 
             <TextView
                 android:id="@+id/pop_car_num"
@@ -67,7 +68,7 @@
                 android:paddingTop="10dp"
                 android:text="car number"
                 android:textSize="18sp"
-                android:textColor="@drawable/ic_add_black_24dp"/>
+                android:textColor="@color/black"/>
 
             <TextView
                 android:id="@+id/pop_car_model"
@@ -81,7 +82,7 @@
                 android:paddingTop="10dp"
                 android:text="Model"
                 android:textSize="18sp"
-                android:textColor="@drawable/ic_add_black_24dp"/>
+                android:textColor="@color/black"/>
 
             <TextView
                 android:id="@+id/pop_car_color"
@@ -95,7 +96,7 @@
                 android:paddingTop="10dp"
                 android:text="Color"
                 android:textSize="18sp"
-                android:textColor="@drawable/ic_add_black_24dp"/>
+                android:textColor="@color/black"/>
         </LinearLayout>
 
         <LinearLayout

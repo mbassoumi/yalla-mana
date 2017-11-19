@@ -7,53 +7,52 @@
     <string name="last_name" translatable="false">الاسم الاخير</string>
     <string name="mobile_number" translatable="false">"الهاتف "</string>
     <string name="rider" translatable="false">راكب</string>
-    <string name="first_name">الاسم الاول :</string>
-    <string name="sign_up">مستخدم جديد؟</string>
-    <string name="yalla">يلا</string>
-    <string name="new_user">مستخدم جديد</string>
-    <string name="skip">تخطى</string>
-    <string name="id_image"> صورةهوية السائق</string>
-    <string name="license_image">صورةرخصة السائق</string>
-    <string name="account_number">رقم حساب البنك</string>
-    <string name="car_information">معلومات السيارة</string>
-    <string name="car_id_image">صورة لرقم السيارة</string>
-    <string name="car_license_image">صورة رخصة السيارة</string>
-    <string name="car_image">صورة السيارة</string>
-    <string name="try_again">اعادة ارسال !</string>
-    <string name="driver_toolbar">السائق</string>
+    <string name="first_name"  translatable="false">الاسم الاول :</string>
+    <string name="sign_up"  translatable="false">مستخدم جديد؟</string>
+    <string name="yalla"  translatable="false">يلا</string>
+    <string name="new_user"  translatable="false">مستخدم جديد</string>
+    <string name="skip"  translatable="false">تخطى</string>
+    <string name="id_image"  translatable="false"> صورةهوية السائق</string>
+    <string name="license_image"  translatable="false">صورةرخصة السائق</string>
+    <string name="account_number"  translatable="false">رقم حساب البنك</string>
+    <string name="car_information"  translatable="false">معلومات السيارة</string>
+    <string name="car_id_image"  translatable="false">صورة لرقم السيارة</string>
+    <string name="car_license_image"  translatable="false">صورة رخصة السيارة</string>
+    <string name="car_image"  translatable="false">صورة السيارة</string>
+    <string name="try_again"  translatable="false">اعادة ارسال !</string>
+    <string name="driver_toolbar"  translatable="false">السائق</string>
 
-    <string name="request_toolbar">طلب رحلة</string>
-    <string name="From_req" > تبدأ من :</string>
-    <string name="hFrom_req" > أدخل مكان البدأ </string>
-    <string name="To_req"> تنتهي إلى : :</string>
-    <string name="hTo_req"> أدخل  مكان الوجهة  </string>
-    <string name="time_req"> موعد البدأ  : </string>
-    <string name="Num_of_rider"> عدد الركاب : </string>
-    <string name="button_req"> طلب </string>
+    <string name="request_toolbar"  >طلب رحلة</string>
+    <string name="From_req"  translatable="false"> تبدأ من :</string>
+    <string name="hFrom_req" translatable="false">" > أدخل مكان البدأ </string>
+    <string name="To_req"  translatable="false"> تنتهي إلى :</string>
+    <string name="hTo_req"  translatable="false">   أدخل  مكان الوجهة  </string>
+    <string name="time_req"  translatable="false"> موعد البدأ  : </string>
+    <string name="Num_of_rider"  translatable="false"> عدد الركاب : </string>
 
-    <string name="trip_information"> معلومات عن الرحلة </string>
-    <string name="from_info">من :</string>
-    <string name="to_info"> إلى :</string>
-    <string name="time_info"> تاريخ و وقت البدأ :</string>
-    <string name="price_info"> التكلفة : </string>
-    <string name="still_time_info">الوقت المتبقي </string>
-    <string name="car_info">معلومات عن السيارة</string>
+    <string name="trip_information" translatable="true">  معلومات عن الرحلة </string>
+    <string name="from_info" translatable="true">من :</string>
+    <string name="to_info" translatable="true"> إلى :</string>
+    <string name="time_info" translatable="true"> تاريخ و وقت البدأ :</string>
+    <string name="price_info" translatable="true"> التكلفة : </string>
+    <string name="still_time_info" translatable="true">الوقت المتبقي </string>
+    <string name="car_info" translatable="true">معلومات عن السيارة</string>
 
 
-    <string name="Edit_account"> إعدادات الحساب </string>
-    <string name="name"> الاسم </string>
+    <string name="Edit_account" translatable="true"> إعدادات الحساب </string>
+    <string name="name" translatable="true"> الاسم </string>
     <string name="phone"> الهاتف : </string>
     <string name="password"> كلمة السر : </string>
     <string name="save"> حفظ </string>
 
-    <string name="Offer_trip"> عرض رحلة </string>
-    <string name="req_from_offer">أنت تريد رحلة من : </string>
-    <string name="req_to_offer"> أنت تريد رحلة من : </string>
-    <string name="smoke">التدخين</string>
-    <string name="misc">misc</string>
-    <string name="man">فقط رجال</string>
-    <string name="wmen">فقط نساء</string>
-    <string name="wifi">wifi</string>
-    <string name="proparties"> خصائص </string>
+    <string name="Offer_trip" translatable="true"> عرض رحلة </string>
+    <string name="req_from_offer" translatable="true">أنت تريد رحلة من : </string>
+    <string name="req_to_offer" translatable="true"> أنت تريد رحلة من : </string>
+    <string name="smoke" translatable="true">التدخين</string>
+    <string name="misc" translatable="true">misc</string>
+    <string name="man" translatable="true">فقط رجال</string>
+    <string name="wmen" translatable="true">فقط نساء</string>
+    <string name="wifi" translatable="true">wifi</string>
+    <string name="proparties" translatable="true" > خصائص </string>
 
 </resources>

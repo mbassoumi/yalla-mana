@@ -4,10 +4,41 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.journaldev.tablayoutviewpager.MainActivity">
-
     <item
-        android:id="@+id/backButton"
-        android:title="Back Button"
-        android:icon="@drawable/ic_arrow_back_black_24dp"
-        app:showAsAction="ifRoom"></item>
+        android:id="@+id/M_mytrip"
+        android:title="My trip"
+        android:checkable="false"
+        android:enabled="true"
+        android:visible="true"
+        app:showAsAction="collapseActionView"></item>
+    <item
+        android:id="@+id/M_Trip"
+        android:title="Trip" />
+    <item
+        android:id="@+id/M_mywallet"
+        android:title="My wallet"
+        android:checkable="false"
+        android:enabled="true"
+        android:visible="true"
+        app:showAsAction="withText"/>
+    <item
+        android:id="@+id/M_setting"
+        android:title="Setting"
+        android:checkable="false"
+        android:enabled="true"
+        android:visible="true"
+        app:showAsAction="collapseActionView"/>
+    <item
+        android:id="@+id/M_post"
+        android:checkable="false"
+        android:enabled="true"
+        android:title="Post"
+        android:visible="true"></item>
+    <item
+        android:id="@+id/M_help"
+        android:title="Help"
+        android:checkable="false"
+        android:enabled="true"
+        android:visible="true"
+        app:showAsAction="collapseActionView" />
 </menu>

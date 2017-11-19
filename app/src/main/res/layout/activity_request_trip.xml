@@ -8,34 +8,25 @@
 
     <RelativeLayout
         android:layout_width="368dp"
-        android:layout_height="551dp"
+        android:layout_height="586dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
 
-        <android.support.v7.widget.Toolbar
+        <include layout="@layout/toolbar"
             android:id="@+id/toolbar_request"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:background="#4CAF50"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme"
-            android:title="@string/new_user"
-            android:titleTextColor="#FFFFFF"
-            app:title="@string/request_toolbar"
-            tools:layout_editor_absoluteX="8dp"
-            tools:layout_editor_absoluteY="0dp" />
+         />
 
         <Space
             android:id="@+id/s00_req"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="10dp"
             android:layout_below="@+id/toolbar_request"
+            android:layout_toEndOf="@+id/s01"
+            android:layout_toRightOf="@+id/s01"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="0dp" />
 
@@ -47,7 +38,7 @@
             android:layout_alignParentStart="true"
             android:layout_below="@+id/s00_req"
             android:text="@string/From_req"
-            android:textColor="@drawable/ic_add_black_24dp"
+            android:textColor="@color/black"
             android:textSize="18sp"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="0dp" />
@@ -81,7 +72,7 @@
             android:layout_alignParentStart="true"
             android:layout_below="@+id/s01"
             android:text="@string/To_req"
-            android:textColor="@drawable/ic_add_black_24dp"
+            android:textColor="@color/black"
             android:textSize="18sp"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="0dp" />
@@ -90,14 +81,14 @@
             android:id="@+id/Destination_E_request"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/from_E_request"
+            android:layout_alignStart="@+id/from_E_request"
+            android:layout_below="@+id/To_V_request"
             android:hint="@string/hTo_req"
             android:inputType="textAutoCorrect"
             android:textSize="18sp"
             tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="0dp"
-            android:layout_below="@+id/To_V_request"
-            android:layout_alignLeft="@+id/from_E_request"
-            android:layout_alignStart="@+id/from_E_request" />
+            tools:layout_editor_absoluteY="0dp" />
 
         <Space
             android:id="@+id/s02_req"
@@ -115,7 +106,7 @@
             android:layout_alignParentStart="true"
             android:layout_below="@+id/s02_req"
             android:text="@string/time_req"
-            android:textColor="@drawable/ic_add_black_24dp"
+            android:textColor="@color/black"
             android:textSize="18sp"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="0dp" />
@@ -199,32 +190,31 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/s03_req"
             android:text="@string/price_offer"
-            android:textColor="@drawable/ic_add_black_24dp"
+            android:textColor="@color/black"
             android:textSize="18sp"
 
             />
 
         <EditText
-            android:id="@+id/price_E_offer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="_NIS_"
-            android:background="@drawable/number_edit"
-            android:layout_below="@+id/s03_req"
             android:layout_alignLeft="@+id/Destination_E_request"
             android:layout_alignStart="@+id/Destination_E_request"
-            android:layout_toStartOf="@+id/numofrider_E_request"
-            android:layout_toLeftOf="@+id/numofrider_E_request" />
+            android:layout_below="@+id/L1_request"
+            android:hint=" NIS"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
 
+        android:textColor="@color/black"
 
         <Space
             android:id="@+id/s3_req"
             android:layout_width="match_parent"
             android:layout_height="10dp"
-            android:layout_below="@+id/price_E_offer"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/price_V_request"
+            android:textColor="@color/black" />
 
 
         <TextView
@@ -233,47 +223,48 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
+            android:layout_below="@+id/s3_req"
             android:text="@string/Num_of_rider"
-            android:textColor="@drawable/ic_add_black_24dp"
+            android:textColor="@color/black"
             android:textSize="18sp"
             tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="0dp"
-            android:layout_below="@+id/s3_req" />
+            tools:layout_editor_absoluteY="0dp" />
 
         <EditText
             android:id="@+id/numofrider_E_request"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="____"
-            android:background="@drawable/number_edit"
             android:layout_below="@+id/s3_req"
+            android:layout_toEndOf="@+id/vtime_req"
             android:layout_toRightOf="@+id/vtime_req"
-            android:layout_toEndOf="@+id/vtime_req" />
+            android:background="@drawable/number_edit"
+            android:hint="____" />
 
         <Space
             android:id="@+id/s4_req"
             android:layout_width="match_parent"
             android:layout_height="10dp"
-            android:layout_below="@id/num_of_rider_V_request"/>
+            android:layout_below="@id/num_of_rider_V_request" />
 
         <TableLayout
             android:id="@+id/LT_request"
-            android:layout_below="@id/s4_req"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_below="@id/s4_req">
 
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                android:layout_height="match_parent"
+                android:textColor="@drawable/ic_add_black_24dp">
 
                 <TextView
                     android:id="@+id/proparites_V_request"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/proparties"
-                    android:textSize="20sp"
-                    android:textColor="@drawable/ic_add_black_24dp"/>
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
             </TableRow>
 
             <TableRow
@@ -285,7 +276,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/wifi"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp" />
 
                 <Space
                     android:layout_width="20dp"
@@ -296,7 +287,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/wmen"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp" />
 
             </TableRow>
 
@@ -309,7 +300,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/misc"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp" />
 
                 <Space
                     android:layout_width="20dp"
@@ -320,20 +311,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/man"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp" />
 
             </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content">
 
                 <CheckBox
                     android:id="@+id/smoke_check_request"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/smoke"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp" />
 
                 <Space
                     android:layout_width="20dp"
@@ -343,14 +334,15 @@
         </TableLayout>
 
         <Button
+            android:id="@+id/trip_Button_request"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/trip_Button_request"
+            android:layout_below="@+id/LT_request"
+            android:layout_toEndOf="@+id/Destination_E_request"
+            android:layout_toRightOf="@+id/Destination_E_request"
             android:text="@string/request_toolbar"
-            android:background="@drawable/button_request"
-            android:layout_below="@id/LT_request"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:textColor="#4CAF50"
+            android:background="@drawable/button_animation"/>
 
 
     </RelativeLayout>

@@ -21,9 +21,18 @@
         <activity android:name=".SignupActivity" />
         <activity android:name=".DriverActivity" />
         <activity android:name=".Request_trip" />
-        <activity android:name=".Trip_information" />
         <activity android:name=".Edit_account" />
-        <activity android:name=".offer_trip"></activity>
+        <activity android:name=".offer_trip" />
+        <activity android:name=".Trip_information" />
+        <!--activity
+            android:name="com.example.m_7el.yallamana.SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.graduation.yallamana.MainActivity" />
+
+        </activity><!-->
     </application>
 
 </manifest>

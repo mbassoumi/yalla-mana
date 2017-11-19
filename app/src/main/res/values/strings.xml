@@ -25,38 +25,44 @@
     <string name="try_again" translatable="false">Try again!</string>
     <string name="driver_toolbar" translatable="false">Driver</string>
 
-    <string name="request_toolbar" translatable="false">Request Trip</string>
-    <string name="From_req" translatable="false">Your trip start from :</string>
-    <string name="hFrom_req"> Enter your start location </string>
-    <string name="To_req" translatable="false">Your trip end to : </string>
-    <string name="hTo_req"> Enter your destination </string>
-    <string name="time_req">Date of your trip : </string>
-    <string name="Num_of_rider"> Num. of riders :</string>
-    <string name="button_req">Request </string>
+    <string name="request_toolbar" >Request Trip</string>
+    <string name="From_req" >Your trip start from :</string>
+    <string name="hFrom_req"  > Enter your start location </string>
+    <string name="To_req" >Your trip end to : </string>
+    <string name="hTo_req" > Enter your destination </string>
+    <string name="time_req" >Date of your trip : </string>
+    <string name="Num_of_rider" translatable="false"> Num. of riders :</string>
+    <string name="button_req" translatable="false">Request </string>
 
-    <string name="trip_information">Information trip</string>
-    <string name="from_info">From :</string>
-    <string name="to_info"> To :</string>
-    <string name="time_info"> Date and time :</string>
-    <string name="price_info">Price :</string>
-    <string name="still_time_info">Still time : </string>
-    <string name="car_info">Car information</string>
+    <string name="trip_information" translatable="false">Information trip</string>
+    <string name="from_info" translatable="false">From :</string>
+    <string name="to_info" translatable="false"> To :</string>
+    <string name="time_info" translatable="false"> Date and time :</string>
+    <string name="price_info" translatable="false">Price :</string>
+    <string name="still_time_info" translatable="false">Still time : </string>
+    <string name="car_info" translatable="false">Car information</string>
 
-    <string name="Edit_account"> Edit Account </string>
-    <string name="name"> Name </string>
-    <string name="phone">Phone :</string>
-    <string name="password"> Password : </string>
-    <string name="save"> Save </string>
+    <string name="Edit_account" translatable="false"> Edit Account </string>
+    <string name="name" translatable="false"> Name </string>
+    <string name="phone" translatable="false">Phone :</string>
+    <string name="password" translatable="false"> Password : </string>
+    <string name="save" translatable="false"> Save </string>
 
 
-    <string name="Offer_trip">Offer trip</string>
-    <string name="req_from_offer">Your  Trip From :</string>
-    <string name="req_to_offer">Your  Trip To :</string>
-    <string name="price_offer">Price : </string>
-    <string name="smoke">Smoking</string>
-    <string name="misc">Misc</string>
-    <string name="man">Men only</string>
-    <string name="wmen">Wmen only</string>
-    <string name="wifi">Wifi</string>
-    <string name="proparties"> proprties </string>
+    <string name="Offer_trip" translatable="false">Offer trip</string>
+    <string name="req_from_offer" translatable="false">Your  Trip From :</string>
+    <string name="req_to_offer" translatable="false">Your  Trip To :</string>
+    <string name="price_offer" translatable="false">Price : </string>
+    <string name="smoke" translatable="false">Smoking</string>
+    <string name="misc" translatable="false">Misc</string>
+    <string name="man" translatable="false">Men only</string>
+    <string name="wmen" translatable="false">Wmen only</string>
+    <string name="wifi" translatable="false">Wifi</string>
+    <string name="proparties" translatable="false"> proprties </string>
+    <string name="title_activity_informatio__trip__tool" translatable="false">Informatio_Trip_Tool</string>
+    <string name="title_activity_settings" translatable="false">Settings</string>
+
+
+
+
 </resources>
