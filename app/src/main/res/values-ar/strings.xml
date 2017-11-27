@@ -4,11 +4,11 @@
     <string name="connect_with" translatable="false">تواصل من خلال:</string>
     <string name="driver" translatable="false">سائق</string>
     <string name="email" translatable="false">البريدالالكتروني</string>
-    <string name="last_name" >الاسم الاخير</string>
+    <string name="last_name" translatable="false">الاسم الاخير</string>
     <string name="mobile_number" translatable="false">"الهاتف "</string>
     <string name="rider" translatable="false">راكب</string>
     <string name="first_name">الاسم الاول</string>
-    <string name="sign_up">تسجيل؟</string>
+    <string name="sign_up">مستخدم جديد؟</string>
     <string name="yalla">يلا</string>
     <string name="new_user">مستخدم جديد</string>
     <string name="skip">تخطى</string>
@@ -21,6 +21,4 @@
     <string name="car_image">صورة السيارة</string>
     <string name="try_again">اعادة ارسال !</string>
     <string name="driver_toolbar">السائق</string>
-    <string name="code">حتى يتم اعتماد رقمك ادخل الكود </string>
-    <string name="verify">تاكيد</string>
 </resources>
