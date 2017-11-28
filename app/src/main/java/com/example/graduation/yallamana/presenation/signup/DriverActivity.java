@@ -1,11 +1,13 @@
-package com.example.graduation.yallamana;
+package com.example.graduation.yallamana.presenation.signup;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.Toast;
+
+import com.example.graduation.yallamana.R;
+import com.example.graduation.yallamana.SplashActivity;
 
 
 public class DriverActivity extends AppCompatActivity {

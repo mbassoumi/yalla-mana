@@ -1,16 +1,15 @@
-package com.example.graduation.yallamana;
+package com.example.graduation.yallamana.util;
 
 /**
- * Created by m_7el on 9/14/2017.
+ * Created by Mais
+
  */
 
 import android.content.Context;
 import android.content.Intent;
 
-/**
- * Created by Sharif on 8/1/2017.
- */
-
+import com.example.graduation.yallamana.presenation.login.LoginActivity;
+import com.example.graduation.yallamana.presenation.signup.SignupActivity;
 
 public class Navigator {
     public static void navigateToHome(Context context)

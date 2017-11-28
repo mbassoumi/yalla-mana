@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.graduation.yallamana.DriverFragment">
+    tools:context="com.example.graduation.yallamana.presenation.signup.DriverFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -36,7 +36,7 @@
             android:layout_below="@+id/textView4"
             android:layout_marginTop="32dp"
             android:background="#FFFFFF"
-            app:srcCompat="@drawable/ic_file_upload_black_24dp" />
+            android:src="@drawable/ic_file_upload_black_24dp" />
 
         <ImageButton
             android:id="@+id/licenseImage"
@@ -47,7 +47,7 @@
             android:layout_below="@+id/idImage"
             android:layout_marginTop="18dp"
             android:background="#FFFFFF"
-            app:srcCompat="@drawable/ic_file_upload_black_24dp" />
+            android:src="@drawable/ic_file_upload_black_24dp" />
 
         <TextView
             android:id="@+id/textView5"
