@@ -24,7 +24,8 @@
         <activity android:name=".Edit_account" />
         <activity android:name=".offer_trip" />
         <activity android:name=".Trip_information" />
-        <!--activity
+        <!--
+        activity
             android:name="com.example.m_7el.yallamana.SettingsActivity"
             android:label="@string/title_activity_settings"
             android:parentActivityName=".MainActivity">
@@ -32,7 +33,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.graduation.yallamana.MainActivity" />
 
-        </activity><!-->
+        </activity><!
+        -->
+        <activity
+            android:name=".Dawer_List"
+            android:label="@string/title_activity_dawer__list"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

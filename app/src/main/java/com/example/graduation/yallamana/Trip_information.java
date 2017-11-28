@@ -21,12 +21,6 @@ public class Trip_information extends AppCompatActivity {
         getSupportActionBar().setTitle(R.string.trip_information);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        tool.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),MainActivity.class));
-            }
-        });
 
     }
 
