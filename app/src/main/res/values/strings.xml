@@ -67,6 +67,10 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+    <string name="rating">Rating app</string>
+    <string name="feedbak">Feedback</string>
+    <string name="signout">Sign out</string>
+    <string name="Noteification">Noteification</string>
 
-
+    <string name="drawe_list">List</string>
 </resources>

@@ -7,8 +7,8 @@
     tools:context=".Edit_account">
 
     <RelativeLayout
-        android:layout_width="368dp"
-        android:layout_height="551dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -16,8 +16,12 @@
         app:layout_constraintVertical_bias="0.625">
 
         <include layout="@layout/toolbar"
-            android:id="@+id/toolbar_edit_account"
+            android:id="@+id/edit_account_toolbar"
          />
+        <Space android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:id="@+id/edit_ss0"
+            android:layout_below="@id/edit_account_toolbar"/>
 
         <ImageButton
             android:id="@+id/imageButton_edit"
@@ -28,7 +32,7 @@
             android:layout_marginTop="18dp"
             app:srcCompat="@drawable/ic_person_outline_black_24dp"
             tools:ignore="VectorDrawableCompat"
-            android:layout_below="@+id/_edit_account"
+            android:layout_below="@+id/edit_ss0"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
@@ -40,6 +44,7 @@
 
 
         <TextView
+            android:paddingLeft="10pt"
             android:id="@+id/Firt_nameV_edit_account"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -69,6 +74,7 @@
 
 
         <TextView
+            android:paddingLeft="10pt"
             android:id="@+id/Last_nameV_edit_account"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -100,6 +106,7 @@
             android:layout_alignParentStart="true" />
 
         <TextView
+            android:paddingLeft="10pt"
             android:id="@+id/phone_V_edit"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
@@ -130,6 +137,7 @@
 
 
         <TextView
+            android:paddingLeft="10pt"
             android:layout_width="match_parent"
             android:id="@+id/Email_V_edit"
             android:layout_height="wrap_content"
@@ -158,6 +166,7 @@
             android:layout_alignParentStart="true" />
 
         <TextView
+            android:paddingLeft="10pt"
             android:layout_width="match_parent"
             android:id="@+id/Password_V_edit"
             android:layout_height="wrap_content"

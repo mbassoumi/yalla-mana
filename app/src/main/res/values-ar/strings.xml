@@ -55,4 +55,9 @@
     <string name="wifi" translatable="true">wifi</string>
     <string name="proparties" translatable="true" > خصائص </string>
 
+
+    <string name="rating">التقيم التطبيق</string>
+    <string name="feedbak">ملاحظات</string>
+    <string name="signout">خروج</string>
+    <string name="Noteification">Noteification</string>
 </resources>
