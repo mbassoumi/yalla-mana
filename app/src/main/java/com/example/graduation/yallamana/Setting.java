@@ -3,20 +3,26 @@ package com.example.graduation.yallamana;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 
-public class Edit_account extends AppCompatActivity {
-    private Toolbar tool ;
+public class Setting extends AppCompatActivity {
+    private  Toolbar tool ;
+    private Button btnEdit,btnFeedback,btnRating,btnSginout,btnNote;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_account);
-        tool= (Toolbar)findViewById(R.id.edit_account_toolbar);
+        setContentView(R.layout.activity_setting);
+        tool=(Toolbar)findViewById(R.id.toolbar_setting);
+        setSupportActionBar(tool);
+        getSupportActionBar().setTitle(R.string.action_settings);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
 
         tool.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -24,12 +30,21 @@ public class Edit_account extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(),Dawer_List.class));
             }
         });
+
+
+        btnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent t= new Intent(getApplicationContext(),Edit_account.class);
+                finish();
+                startActivity(t);
+            }
+        });
+
+
+
+
     }
-
-
-
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -79,4 +94,5 @@ public class Edit_account extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 }

@@ -1,4 +1,4 @@
-package com.example.m_7el.yallamana;
+package com.example.graduation.yallamana;
 
 import android.content.Context;
 import android.net.Uri;

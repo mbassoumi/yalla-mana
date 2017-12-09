@@ -1,5 +1,6 @@
 package com.example.graduation.yallamana;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -11,8 +12,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-
-import com.example.m_7el.yallamana.Mytrip_f;
 
 public class Dawer_List extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -53,6 +52,9 @@ public class Dawer_List extends AppCompatActivity
         }
     }
 
+
+
+
  /*   @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -81,23 +83,28 @@ public class Dawer_List extends AppCompatActivity
      // Handle navigation view item clicks here.
      int id = item.getItemId();
 
+     /*This drawer list can use fragment to show its options*/
+
      if (id == R.id.M_mytrip) {
-         setTitle("My trip");
+        /* setTitle("My trip");
         Mytrip_f fa = new Mytrip_f();
 
          android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
          ft.replace(R.id.fram , fa,"Mytrip_f");
-         ft.commit();
+         ft.commit();*/
+         Intent t = new Intent(getApplicationContext(),Trip_information.class);
+         finish();
+         startActivity(t);
 
      } else if (id == R.id.M_Trip) {
-         setTitle("Trip");
+        /* setTitle("Trip");
          Trip_f fa = new Trip_f();
          android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
          ft.replace(R.id.fram , fa,"Trip_f");
-         ft.commit();
-
+         ft.commit();*/
 
      } else if (id == R.id.M_setting) {
+
 
      } else if (id == R.id.M_help) {
 
@@ -105,7 +112,7 @@ public class Dawer_List extends AppCompatActivity
          setTitle("My wallet");
          Mywallet_f fa = new Mywallet_f();
          android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-         ft.replace(R.id.fram , fa,"Mywallet_f");
+         ft.replace(R.id.fram , fa,"Mywallet");
          ft.commit();
 
 

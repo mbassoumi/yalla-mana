@@ -14,15 +14,18 @@ public class offer_trip extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_offer_trip);
-        tool = (Toolbar) findViewById(R.id.toolbar_offer);
+        tool = (Toolbar) findViewById(R.id.offer_toolbar);
         setSupportActionBar(tool);
         getSupportActionBar().setTitle(R.string.Offer_trip);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+
+
         tool.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                startActivity(new Intent(getApplicationContext(),Dawer_List.class));
             }
         });
     }
