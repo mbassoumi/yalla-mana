@@ -6,9 +6,11 @@ package com.example.graduation.yallamana;
  */
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.example.graduation.yallamana.presenation.login.MainActivity;
 import com.example.graduation.yallamana.util.Navigator;
 
 
@@ -28,8 +30,9 @@ public class SplashActivity extends Activity {
             @Override
             public void run() {
 
-                Navigator.navigateToLogin(SplashActivity.this);
+                Intent t= new Intent(getApplicationContext(),MainActivity.class);
                 finish();
+                startActivity(t);
 
             }
         }, SPLASH_TIME_OUT);

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Setting">
+
+    <include layout="@layout/toolbar"
+        android:id="@+id/toolbar_setting"
+        />
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="10dp"
+        android:id="@+id/s0s"
+        android:layout_below="@+id/toolbar_setting"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/S_edit_accont"
+        android:text="@string/Edit_account"
+        android:background="@drawable/button_animation"
+        android:layout_below="@+id/s0s"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/S_edit_accont"
+        android:id="@+id/S_rating"
+        android:background="@drawable/button_animation"
+        android:text="@string/rating"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/S_feedback"
+        android:layout_below="@+id/S_rating"
+        android:background="@drawable/button_animation"
+        android:text="@string/feedbak"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/S_noteification"
+        android:layout_below="@id/S_feedback"
+        android:text="@string/Noteification"
+        android:background="@drawable/button_animation"/>
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        android:id="@+id/s1s"
+        android:layout_below="@+id/S_noteification"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/signout"
+        android:background="@drawable/button_animation"
+        android:layout_below="@+id/s1s"/>
+
+</RelativeLayout>

@@ -96,13 +96,13 @@
             android:id="@+id/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/number4"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="55dp"
-            android:text="@string/code"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="73dp"
+            android:layout_toLeftOf="@+id/number4"
+            android:layout_toStartOf="@+id/number4"
+            android:text="Verify Your Number"
             android:textAlignment="center"
-            android:textColor="@color/common_google_signin_btn_text_dark_disabled"
+            android:textColor="@color/green"
             android:textSize="18sp" />
     </RelativeLayout>
 </FrameLayout>

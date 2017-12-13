@@ -3,6 +3,7 @@ package com.example.graduation.yallamana.presenation.login;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Handler;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,10 +14,16 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.graduation.yallamana.Drawer_List;
+import com.example.graduation.yallamana.Request_trip;
+import com.example.graduation.yallamana.presenation.alltrips.AllTripsActivity;
+import com.example.graduation.yallamana.presenation.signup.SignupActivity;
 import com.example.graduation.yallamana.util.Navigator;
 import com.example.graduation.yallamana.R;
 import com.example.graduation.yallamana.presenation.login.fragment.verificationFragment;
 import com.example.graduation.yallamana.util.UiUtils;
+import com.facebook.login.widget.LoginButton;
 
 
 import butterknife.BindView;
@@ -30,11 +37,8 @@ import butterknife.OnClick;
 public class LoginActivity extends AppCompatActivity implements LoginView {
 
 
-    @BindView(R.id.signupButton)
     Button signupButton;
-    @BindView(R.id.user_phone)
     EditText userPhone;
-    @BindView(R.id.toolbar)
     Toolbar toolbar;
 //    @BindView(R.id.login_facebook)
 //    LoginButton loginButton;
@@ -49,30 +53,39 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-        setSupportActionBar(toolbar);
-        toolbar.setBackgroundColor(getResources().getColor(R.color.white));
-        toolbar.setTitleTextColor(getResources().getColor(R.color.white));
 //        callbackManager = CallbackManager.Factory.create();
 //        FacebookSdk.sdkInitialize(getApplicationContext());
 //        LoginFB();
 
+        signupButton=(Button)findViewById(R.id.signupButton);
+        Button yalla_button =(Button)findViewById(R.id.yallaButton);
 
+       signupButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this,SignupActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        yalla_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(LoginActivity.this,Drawer_List.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
 
     @OnClick(R.id.yallaButton)
     // loogin with user number
     public void loginButtonClicked() {
-        progressDialog = ProgressDialog.show(this, "Logging in ...", "Please Wait");
-        new Handler().postDelayed(new Runnable() {
-
-            @Override
-            public void run() {
-                 String phone = userPhone.getText().toString();
-                 loginPresenter.submitLogin(phone);
-                loginSuccess();
-            }
-        }, 2000);
+//
+        Navigator.navigateToPost(this);
+        finish();
 
     }
 
@@ -81,7 +94,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
 
         Toast.makeText(LoginActivity.this, "signup",
                 Toast.LENGTH_SHORT).show();
-        Navigator.navigateTosignup(this);
+        Navigator.navigateToPost(this);
         finish();
 
 

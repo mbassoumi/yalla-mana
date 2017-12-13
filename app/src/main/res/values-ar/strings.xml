@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">يلا معنا</string>
     <string name="connect_with" translatable="false">تواصل من خلال:</string>
@@ -21,4 +21,34 @@
     <string name="car_image">صورة السيارة</string>
     <string name="try_again">اعادة ارسال !</string>
     <string name="driver_toolbar">السائق</string>
+    <string name="verify">verify</string>
+    <string name="code">رمز</string>
+
+
+    <string name="smoke" translatable="true">التدخين</string>
+    <string name="misc" translatable="true">misc</string>
+    <string name="man" translatable="true">فقط رجال</string>
+    <string name="wmen" translatable="true">فقط نساء</string>
+    <string name="wifi" translatable="true">wifi</string>
+    <string name="proparties" translatable="true" > خصائص </string>
+
+
+    <string name="rating">التقيم التطبيق</string>
+    <string name="feedbak">ملاحظات</string>
+    <string name="signout">خروج</string>
+    <string name="Noteification">اشعارات</string>
+ <string name="drawe_list">List</string>
+
+    <string name="bank_prompt">اختر بنك</string>
+
+    <string-array name="bank_arrays">
+        <item>البنك العربي</item>
+        <item>بنك فلسطين</item>
+        <item>البنك الوطني</item>
+        <item>البنك الاسلامي العربي</item>   
+
+      
+    </string-array>
+    <string name="seat_prompt">اختر العدد</string>
+
 </resources>

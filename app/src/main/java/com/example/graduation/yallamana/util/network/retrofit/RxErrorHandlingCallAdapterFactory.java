@@ -1,5 +1,7 @@
 package com.example.graduation.yallamana.util.network.retrofit;
 
+import android.support.annotation.NonNull;
+
 import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
@@ -10,7 +12,6 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.Single;
 import io.reactivex.SingleSource;
-import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Function;
 import retrofit2.Call;
 import retrofit2.CallAdapter;

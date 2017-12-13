@@ -3,8 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/YallaMana.iml" filepath="$PROJECT_DIR$/YallaMana.iml" />
-      <module fileurl="file://$PROJECT_DIR$/android-yalla-manna.iml" filepath="$PROJECT_DIR$/android-yalla-manna.iml" />
+      <module fileurl="file://C:\Users\m_7el\AndroidStudioProjects\graduation\YallaMana\android-yalla-manna.iml" filepath="C:\Users\m_7el\AndroidStudioProjects\graduation\YallaMana\android-yalla-manna.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libraries/libraries.iml" filepath="$PROJECT_DIR$/libraries/libraries.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libraries/library/library.iml" filepath="$PROJECT_DIR$/libraries/library/library.iml" />
     </modules>
   </component>
 </project>

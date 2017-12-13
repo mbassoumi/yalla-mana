@@ -8,7 +8,12 @@ package com.example.graduation.yallamana.util;
 import android.content.Context;
 import android.content.Intent;
 
+
+import com.example.graduation.yallamana.presenation.alltrips.AllTripsActivity;
 import com.example.graduation.yallamana.presenation.login.LoginActivity;
+import com.example.graduation.yallamana.presenation.login.MainActivity;
+import com.example.graduation.yallamana.presenation.mytrips.TripsActivity;
+import com.example.graduation.yallamana.presenation.post.PostActivity;
 import com.example.graduation.yallamana.presenation.signup.SignupActivity;
 
 public class Navigator {
@@ -29,8 +34,14 @@ public class Navigator {
     }
     public static void navigateToPost(Context context)
     {
-//        Intent intent = new Intent(context, PostsActivity.class);
-//        context.startActivity(intent);
+//      Intent intent = new Intent(context, PostActivity.class);
+//      context.startActivity(intent);
+
+    }   public static void navigateToTrips(Context context)
+    {
+      Intent intent = new Intent(context, AllTripsActivity.class);
+      context.startActivity(intent);
 
     }
+
 }

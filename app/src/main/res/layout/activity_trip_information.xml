@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".Trip_information">
 
-
+    <include layout="@layout/toolbar"
+        android:id="@+id/info_toolbar"/>
     <RelativeLayout
         android:layout_width="368dp"
         android:layout_height="551dp"
@@ -16,19 +17,11 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+
+        <Space
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:background="#4CAF50"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme"
-            android:title="@string/new_user"
-            android:titleTextColor="#FFFFFF"
-            app:title="@string/trip_information" />
+            android:layout_height="45dp"
+            android:id="@+id/st"/>
 
         <ImageView
             android:id="@+id/driver_image_info"
@@ -36,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/toolbar"
+            android:layout_below="@+id/st"
             android:layout_marginTop="27dp"
             android:src="@drawable/ic_person_outline_black_24dp" />
 
@@ -47,8 +40,8 @@
             android:layout_alignTop="@+id/driver_image_info"
             android:layout_toEndOf="@+id/driver_image_info"
             android:layout_toRightOf="@+id/driver_image_info"
+            android:textColor="@color/black"
             android:hint="person name"
-            android:textColor="@drawable/ic_add_black_24dp"
             android:textSize="18sp" />
 
         <TextView
@@ -58,7 +51,7 @@
             android:layout_below="@+id/VDriver_name_info"
             android:layout_toRightOf="@id/driver_image_info"
             android:hint="0599000123"
-            android:textColor="@drawable/ic_add_black_24dp"
+            android:textColor="@color/black"
             android:textSize="18sp" />
 
         <LinearLayout
@@ -81,7 +74,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/from_info"
-                    android:textColor="@drawable/ic_add_black_24dp"
+                    android:textColor="@color/black"
                     android:textSize="18sp" />
 
                 <Space
@@ -93,7 +86,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="ramalah"
-                    android:textColor="@drawable/ic_add_black_24dp"
+                    android:textColor="@color/black"
                     android:textSize="18sp" />
 
             </LinearLayout>
@@ -111,7 +104,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:text="@string/to_info"
-                    android:textColor="@drawable/ic_add_black_24dp"
+                    android:textColor="@color/black"
                     android:textSize="18sp" />
 
                 <Space
@@ -124,7 +117,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/vTo_info"
                     android:hint="birzeit"
-                    android:textColor="@drawable/ic_add_black_24dp"
+                    android:textColor="@color/black"
                     android:textSize="18sp" />
 
             </LinearLayout>
@@ -139,7 +132,7 @@
             android:layout_below="@+id/lay1"
             android:layout_marginTop="25dp"
             android:text="@string/time_info"
-            android:textColor="@drawable/ic_add_black_24dp"
+            android:textColor="@color/black"
             android:textSize="18sp" />
 
         <TextView
@@ -161,7 +154,7 @@
             android:layout_below="@+id/Vtime_info"
             android:layout_marginTop="28dp"
             android:textSize="18sp"
-            android:textColor="@drawable/ic_add_black_24dp"
+            android:textColor="@color/black"
             android:text="@string/still_time_info" />
 
         <TextView
@@ -182,8 +175,8 @@
             android:layout_marginTop="22dp"
             android:layout_below="@+id/Vstill_day_info"
             android:layout_alignParentLeft="true"
+            android:textColor="@color/black"
             android:textSize="18sp"
-            android:textColor="@drawable/ic_add_black_24dp"
             android:layout_alignParentStart="true" />
 
         <TextView
@@ -203,7 +196,7 @@
             android:layout_marginTop="33dp"
             android:text="@string/Num_of_rider"
             android:textSize="18sp"
-            android:textColor="@drawable/ic_add_black_24dp"
+            android:textColor="@color/black"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
