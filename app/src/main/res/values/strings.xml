@@ -2,34 +2,34 @@
     <string name="app_name" translatable="false">Yalla Mana</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
-    <string name="driver" translatable="false">Driver</string>
-    <string name="facebook_app_id" translatable="false"> 1899339616757733</string>
+    <string name="hello_blank_fragment" >Hello blank fragment</string>
+    <string name="driver" >Driver</string>
+    <string name="facebook_app_id" > 1899339616757733</string>
 
-    <string name="connect_with" translatable="false">Connect with:</string>
-    <string name="rider" translatable="false">Rider</string>
-    <string name="mobile_number" translatable="false">Mobile number : </string>
+    <string name="connect_with" >Connect with:</string>
+    <string name="rider" >Rider</string>
+    <string name="mobile_number" >Mobile number : </string>
     <string name="email" translatable="false">Email : </string>
-    <string name="last_name" translatable="false">Last name : </string>
-    <string name="first_name" translatable="false">First name :</string>
-    <string name="sign_up" translatable="false">Sign up?</string>
-    <string name="yalla" translatable="false">Yalla</string>
-    <string name="new_user" translatable="false">New User</string>
-    <string name="skip" translatable="false">Skip</string>
-    <string name="id_image" translatable="false">Driver ID image</string>
-    <string name="license_image" translatable="false">Driver license image</string>
-    <string name="account_number" translatable="false">Account number</string>
-    <string name="car_information" translatable="false">Car information</string>
-    <string name="car_id_image" translatable="false">Car ID image</string>
-    <string name="car_license_image" translatable="false">Car license image</string>
-    <string name="car_image" translatable="false">Car image</string>
-    <string name="try_again" translatable="false">Try again!</string>
-    <string name="driver_toolbar" translatable="false">Driver</string>
+    <string name="last_name" >Last name : </string>
+    <string name="first_name" >First name :</string>
+    <string name="sign_up" >Sign up?</string>
+    <string name="yalla">Yalla</string>
+    <string name="new_user">New User</string>
+    <string name="skip" >Skip</string>
+    <string name="id_image">Driver ID image</string>
+    <string name="license_image" >Driver license image</string>
+    <string name="account_number" >Account number</string>
+    <string name="car_information">Car information</string>
+    <string name="car_id_image" >Car ID image</string>
+    <string name="car_license_image" >Car license image</string>
+    <string name="car_image" >Car image</string>
+    <string name="try_again" >Try again!</string>
+    <string name="driver_toolbar" >Driver</string>
 
-    <string name="request_toolbar" translatable="false">Request Trip</string>
-    <string name="From_req" translatable="false">Your trip start from :</string>
+    <string name="request_toolbar" >Request Trip</string>
+    <string name="From_req" >Your trip start from :</string>
     <string name="hFrom_req"> Enter your start location </string>
-    <string name="To_req" translatable="false">Your trip end to : </string>
+    <string name="To_req" >Your trip end to : </string>
     <string name="hTo_req"> Enter your destination </string>
     <string name="time_req">Date of your trip : </string>
     <string name="Num_of_rider"> Num. of riders :</string>
