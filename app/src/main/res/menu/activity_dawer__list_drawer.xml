@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/M_mytrip"
+            android:title="My trip"
+            android:icon="@drawable/my_trip__8dp"
+            ></item>
+        <item
+            android:id="@+id/M_Trip"
+            android:title="Trip"
+            android:icon="@drawable/trip_8dp"/>
+        <item
+            android:id="@+id/M_mywallet"
+            android:title="My wallet"
+            android:icon="@drawable/my_wallet_8dp"
+            />
+        <item
+            android:id="@+id/M_setting"
+            android:title="Setting"
+            android:icon="@drawable/setting_8dp"
+            />
+        <item
+            android:id="@+id/M_post"
+            android:title="Post"
+            android:icon="@drawable/post_8dp"
+            />
+        <item
+            android:id="@+id/M_help"
+            android:title="Help"
+            android:icon="@drawable/help_8dp"
+            />
+        <item
+            android:id="@+id/M_be_driver"
+            android:title="Be driver"
+            android:icon="@drawable/to_driver_24dp"
+            />
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Share" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Send" />
+        </menu>
+    </item>
+
+</menu>

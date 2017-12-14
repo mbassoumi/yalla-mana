@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "772162190962",
+    "firebase_url": "https://yallamana-1a734.firebaseio.com",
+    "project_id": "yallamana-1a734",
+    "storage_bucket": "yallamana-1a734.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:772162190962:android:e82451d7784f2d7f",
+        "android_client_info": {
+          "package_name": "com.example.m_7el.yallamana"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "772162190962-umfd4ima3r1sk8f0bhfcduvbka7vo5dm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.m_7el.yallamana",
+            "certificate_hash": "1a01cc10c53b259bccb156054e56197aef6695ec"
+          }
+        },
+        {
+          "client_id": "772162190962-9etju1n1ehi8mq03v2ib2j5pqmln0kti.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnHE24ahQkQI3OFIwV97Pnym3DfvN2kgY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "772162190962-9etju1n1ehi8mq03v2ib2j5pqmln0kti.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

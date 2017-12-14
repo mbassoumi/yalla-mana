@@ -290,7 +290,7 @@
                     android:id="@+id/wmen_check_offer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/wmen"
+                    android:text="@string/women"
                     android:textSize="18sp"
                     />
 
@@ -306,7 +306,7 @@
                     android:id="@+id/misc_offer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/misc"
+                    android:text="@string/music"
                     android:textSize="18sp"/>
 
                 <Space

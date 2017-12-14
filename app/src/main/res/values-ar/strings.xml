@@ -25,12 +25,12 @@
     <string name="code">رمز</string>
 
 
-    <string name="smoke" translatable="true">التدخين</string>
-    <string name="misc" translatable="true">misc</string>
-    <string name="man" translatable="true">فقط رجال</string>
-    <string name="wmen" translatable="true">فقط نساء</string>
-    <string name="wifi" translatable="true">wifi</string>
-    <string name="proparties" translatable="true" > خصائص </string>
+    <string name="smoke" >التدخين</string>
+    <string name="music">music</string>
+    <string name="man" >فقط رجال</string>
+    <string name="women" >فقط نساء</string>
+    <string name="wifi" >wifi</string>
+    <string name="proparties"  > خصائص </string>
 
 
     <string name="rating">التقيم التطبيق</string>
@@ -50,6 +50,10 @@
       
     </string-array>
     <string name="seat_prompt">اختر العدد</string>
+
+
+
+
     <string name="request_toolbar" >Request Trip</string>
     <string name="From_req" >Your trip start from :</string>
     <string name="hFrom_req"> Enter your start location </string>
@@ -74,6 +78,8 @@
     <string name="save"> save </string>
 
 
+    <string name="hello_blank_fragment" >Hello blank fragment</string>
+    <string name="facebook_app_id" > 1899339616757733</string>
     <string name="Offer_trip">Offer trip</string>
     <string name="req_from_offer">Your Requested Trip From :</string>
     <string name="req_to_offer">Your Requested Trip To :</string>
@@ -153,7 +159,7 @@
     <string name="hint_user_id">User ID</string>
 
     <string name="get_custom_token">Get Token</string>
-
+    <string name="price_offer" >Price : </string>
     <string name="sign_in">Sign In</string>
 
     <string name="create_account">Create Account</string>
@@ -233,12 +239,21 @@
     <string name="email_fmt">Email: %s</string>
 
 
-    <string name="title_activity_informatio__trip__tool" translatable="false">Informatio_Trip_Tool</string>
-    <string name="title_activity_settings" translatable="false">Settings</string>
+    <string name="title_activity_informatio__trip__tool" >Informatio_Trip_Tool</string>
+    <string name="title_activity_settings" >Settings</string>
     <string name="title_activity_dawer__list">Dawer_List</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
+    <string-array name="seat_arrays">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
 
+    </string-array>
 </resources>
