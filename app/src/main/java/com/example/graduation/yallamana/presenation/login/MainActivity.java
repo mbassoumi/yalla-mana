@@ -367,7 +367,7 @@ public class MainActivity extends AppCompatActivity  implements
         if (user == null) {
             // Signed out
             mPhoneNumberViews.setVisibility(View.VISIBLE);
-            mSignedInViews.setVisibility(View.GONE);
+            //mSignedInViews.setVisibility(View.GONE);
 
             mStatusText.setText(R.string.signed_out);;
         } else {
