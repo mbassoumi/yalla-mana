@@ -5,197 +5,153 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Edit_account">
-
     <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.625">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
 
         <include
-            android:id="@+id/edit_account_toolbar"
+            android:id="@+id/toolbar"
             layout="@layout/toolbar" />
 
-        <Space
-            android:id="@+id/edit_ss0"
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:layout_below="@id/edit_account_toolbar" />
-
-        <ImageButton
-            android:id="@+id/imageButton_edit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/edit_ss0"
-            android:layout_marginLeft="51dp"
-            android:layout_marginStart="51dp"
-            android:layout_marginTop="18dp"
-            app:srcCompat="@drawable/ic_person_outline_black_24dp"
-            tools:ignore="VectorDrawableCompat" />
-
-        <Space
-            android:id="@+id/space2"
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:layout_below="@id/imageButton_edit" />
-
-
-        <TextView
-            android:id="@+id/Firt_nameV_edit_account"
+        <RelativeLayout
+            android:id="@+id/relativeLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/space2"
-            android:paddingLeft="10pt"
-            android:text="@string/first_name"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:layout_below="@+id/toolbar"
+            android:background="@drawable/btn">
 
-        <EditText
-            android:id="@+id/Firtnamev_E_edit"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/imageButton_edit"
-            android:layout_alignStart="@+id/imageButton_edit"
-            android:layout_below="@+id/Firt_nameV_edit_account"
-            android:hint="@string/name" />
-
-        <Space
-            android:id="@+id/space3"
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/Firtnamev_E_edit" />
+            <com.mikhaellopez.circularimageview.CircularImageView xmlns:app="http://schemas.android.com/apk/lib/com.app.chasebank"
+                android:id="@id/profile_image"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginBottom="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/no_pic_person"
+                app:civ_border_color="#000000"
+                app:civ_border_width="2dp"
+                app:civ_shadow="true"
+                app:civ_shadow_color="#8BC34A"
+                app:civ_shadow_radius="15" />
 
 
-        <TextView
-            android:id="@+id/Last_nameV_edit_account"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/space3"
-            android:paddingLeft="10pt"
-            android:text="@string/last_name"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
 
+        </RelativeLayout>
 
-        <EditText
-            android:id="@+id/Lastname_E_edit"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/Email_E_edit"
-            android:layout_alignLeft="@+id/Firtnamev_E_edit"
-            android:layout_alignRight="@+id/Email_E_edit"
-            android:layout_alignStart="@+id/Firtnamev_E_edit"
-            android:layout_below="@+id/Last_nameV_edit_account"
-            android:hint="@string/name" />
+        <RelativeLayout
+            android:id="@+id/rel2"
 
-        <Space
-            android:id="@+id/space4"
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/Lastname_E_edit" />
-
-        <TextView
-            android:id="@+id/phone_V_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/space4"
-            android:paddingLeft="10pt"
-            android:text="@string/mobile_number"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:layout_below="@+id/relativeLayout"
+            android:background="@drawable/btn">
 
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:text="Name"
+                android:textColor="#000000"
+                android:textSize="20dp" />
 
-        <EditText
-            android:id="@+id/Phone_E_edit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/Firtnamev_E_edit"
-            android:layout_alignStart="@+id/Firtnamev_E_edit"
-            android:layout_below="@+id/phone_V_edit"
-            android:hint="0599123123" />
+            <EditText
+                android:id="@+id/user_name_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView7"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="16dp"
+                android:hint="user name"
+                android:textColor="#000000"
+                android:textSize="18dp" />
+        </RelativeLayout>
 
-        <Space
-            android:id="@+id/space5"
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/Phone_E_edit" />
-
-
-        <TextView
-            android:id="@+id/Email_V_edit"
+        <RelativeLayout
+            android:id="@+id/rel3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/space5"
-            android:paddingLeft="10pt"
-            android:text="@string/email"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:layout_below="@+id/rel2"
 
-        <EditText
-            android:id="@+id/Email_E_edit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/Phone_E_edit"
-            android:layout_alignStart="@+id/Phone_E_edit"
-            android:layout_below="@+id/Email_V_edit"
-            android:hint="example@example.com" />
 
-        <Space
-            android:id="@+id/space6"
+            android:background="@drawable/btn">
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:text="Mobile number"
+                android:textColor="#000000"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/user_number_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView8"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="16dp"
+                android:hint="059595955"
+                android:textColor="#000000"
+                android:textSize="18dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rel4"
             android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/Email_E_edit" />
-
-        <TextView
-            android:id="@+id/Password_V_edit"
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/space6"
-            android:paddingLeft="10pt"
-            android:text="@string/password"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:layout_below="@+id/rel3"
 
-        <EditText
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/Email_E_edit"
-            android:layout_alignStart="@+id/Email_E_edit"
-            android:layout_below="@+id/Password_V_edit"
-            android:inputType="textPassword" />
+            android:background="@drawable/btn">
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:text="Email"
+                android:textColor="#000000"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/user_email_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView9"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="16dp"
+                android:hint="example@example.com"
+                android:textColor="#000000"
+                android:textSize="18dp" />
+
+        </RelativeLayout>
 
         <Button
-            android:id="@+id/Save_Button_edit"
+            android:id="@+id/button3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:background="@drawable/button_animation"
+            android:layout_marginBottom="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:background="@drawable/mybutton"
             android:text="@string/save"
-            android:textColor="#4CAF50" />
+            android:textColor="@color/white" />
 
 
     </RelativeLayout>
+
 </android.support.constraint.ConstraintLayout>

@@ -1,35 +1,35 @@
 ﻿<resources>
-    <string name="app_name" translatable="false">Yalla Mana</string>
+    <string name="app_name">Yalla Mana</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment" >Hello blank fragment</string>
-    <string name="driver" >Driver</string>
-    <string name="facebook_app_id" > 1899339616757733</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="driver">Driver</string>
+    <string name="facebook_app_id"> 1899339616757733</string>
 
-    <string name="connect_with" >Connect with:</string>
-    <string name="rider" >Rider</string>
-    <string name="mobile_number" >Mobile number : </string>
-    <string name="email" >Email : </string>
-    <string name="last_name" >Last name : </string>
-    <string name="first_name" >First name :</string>
-    <string name="sign_up" >Sign up?</string>
+    <string name="connect_with">Connect with:</string>
+    <string name="rider">Rider</string>
+    <string name="mobile_number">Mobile number : </string>
+    <string name="email">Email : </string>
+    <string name="last_name">Last name : </string>
+    <string name="first_name">First name :</string>
+    <string name="sign_up">Sign up?</string>
     <string name="yalla">Yalla</string>
     <string name="new_user">New User</string>
-    <string name="skip" >Skip</string>
+    <string name="skip">Skip</string>
     <string name="id_image">Driver ID image</string>
-    <string name="license_image" >Driver license image</string>
-    <string name="account_number" >Account number</string>
+    <string name="license_image">Driver license image</string>
+    <string name="account_number">Account number</string>
     <string name="car_information">Car information</string>
-    <string name="car_id_image" >Car ID image</string>
-    <string name="car_license_image" >Car license image</string>
-    <string name="car_image" >Car image</string>
-    <string name="try_again" >Try again!</string>
-    <string name="driver_toolbar" >Driver</string>
+    <string name="car_id_image">Car ID image</string>
+    <string name="car_license_image">Car license image</string>
+    <string name="car_image">Car image</string>
+    <string name="try_again">Try again!</string>
+    <string name="driver_toolbar">Driver</string>
 
-    <string name="request_toolbar" >Request Trip</string>
-    <string name="From_req" >Your trip start from :</string>
+    <string name="request_toolbar">Request Trip</string>
+    <string name="From_req">Your trip start from :</string>
     <string name="hFrom_req"> Enter your start location </string>
-    <string name="To_req" >Your trip end to : </string>
+    <string name="To_req">Your trip end to : </string>
     <string name="hTo_req"> Enter your destination </string>
     <string name="time_req">Date of your trip : </string>
     <string name="Num_of_rider"> Num. of riders :</string>
@@ -79,148 +79,130 @@
     <string name="action_delete">Delete</string>
 
 
+    <string name="label_google_sign_in">Firebase + Google Sign In</string>
 
+    <string name="desc_google_sign_in">Use a Google Sign In credential to authenticate with Firebase.</string>
 
+    <string name="label_facebook_login">Firebase + Facebook Login</string>
 
+    <string name="desc_facebook_login">Use a Facebook Login credential to authenticate with Firebase.</string>
 
+    <string name="label_twitter_login">Firebase + Twitter Login</string>
 
+    <string name="desc_twitter_login">Use a Twitter Login credential to authenticate with Firebase.</string>
 
+    <string name="label_emailpassword">Email/Password Authentication</string>
 
+    <string name="desc_emailpassword">Use an email and password to authenticate with Firebase.</string>
 
+    <string name="label_phone_auth">Phone Number Authentication</string>
 
+    <string name="desc_phone_auth">Use a phone number to authenticate with Firebase.</string>
 
+    <string name="label_anonymous_auth">Anonymous Authentication</string>
 
+    <string name="desc_anonymous_auth">Sign in anonymously and then later upgrade to a full Firebase Auth user.</string>
 
+    <string name="label_custom_auth">Custom Authentication</string>
 
+    <string name="desc_custom_auth">Use a custom token signed by your own server to authenticate with Firebase.</string>
 
+    <string name="label_firebase_ui">FirebaseUI Auth</string>
 
+    <string name="desc_firebase_ui">Use the FirebaseUI-Android library to authenticate with Firebase.</string>
 
+    <string name="hint_user_id">User ID</string>
 
-<string name="label_google_sign_in">Firebase + Google Sign In</string>
+    <string name="get_custom_token">Get Token</string>
 
-<string name="desc_google_sign_in">Use a Google Sign In credential to authenticate with Firebase.</string>
+    <string name="sign_in">Sign In</string>
 
-<string name="label_facebook_login">Firebase + Facebook Login</string>
+    <string name="create_account">Create Account</string>
 
-<string name="desc_facebook_login">Use a Facebook Login credential to authenticate with Firebase.</string>
+    <string name="sign_out">Sign Out</string>
 
-<string name="label_twitter_login">Firebase + Twitter Login</string>
+    <string name="verify_email">Verify Email</string>
 
-<string name="desc_twitter_login">Use a Twitter Login credential to authenticate with Firebase.</string>
+    <string name="disconnect">Disconnect</string>
 
-<string name="label_emailpassword">Email/Password Authentication</string>
+    <string name="loading">Loading…</string>
 
-<string name="desc_emailpassword">Use an email and password to authenticate with Firebase.</string>
+    <string name="custom_token">Custom Token</string>
 
-<string name="label_phone_auth">Phone Number Authentication</string>
+    <string name="signed_in">Logged in !</string>
 
-<string name="desc_phone_auth">Use a phone number to authenticate with Firebase.</string>
+    <string name="signed_out">You are not logged in !</string>
 
-<string name="label_anonymous_auth">Anonymous Authentication</string>
+    <string name="token_null">Token: null</string>
 
-<string name="desc_anonymous_auth">Sign in anonymously and then later upgrade to a full Firebase Auth user.</string>
+    <string name="hint_email">Email</string>
 
-<string name="label_custom_auth">Custom Authentication</string>
+    <string name="hint_password">Password</string>
 
-<string name="desc_custom_auth">Use a custom token signed by your own server to authenticate with Firebase.</string>
+    <string name="desc_firebase_lockup">Firebase logo and name</string>
 
-<string name="label_firebase_ui">FirebaseUI Auth</string>
+    <string name="auth_failed">Authentication failed</string>
 
-<string name="desc_firebase_ui">Use the FirebaseUI-Android library to authenticate with Firebase.</string>
+    <string name="start_phone_auth">Login</string>
 
-<string name="hint_user_id">User ID</string>
+    <string name="verify_phone_auth">Verify</string>
 
-<string name="get_custom_token">Get Token</string>
+    <string name="resend_phone_auth">Resend</string>
 
-<string name="sign_in">Sign In</string>
+    <string name="hint_phone_number">Phone Number</string>
 
-<string name="create_account">Create Account</string>
+    <string name="hint_verification_code">Verification Code</string>
 
-<string name="sign_out">Sign Out</string>
+    <string name="status_code_sent">Code Sent</string>
 
-<string name="verify_email">Verify Email</string>
+    <string name="status_verification_failed">Verification failed</string>
 
-<string name="disconnect">Disconnect</string>
+    <string name="status_verification_succeeded">Verification succeeded</string>
 
-<string name="loading">Loading…</string>
+    <string name="status_sign_in_failed">Sign-in failed</string>
 
-<string name="custom_token">Custom Token</string>
+    <string name="instant_validation">(instant validation)</string>
 
-<string name="signed_in">Logged in !</string>
+    <string name="firebase_status_fmt">Firebase User: %s</string>
 
-<string name="signed_out">You are not logged in !</string>
+    <string name="firebase_user_management">Firebase User Management</string>
 
-<string name="token_null">Token: null</string>
+    <string name="google_status_fmt">Google User: %s</string>
 
-<string name="hint_email">Email</string>
+    <string name="google_title_text">Google Sign In</string>
 
-<string name="hint_password">Password</string>
+    <string name="facebook_status_fmt">Facebook User: %s</string>
 
-<string name="desc_firebase_lockup">Firebase logo and name</string>
+    <string name="facebook_title_text">Facebook Login</string>
 
-<string name="auth_failed">Authentication failed</string>
+    <string name="emailpassword_status_fmt">Email User: %1$s (verified: %2$b)</string>
 
-<string name="start_phone_auth">Login</string>
+    <string name="emailpassword_title_text">Email and Password</string>
 
-<string name="verify_phone_auth">Verify</string>
+    <string name="phone_title_text">Phone Number</string>
 
-<string name="resend_phone_auth">Resend</string>
+    <string name="twitter_status_fmt">Twitter User: %s</string>
 
-<string name="hint_phone_number">Phone Number</string>
+    <string name="twitter_title_text">Twitter Login</string>
 
-<string name="hint_verification_code">Verification Code</string>
+    <string name="firebaseui_status_fmt">Firebase User: %s</string>
 
-<string name="status_code_sent">Code Sent</string>
+    <string name="firebaseui_title_text">FirebaseUI Auth</string>
 
-<string name="status_verification_failed">Verification failed</string>
+    <string name="id_fmt">User ID: %s</string>
 
-<string name="status_verification_succeeded">Verification succeeded</string>
+    <string name="email_fmt">Email: %s</string>
 
-<string name="status_sign_in_failed">Sign-in failed</string>
 
-<string name="instant_validation">(instant validation)</string>
-
-<string name="firebase_status_fmt">Firebase User: %s</string>
-
-<string name="firebase_user_management">Firebase User Management</string>
-
-<string name="google_status_fmt">Google User: %s</string>
-
-<string name="google_title_text">Google Sign In</string>
-
-<string name="facebook_status_fmt">Facebook User: %s</string>
-
-<string name="facebook_title_text">Facebook Login</string>
-
-<string name="emailpassword_status_fmt">Email User: %1$s (verified: %2$b)</string>
-
-<string name="emailpassword_title_text">Email and Password</string>
-
-<string name="phone_title_text">Phone Number</string>
-
-<string name="twitter_status_fmt">Twitter User: %s</string>
-
-<string name="twitter_title_text">Twitter Login</string>
-
-<string name="firebaseui_status_fmt">Firebase User: %s</string>
-
-<string name="firebaseui_title_text">FirebaseUI Auth</string>
-
-<string name="id_fmt">User ID: %s</string>
-
-<string name="email_fmt">Email: %s</string>
-
-
-
-    <string name="price_offer" >Price : </string>
-    <string name="smoke" >Smoking</string>
+    <string name="price_offer">Price : </string>
+    <string name="smoke">Smoking</string>
     <string name="music">Music</string>
     <string name="man">Men only</string>
     <string name="women">Women only</string>
-    <string name="wifi" >Wifi</string>
-    <string name="proparties" > proprties </string>
+    <string name="wifi">Wifi</string>
+    <string name="proparties"> proprties </string>
     <string name="title_activity_informatio__trip__tool">Informatio_Trip_Tool</string>
-    <string name="title_activity_settings" >Settings</string>
+    <string name="title_activity_settings">Settings</string>
     <string name="title_activity_dawer__list">Dawer_List</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -240,18 +222,90 @@
         <item>Bank of Palestine</item>
         <item>The National Bank TNB</item>
         <item>Islamic Arab Bank</item>
-      
+
     </string-array>
     <string name="seat_prompt">Choose seats number</string>
 
     <string-array name="seat_arrays">
-        <item>1</item>  
-	<item>2</item> 
-	 <item>3</item> 
-	 <item>4</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
         <item>5</item>
-         <item>6</item>
+        <item>6</item>
         <item>7</item>
-    
+
     </string-array>
+
+    <!-- Strings related to Settings -->
+
+    <!-- Example General settings -->
+    <string name="pref_header_general">General</string>
+
+    <string name="pref_title_social_recommendations">Enable social recommendations</string>
+    <string name="pref_description_social_recommendations">Recommendations for people to contact
+        based on your message history
+    </string>
+
+    <string name="pref_title_display_name">Display name</string>
+    <string name="pref_default_display_name">John Smith</string>
+
+    <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
+    <string-array name="pref_example_list_titles">
+        <item>Always</item>
+        <item>When possible</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_example_list_values">
+        <item>1</item>
+        <item>0</item>
+        <item>-1</item>
+    </string-array>
+
+    <!-- Example settings for Data & Sync -->
+    <string name="pref_header_data_sync">Data &amp; sync</string>
+
+    <string name="pref_title_sync_frequency">Sync frequency</string>
+    <string-array name="pref_sync_frequency_titles">
+        <item>15 minutes</item>
+        <item>30 minutes</item>
+        <item>1 hour</item>
+        <item>3 hours</item>
+        <item>6 hours</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_sync_frequency_values">
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>180</item>
+        <item>360</item>
+        <item>-1</item>
+    </string-array>
+
+    <string-array name="list_preference_entries">
+        <item>Entry 1</item>
+        <item>Entry 2</item>
+        <item>Entry 3</item>
+    </string-array>
+
+    <string-array name="list_preference_entry_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <string-array name="multi_select_list_preference_default_value" />
+
+    <string name="pref_title_system_sync_settings">System sync settings</string>
+
+    <!-- Example settings for Notifications -->
+    <string name="pref_header_notifications">Notifications</string>
+
+    <string name="pref_title_new_message_notifications">New message notifications</string>
+
+    <string name="pref_title_ringtone">Ringtone</string>
+    <string name="pref_ringtone_silent">Silent</string>
+
+    <string name="pref_title_vibrate">Vibrate</string>
 </resources>

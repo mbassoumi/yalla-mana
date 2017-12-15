@@ -20,10 +20,10 @@
         android:layout_centerInParent="true"
         android:src="@drawable/no_pic_person"
         app:civ_border_color="#FFFFFF"
-        app:civ_border_width="4dp"
+        app:civ_border_width="2dp"
         app:civ_shadow="true"
         app:civ_shadow_color="#8BC34A"
-        app:civ_shadow_radius="10" />
+        app:civ_shadow_radius="15" />
 
     <TextView
         android:id="@+id/user_namee"
