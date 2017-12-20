@@ -36,11 +36,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="?android:attr/windowBackground"
-            android:gravity="bottom"
-            android:paddingTop="8dp"
-            app:tabGravity="fill"
-            app:tabMinWidth="0dp"
-            app:tabMode="fixed" />
+          />
+
+
     </android.support.v4.view.ViewPager>
 
 </android.support.design.widget.CoordinatorLayout>

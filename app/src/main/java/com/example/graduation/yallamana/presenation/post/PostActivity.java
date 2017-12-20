@@ -84,7 +84,7 @@ public class PostActivity extends AppCompatActivity  {
                 tab.getIcon().setColorFilter(ContextCompat.getColor(PostActivity.this, R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
                 if (tabLayout.getTabAt(1).isSelected()||tabLayout.getTabAt(2).isSelected()){
                     CoordinatorLayout.LayoutParams params =(CoordinatorLayout.LayoutParams)appbar.getLayoutParams();
-                    params.height = 10; // COLLAPSED_HEIGHT
+                    params.height = 0; // COLLAPSED_HEIGHT
 
                     appbar.setLayoutParams(params);
                     appbar.setExpanded(false);

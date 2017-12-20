@@ -4,7 +4,12 @@ package com.example.graduation.yallamana;
  * Created by m_7el on 12/15/2017.
  */
 
+import android.app.Activity;
+import android.app.ActivityManager;
+import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,17 +19,19 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class MyRecyclerViewAdapter extends RecyclerView
-        .Adapter<MyRecyclerViewAdapter
-        .DataObjectHolder> {
+public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.DataObjectHolder> {
     private static String LOG_TAG = "MyRecyclerViewAdapter";
     private ArrayList<SettingType> mDataset;
     private static MyClickListener myClickListener;
+
+
 
     public static class DataObjectHolder extends RecyclerView.ViewHolder
             implements View
             .OnClickListener {
         TextView settingType;
+        private Context context;
+
 
         public DataObjectHolder(View itemView) {
             super(itemView);
@@ -35,31 +42,28 @@ public class MyRecyclerViewAdapter extends RecyclerView
 
         @Override
         public void onClick(View v) {
-//            if (settingType.getText().equals("Edit Account")){
-//                RequestedTripFragment request = new RequestedTripFragment();
-//                android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-//                ft.replace(R.id.fram , request,"Request");
-//                ft.commit();
-//            }
-//            else if (settingType.getText().equals("Notification")){
-//                RequestedTripFragment request = new RequestedTripFragment();
-//                android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-//                ft.replace(R.id.fram , request,"Request");
-//                ft.commit();
-//            }
-//            else if (settingType.getText().equals("Rating App")){
-//                RequestedTripFragment request = new RequestedTripFragment();
-//                android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-//                ft.replace(R.id.fram , request,"Request");
-//                ft.commit();
-//            }
-//           else if (settingType.getText().equals("Feedback")){
-//                RequestedTripFragment request = new RequestedTripFragment();
-//                android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-//                ft.replace(R.id.fram , request,"Request");
-//                ft.commit();
-//            }
-            //myClickListener.onItemClick(getAdapterPosition(), v);
+            if (settingType.getText().equals("Edit Account")) {
+                RequestedTripFragment request = new RequestedTripFragment();
+                android.support.v4.app.FragmentTransaction ft =((AppCompatActivity)context).getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.fram, request, "Request");
+                ft.commit();
+            } else if (settingType.getText().equals("Notification")) {
+                RequestedTripFragment request = new RequestedTripFragment();
+                android.support.v4.app.FragmentTransaction ft =  ((AppCompatActivity)context).getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.fram, request, "Request");
+                ft.commit();
+            } else if (settingType.getText().equals("Rating App")) {
+                RequestedTripFragment request = new RequestedTripFragment();
+                FragmentTransaction ft = ((AppCompatActivity)context).getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.fram, request, "Request");
+                ft.commit();
+            } else if (settingType.getText().equals("Feedback")) {
+                RequestedTripFragment request = new RequestedTripFragment();
+                android.support.v4.app.FragmentTransaction ft = ((AppCompatActivity)context).getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.fram, request, "Request");
+                ft.commit();
+            }
+            myClickListener.onItemClick(getAdapterPosition(), v);
         }
     }
 
