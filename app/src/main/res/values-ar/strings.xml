@@ -245,6 +245,13 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="request">Request</string>
+    <string name="number_of_riders">Number of riders:</string>
+    <string name="you_want_to_a_trip_from">You want to a trip from:</string>
+    <string name="your_destination">Your Destination:</string>
+    <string name="requested_time">Requested Time:</string>
+    <string name="properties">Properties:</string>
+    <string name="price">Price:</string>
 
     <string-array name="seat_arrays">
         <item>1</item>

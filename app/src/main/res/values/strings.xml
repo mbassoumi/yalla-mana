@@ -50,7 +50,7 @@
     <string name="save"> save </string>
 
 
-    <string name="Offer_trip">Offer trip</string>
+    <string name="Offer_trip">Offer</string>
     <string name="req_from_offer">Your Requested Trip From :</string>
     <string name="req_to_offer">Your Requested Trip To :</string>
     <string name="verify">verify</string>
@@ -79,11 +79,11 @@
     <string name="action_delete">Delete</string>
 
 
-    <string name="label_google_sign_in">Firebase + Google Sign In</string>
+    <string name="label_google_sign_in"> Google Sign In</string>
 
     <string name="desc_google_sign_in">Use a Google Sign In credential to authenticate with Firebase.</string>
 
-    <string name="label_facebook_login">Firebase + Facebook Login</string>
+    <string name="label_facebook_login">Facebook Login</string>
 
     <string name="desc_facebook_login">Use a Facebook Login credential to authenticate with Firebase.</string>
 
@@ -197,8 +197,8 @@
     <string name="price_offer">Price : </string>
     <string name="smoke">Smoking</string>
     <string name="music">Music</string>
-    <string name="man">Men only</string>
-    <string name="women">Women only</string>
+    <string name="man">Men</string>
+    <string name="women">Women</string>
     <string name="wifi">Wifi</string>
     <string name="proparties"> proprties </string>
     <string name="title_activity_informatio__trip__tool">Informatio_Trip_Tool</string>
@@ -273,7 +273,11 @@
         <item>3 hours</item>
         <item>6 hours</item>
         <item>Never</item>
-    </string-array>
+    </string-array> <string-array name="date_arrays">
+    <item>am</item>
+    <item>pm</item>
+
+</string-array>
     <string-array name="pref_sync_frequency_values">
         <item>15</item>
         <item>30</item>
@@ -308,4 +312,11 @@
     <string name="pref_ringtone_silent">Silent</string>
 
     <string name="pref_title_vibrate">Vibrate</string>
+    <string name="request">Request</string>
+    <string name="number_of_riders">Number of riders:</string>
+    <string name="you_want_to_a_trip_from">You want to a trip from:</string>
+    <string name="your_destination">Your Destination:</string>
+    <string name="requested_time">Requested Time:</string>
+    <string name="properties">Properties:</string>
+    <string name="price">Price:</string>
 </resources>

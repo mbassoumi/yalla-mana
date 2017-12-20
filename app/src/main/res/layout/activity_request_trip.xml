@@ -4,351 +4,182 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Request_trip">
-
+    >
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-      >
+        android:background="@color/white">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar" />
 
 
-        <include layout="@layout/toolbar"
-            android:id="@+id/toolbar_request"
-         />
-
-        <Space
-            android:id="@+id/s00_req"
+        <RelativeLayout
+            android:id="@+id/rel2"
             android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:layout_below="@+id/toolbar_request"
-            android:layout_toEndOf="@+id/s01"
-            android:layout_toRightOf="@+id/s01"
-            tools:layout_editor_absoluteX="8dp"
-            tools:layout_editor_absoluteY="0dp" />
-
-        <TextView
-            android:id="@+id/from_V_request"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/s00_req"
-            android:layout_marginLeft="16dp"
-            android:text="@string/From_req"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="0dp" />
+            android:layout_below="@id/toolbar"
+            android:background="@drawable/btn">
 
-
-        <EditText
-            android:id="@+id/from_E_request"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/from_V_request"
-            android:layout_centerHorizontal="true"
-            android:hint="@string/hFrom_req"
-            android:inputType="textAutoCorrect"
-            android:textSize="18sp"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="0dp" />
-
-        <Space
-            android:id="@+id/s01"
-            android:layout_width="0dp"
-            android:layout_height="10dp"
-            android:layout_below="@+id/from_E_request"
-            tools:layout_editor_absoluteX="8dp"
-            tools:layout_editor_absoluteY="0dp" />
-
-        <TextView
-            android:id="@+id/To_V_request"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/s01"
-            android:layout_marginLeft="16dp"
-            android:text="@string/To_req"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="0dp" />
-
-        <EditText
-            android:id="@+id/Destination_E_request"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/from_E_request"
-            android:layout_alignStart="@+id/from_E_request"
-            android:layout_below="@+id/To_V_request"
-            android:hint="@string/hTo_req"
-            android:inputType="textAutoCorrect"
-            android:textSize="18sp"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="0dp" />
-
-        <Space
-            android:id="@+id/s02_req"
-            android:layout_width="0dp"
-            android:layout_height="10dp"
-            android:layout_below="@+id/Destination_E_request"
-            tools:layout_editor_absoluteX="8dp"
-            tools:layout_editor_absoluteY="0dp" />
-
-        <TextView
-            android:id="@+id/vtime_req"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/s02_req"
-            android:layout_marginLeft="16dp"
-            android:text="@string/time_req"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="0dp" />
-
-
-        <LinearLayout
-            android:id="@+id/L1_request"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/vtime_req"
-            android:orientation="horizontal"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="0dp">
-
-            <Space
-                android:layout_width="80dp"
-                android:layout_height="wrap_content" />
-
-
-            <EditText
-                android:id="@+id/Year_E_request"
+            <TextView
+                android:id="@+id/textView7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignEnd="@+id/vtime_req"
-                android:layout_alignLeft="@+id/Destination_E_request"
-                android:layout_alignRight="@+id/vtime_req"
-                android:layout_alignStart="@+id/Destination_E_request"
-                android:layout_below="@+id/vtime_req"
-                android:hint="  2017"
-                android:inputType="date"
-                android:textSize="18sp" />
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/req_from_offer"
+                android:textColor="#000000"
+                android:textSize="20dp" />
 
             <EditText
-                android:id="@+id/Month_E_request"
+                android:id="@+id/requested_trip_from"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_above="@+id/vnum_of_ride_req"
-                android:layout_alignLeft="@+id/numofrider_req"
-                android:layout_alignStart="@+id/numofrider_req"
-                android:layout_toLeftOf="@+id/numofrider_req"
-                android:hint="09"
-                android:inputType="date"
-                android:textSize="18sp" />
+                android:layout_below="@+id/textView7"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="16dp"
+                android:hint="Ramallah                                "
+                android:textColor="#000000"
+                android:textSize="18dp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rel3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rel2"
+            android:background="@drawable/btn">
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/req_to_offer"
+                android:textColor="#000000"
+                android:textSize="20dp" />
 
             <EditText
-                android:id="@+id/Day_E_request"
+                android:id="@+id/requested_trip_to"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/month_req"
-                android:layout_alignBottom="@+id/month_req"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginEnd="23dp"
-                android:layout_marginRight="23dp"
-                android:hint="31"
-                android:inputType="date"
-                android:textSize="18sp" />
+                android:layout_below="@+id/textView8"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="16dp"
+                android:hint="Al-Bireh                                  "
+                android:textColor="#000000"
+                android:textSize="18dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rel4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rel3"
+
+            android:background="@drawable/btn">
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/requested_time"
+                android:textColor="#000000"
+                android:textSize="20dp" />
 
             <EditText
-                android:id="@+id/Time_E_request"
+                android:id="@+id/requested_trip_time1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_above="@+id/vnum_of_ride_req"
-                android:layout_below="@+id/vtime_req"
-                android:hint="07:00am"
-                android:inputType="time"
-                android:textSize="18sp" />
-        </LinearLayout>
+                android:layout_below="@+id/textView9"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="16dp"
+                android:hint="12-12-2012"
+                android:textColor="#000000"
+                android:textSize="18dp" />
 
-        <Space
-            android:id="@+id/s03_req"
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:layout_below="@+id/L1_request"
-            tools:layout_editor_absoluteX="8dp"
-            tools:layout_editor_absoluteY="0dp" />
-
-        <TextView
-            android:id="@+id/price_V_request"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/s03_req"
-            android:layout_marginLeft="16dp"
-            android:text="@string/price_offer"
-            android:textColor="@color/black"
-
-            android:textSize="18sp" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/Destination_E_request"
-            android:layout_alignStart="@+id/Destination_E_request"
-            android:layout_below="@+id/L1_request"
-            android:hint=" NIS"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
-
-        android:textColor="@color/black"
-
-        <Space
-            android:id="@+id/s3_req"
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/price_V_request"
-            android:textColor="@color/black" />
-
-
-        <TextView
-            android:id="@+id/num_of_rider_V_request"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/s3_req"
-            android:layout_marginLeft="16dp"
-            android:text="@string/Num_of_rider"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="0dp" />
-
-        <EditText
-            android:id="@+id/numofrider_E_request"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/s3_req"
-            android:layout_toEndOf="@+id/vtime_req"
-            android:layout_toRightOf="@+id/vtime_req"
-            android:background="@drawable/number_edit"
-            android:hint="____" />
-
-        <Space
-            android:id="@+id/s4_req"
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:layout_below="@id/num_of_rider_V_request" />
-
-        <TableLayout
-            android:id="@+id/LT_request"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/s4_req">
-
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textColor="@drawable/ic_add_black_24dp">
-
-                <TextView
-                    android:id="@+id/proparites_V_request"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:text="@string/proparties"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="16dp">
-
-                <CheckBox
-                    android:id="@+id/wifi_check_request"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/wifi"
-                    android:textSize="18sp" />
-
-                <Space
-                    android:layout_width="20dp"
-                    android:layout_height="wrap_content" />
-
-                <CheckBox
-                    android:id="@+id/wmen_check_request"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/women"
-                    android:textSize="18sp" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="16dp">
-
-                <CheckBox
-                    android:id="@+id/misc_request"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/music"
-                    android:textSize="18sp" />
-
-                <Space
-                    android:layout_width="20dp"
-                    android:layout_height="wrap_content" />
-
-                <CheckBox
-                    android:id="@+id/men_check_request"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/man"
-                    android:textSize="18sp" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
+            <EditText
+                android:id="@+id/requested_trip_time2"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp">
+                android:layout_below="@+id/textView9"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="16dp"
+                android:layout_toRightOf="@+id/requested_trip_time1"
+                android:hint="7:00 "
+                android:textColor="#000000"
+                android:textSize="18dp" />
 
-                <CheckBox
-                    android:id="@+id/smoke_check_request"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/smoke"
-                    android:textSize="18sp" />
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/requested_trip_time2"
+                android:layout_alignBottom="@+id/requested_trip_time2"
+                android:layout_toEndOf="@+id/requested_trip_time2"
+                android:layout_toRightOf="@+id/requested_trip_time2"
+                android:dropDownWidth="match_parent"
+                android:entries="@array/date_arrays"
+                android:popupBackground="@color/green"
+                android:spinnerMode="dialog"
+                android:visibility="visible" />
+        </RelativeLayout>
 
-                <Space
-                    android:layout_width="20dp"
-                    android:layout_height="wrap_content" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rel4"
+            android:background='         android:background="@drawable/btn"'
+            android:id="@+id/relativeLayout2">
 
-            </TableRow>
-        </TableLayout>
+            <TextView
+                android:id="@+id/text10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/number_of_riders"
+                android:textColor="#000000"
+                android:textSize="18dp" />
+
+            <Spinner
+                android:id="@+id/spinner2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/yalla_Button"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="8dp"
+                android:layout_toRightOf="@+id/text10"
+                android:entries="@array/seat_arrays"
+                android:prompt="@string/seat_prompt" />
+        </RelativeLayout>
 
         <Button
-            android:id="@+id/trip_Button_request"
+            android:id="@+id/request_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/LT_request"
-            android:layout_toEndOf="@+id/Destination_E_request"
-            android:layout_toRightOf="@+id/Destination_E_request"
-            android:text="@string/request_toolbar"
-            android:textColor="@color/white"
-            android:background="@drawable/mybutton"/>
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/relativeLayout2"
+            android:layout_marginEnd="18dp"
+            android:layout_marginRight="18dp"
+            android:layout_marginTop="47dp"
+            android:background="@drawable/mybutton"
+            android:text="@string/request"
+            android:textColor="@color/white" />
+
+
 
 
     </RelativeLayout>
-
+</ScrollView>
 </android.support.constraint.ConstraintLayout>

@@ -12,12 +12,12 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link Mytrip_f.OnFragmentInteractionListener} interface
+ * {@link RequestedTripFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link Mytrip_f#newInstance} factory method to
+ * Use the {@link RequestedTripFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Mytrip_f extends Fragment {
+public class RequestedTripFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -29,7 +29,7 @@ public class Mytrip_f extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public Mytrip_f() {
+    public RequestedTripFragment() {
         // Required empty public constructor
     }
 
@@ -42,8 +42,8 @@ public class Mytrip_f extends Fragment {
      * @return A new instance of fragment Mytrip_f.
      */
     // TODO: Rename and change types and number of parameters
-    public static Mytrip_f newInstance(String param1, String param2) {
-        Mytrip_f fragment = new Mytrip_f();
+    public static RequestedTripFragment newInstance(String param1, String param2) {
+        RequestedTripFragment fragment = new RequestedTripFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -64,7 +64,7 @@ public class Mytrip_f extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_mytrip_f, container, false);
+        return inflater.inflate(R.layout.activity_request_trip, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

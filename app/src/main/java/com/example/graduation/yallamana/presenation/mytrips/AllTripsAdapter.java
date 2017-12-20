@@ -1,7 +1,6 @@
-package com.example.graduation.yallamana.presenation.alltrips;
+package com.example.graduation.yallamana.presenation.mytrips;
 
 import android.content.Context;
-
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,35 +13,34 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.graduation.yallamana.R;
 import com.example.graduation.yallamana.Trip_information;
 import com.example.graduation.yallamana.util.network.api.Trip;
-
-import com.example.graduation.yallamana.R;
 
 import java.util.List;
 
 
-public class TripsAdapter extends RecyclerView.Adapter<TripsAdapter.MyViewHolder> {
+public class AllTripsAdapter extends RecyclerView.Adapter<AllTripsAdapter.MyViewHolder> {
 
     private Context mContext;
     private List<Trip> tripList;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView from, to,date;
-        public ImageView thumbnail, overflow;
+//        public TextView from, to,date;
+//        public ImageView thumbnail, overflow;
 
         public MyViewHolder(View view) {
             super(view);
-            from = (TextView) view.findViewById(R.id.from);
-            to = (TextView) view.findViewById(R.id.to);
-            date = (TextView) view.findViewById(R.id.date);
-            thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
-            overflow = (ImageView) view.findViewById(R.id.overflow);
+//            from = (TextView) view.findViewById(R.id.from);
+//            to = (TextView) view.findViewById(R.id.to);
+//            date = (TextView) view.findViewById(R.id.date);
+//            thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
+//            overflow = (ImageView) view.findViewById(R.id.overflow);
         }
     }
 
 
-    public TripsAdapter(Context mContext, List<Trip> tripList) {
+    public AllTripsAdapter(Context mContext, List<Trip> tripList) {
         this.mContext = mContext;
         this.tripList = tripList;
     }
@@ -57,20 +55,20 @@ public class TripsAdapter extends RecyclerView.Adapter<TripsAdapter.MyViewHolder
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
-        Trip trip = tripList.get(position);
-        holder.from.setText(trip.getFrom());
-        holder.to.setText(trip.getTo() );
-        holder.date.setText(trip.getDate() );
+//        Trip trip = tripList.get(position);
+//        holder.from.setText(trip.getFrom());
+//        holder.to.setText(trip.getTo() );
+//        holder.date.setText(trip.getDate() );
 
         // loading trip cover using Glide library
        //Glide.with(mContext).load(trip.getThumbnail()).into(holder.thumbnail);
 
-        holder.overflow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showPopupMenu(holder.overflow);
-            }
-        });
+//        holder.overflow.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                showPopupMenu(holder.overflow);
+//            }
+//        });
     }
 
     /**
@@ -80,7 +78,7 @@ public class TripsAdapter extends RecyclerView.Adapter<TripsAdapter.MyViewHolder
         // inflate menu
         PopupMenu popup = new PopupMenu(mContext, view);
         MenuInflater inflater = popup.getMenuInflater();
-        inflater.inflate(R.menu.menu_trip, popup.getMenu());
+        inflater.inflate(R.menu.menu_mytrip, popup.getMenu());
         popup.setOnMenuItemClickListener(new MyMenuItemClickListener());
         popup.show();
     }
@@ -102,8 +100,8 @@ public class TripsAdapter extends RecyclerView.Adapter<TripsAdapter.MyViewHolder
 
                     return true;
 
-                case R.id.action_reserve_trip:
-                    Toast.makeText(mContext, "Reserve Trip", Toast.LENGTH_SHORT).show();
+                case R.id.action_cancle_trip:
+                    Toast.makeText(mContext, "Cancle Trip", Toast.LENGTH_SHORT).show();
                     return true;
                 default:
             }

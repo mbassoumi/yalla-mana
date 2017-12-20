@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.service.voice.VoiceInteractionSession;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -19,10 +20,9 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.example.graduation.yallamana.Drawer_List;
+import com.example.graduation.yallamana.Mywallet_f;
 import com.example.graduation.yallamana.R;
-import com.example.graduation.yallamana.Request_trip;
-import com.example.graduation.yallamana.presenation.post.PostActivity;
-import com.example.graduation.yallamana.presenation.signup.DriverActivity;
+import com.example.graduation.yallamana.RequestedTripFragment;
 import com.example.graduation.yallamana.util.network.api.Trip;
 
 import java.util.ArrayList;
@@ -64,9 +64,11 @@ public class AllTripsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "Request trip", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
-                Intent intent = new Intent(AllTripsActivity.this,Request_trip.class);
-                startActivity(intent);
-                finish();
+                RequestedTripFragment request = new RequestedTripFragment();
+                android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.fram , request,"Request");
+                ft.commit();
+
         }
         });
 
@@ -248,10 +250,10 @@ public class AllTripsActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_add) {
             // check if user or driver then decid to offer or request
-
-            Intent intent = new Intent(this,Request_trip.class);
-            startActivity(intent);
-            finish();
+           RequestedTripFragment request = new RequestedTripFragment();
+            android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.fram , request,"Request");
+            ft.commit();
             return true;
         }
 

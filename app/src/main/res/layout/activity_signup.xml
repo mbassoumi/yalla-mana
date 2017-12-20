@@ -8,6 +8,10 @@
     tools:context="com.example.graduation.yallamana.presenation.signup.SignupActivity">
 
 
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
 
     <RelativeLayout
@@ -67,6 +71,7 @@
             android:layout_marginEnd="26dp"
             android:layout_marginRight="26dp"
             android:background="#FFFFFF"
+            android:scaleType="fitXY"
             android:src="@drawable/ic_person_outline_black_24dp" />
 
         <EditText
@@ -161,10 +166,10 @@
             android:id="@+id/sign_in_button"
             android:layout_width="200dp"
             android:layout_height="35dp"
-            android:layout_alignLeft="@+id/textView3"
-            android:layout_alignStart="@+id/textView3"
+            android:layout_alignLeft="@+id/login_button"
+            android:layout_alignStart="@+id/login_button"
             android:layout_below="@+id/textView3"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="15dp"
             tools:layout_editor_absoluteX="54dp">
 
         </com.google.android.gms.common.SignInButton>
@@ -173,13 +178,13 @@
             android:id="@+id/login_button"
             android:layout_width="200dp"
             android:layout_height="35dp"
-            android:layout_alignLeft="@+id/sign_in_button"
-            android:layout_alignStart="@+id/sign_in_button"
             android:layout_below="@+id/sign_in_button"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
             tools:layout_editor_absoluteX="54dp"
             tools:layout_editor_absoluteY="564dp" />
 
     </RelativeLayout>
+    </ScrollView>
 
-
-    </android.support.constraint.ConstraintLayout>
+</android.support.constraint.ConstraintLayout>

@@ -12,16 +12,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
 
 
 import com.example.graduation.yallamana.Drawer_List;
-import com.example.graduation.yallamana.Edit_account;
 import com.example.graduation.yallamana.R;
-import com.example.graduation.yallamana.Request_trip;
-import com.example.graduation.yallamana.Setting;
-import com.example.graduation.yallamana.offer_trip;
-import com.example.graduation.yallamana.presenation.post.PostActivity;
+import com.example.graduation.yallamana.RequestedTripFragment;
 
 
 public class TripsActivity extends AppCompatActivity {
@@ -177,9 +172,10 @@ public class TripsActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_add) {
             //check rider or driver
-            Intent t = new Intent(getApplicationContext(), Request_trip.class);
-            startActivity(t);
-            finish();
+            RequestedTripFragment request = new RequestedTripFragment();
+            android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.fram , request,"Request");
+            ft.commit();
             return true;
         }
         return super.onOptionsItemSelected(item);

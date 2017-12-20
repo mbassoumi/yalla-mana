@@ -17,11 +17,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.graduation.yallamana.presenation.alltrips.AllTripsActivity;
+import com.example.graduation.yallamana.presenation.login.MainActivity;
 import com.example.graduation.yallamana.presenation.mytrips.TripsActivity;
 import com.example.graduation.yallamana.presenation.post.PostActivity;
 import com.example.graduation.yallamana.presenation.signup.DriverActivity;
 import com.example.graduation.yallamana.presenation.signup.SignupActivity;
 import com.example.graduation.yallamana.presenation.signup.ToBeDriverActivity;
+import com.google.firebase.auth.FirebaseAuth;
 import com.mikhaellopez.circularimageview.CircularImageView;
 
 public class Drawer_List extends AppCompatActivity
@@ -120,6 +122,7 @@ public class Drawer_List extends AppCompatActivity
          finish();
 
      } else if (id == R.id.M_help) {
+
 
      } else if (id == R.id.M_mywallet) {
          setTitle("My wallet");

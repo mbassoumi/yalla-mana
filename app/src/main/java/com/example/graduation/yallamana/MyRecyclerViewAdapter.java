@@ -35,22 +35,30 @@ public class MyRecyclerViewAdapter extends RecyclerView
 
         @Override
         public void onClick(View v) {
-            if (settingType.getText().equals("Edit Account")){
-                Intent intent =new Intent (v.getContext(),Edit_account.class);
-                v.getContext().startActivity(intent);
-            }
-            else if (settingType.getText().equals("Notification")){
-                Intent intent =new Intent (v.getContext(),Edit_account.class);
-                v.getContext().startActivity(intent);
-            }
-            else if (settingType.getText().equals("Rating App")){
-                Intent intent =new Intent (v.getContext(),Edit_account.class);
-                v.getContext().startActivity(intent);
-            }
-           else if (settingType.getText().equals("Feedback")){
-                Intent intent =new Intent (v.getContext(),Edit_account.class);
-                v.getContext().startActivity(intent);
-            }
+//            if (settingType.getText().equals("Edit Account")){
+//                RequestedTripFragment request = new RequestedTripFragment();
+//                android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+//                ft.replace(R.id.fram , request,"Request");
+//                ft.commit();
+//            }
+//            else if (settingType.getText().equals("Notification")){
+//                RequestedTripFragment request = new RequestedTripFragment();
+//                android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+//                ft.replace(R.id.fram , request,"Request");
+//                ft.commit();
+//            }
+//            else if (settingType.getText().equals("Rating App")){
+//                RequestedTripFragment request = new RequestedTripFragment();
+//                android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+//                ft.replace(R.id.fram , request,"Request");
+//                ft.commit();
+//            }
+//           else if (settingType.getText().equals("Feedback")){
+//                RequestedTripFragment request = new RequestedTripFragment();
+//                android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+//                ft.replace(R.id.fram , request,"Request");
+//                ft.commit();
+//            }
             //myClickListener.onItemClick(getAdapterPosition(), v);
         }
     }

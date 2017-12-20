@@ -2,31 +2,22 @@ package com.example.graduation.yallamana.presenation.login;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.Handler;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.graduation.yallamana.Drawer_List;
-import com.example.graduation.yallamana.Request_trip;
-import com.example.graduation.yallamana.presenation.alltrips.AllTripsActivity;
 import com.example.graduation.yallamana.presenation.signup.SignupActivity;
 import com.example.graduation.yallamana.util.Navigator;
 import com.example.graduation.yallamana.R;
 import com.example.graduation.yallamana.presenation.login.fragment.verificationFragment;
-import com.example.graduation.yallamana.util.UiUtils;
-import com.facebook.login.widget.LoginButton;
 
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 

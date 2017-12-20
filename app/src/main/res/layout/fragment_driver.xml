@@ -86,13 +86,17 @@
 
         <Spinner
             android:id="@+id/spinner"
-            android:layout_width="100dp"
-            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView10"
             android:layout_alignBottom="@+id/textView10"
-            android:layout_toRightOf="@+id/textView4"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="14dp"
+            android:layout_marginRight="14dp"
             android:dropDownWidth="match_parent"
-            android:popupBackground="@color/green"
             android:entries="@array/bank_arrays"
+            android:popupBackground="@color/green"
             android:prompt="@string/bank_prompt"
             android:spinnerMode="dialog"
             android:visibility="visible" />
