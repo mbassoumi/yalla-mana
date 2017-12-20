@@ -24,7 +24,7 @@
 
     <dimen name="card_trip_radius">0dp</dimen>
 
-    <dimen name="trip_cover_height">100dp</dimen>
+    <dimen name="trip_cover_height">140dp</dimen>
 
     <dimen name="trip_from_padding">10dp</dimen>
 

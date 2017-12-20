@@ -80,26 +80,38 @@ card_view:cardUseCompatPadding="true">
 
         <ImageButton
             android:id="@+id/like_btn"
-            android:layout_width="150dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:background="@drawable/btn"
             android:src="@drawable/ic_comment_black_24dp" />
         />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:layout_marginLeft="16dp"
+            android:text="200K"
+            />
 
         <ImageButton
             android:id="@+id/comment_btn"
-            android:layout_width="150dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
+            android:layout_marginLeft="32dp"
             android:background="@drawable/btn"
-            android:src="@drawable/ic_thumb_up_black_24dp"
-            /><![CDATA[
+            android:src="@drawable/ic_thumb_up_black_24dp" />
 
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:layout_marginLeft="16dp"
+            android:text="200K"
             />
-
-        ]]>
     </LinearLayout>
 
 

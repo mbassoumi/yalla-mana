@@ -1,2 +1,2 @@
-include ':app'
+include ':app', ':builds.gradle', ':facebook.gradle'
 include ':libraries:library'
