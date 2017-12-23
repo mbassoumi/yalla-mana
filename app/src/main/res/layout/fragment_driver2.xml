@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.graduation.yallamana.presenation.signup.DriverActivity">
+   >
 <!-- TODO: Update blank fragment layout -->
 
     android:background="#FFFFFF">
@@ -38,7 +38,7 @@
         android:src="@drawable/ic_file_upload_black_24dp" />
 
     <ImageButton
-        android:id="@+id/licenseImage"
+        android:id="@+id/licenseImagecar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/idImage"
@@ -52,9 +52,9 @@
         android:id="@+id/CarImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/licenseImage"
-        android:layout_alignStart="@+id/licenseImage"
-        android:layout_below="@+id/licenseImage"
+        android:layout_alignLeft="@+id/licenseImagecar"
+        android:layout_alignStart="@+id/licenseImagecar"
+        android:layout_below="@+id/licenseImagecar"
         android:layout_marginTop="18dp"
         android:background="#FFFFFF"
         android:src="@drawable/ic_file_upload_black_24dp" />
@@ -78,7 +78,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView5"
         android:layout_alignStart="@+id/textView5"
-        android:layout_alignTop="@+id/licenseImage"
+        android:layout_alignTop="@+id/licenseImagecar"
         android:text="@string/car_license_image"
         android:textColor="#4CAF50"
         android:textSize="18sp" />

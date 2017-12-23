@@ -2,10 +2,7 @@ package com.example.graduation.yallamana.presenation.signup;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Build;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -18,22 +15,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.graduation.yallamana.Drawer_List;
 import com.example.graduation.yallamana.R;
-import com.example.graduation.yallamana.SplashActivity;
-
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class DriverActivity extends AppCompatActivity {
@@ -60,6 +49,7 @@ public class DriverActivity extends AppCompatActivity {
         mToolBar.setTitleTextColor(getResources().getColor(R.color.white));
         mToolBar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
         setSupportActionBar(mToolBar);
+
 
 
         mToolBar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -155,7 +145,12 @@ public class DriverActivity extends AppCompatActivity {
         @Override
         public void onPageSelected(int position) {
             addBottomDots(position);
-
+            if (position ==0){
+                layout1();
+            }
+else {
+                layout2();
+            }
 //
         }
 
@@ -191,19 +186,28 @@ public class DriverActivity extends AppCompatActivity {
         public Object instantiateItem(ViewGroup container, int position) {
             layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-            View view = layoutInflater.inflate(layouts[position], container, false);
-//            if (position==0){
+            if (position==0){
 //                addItemsOnSpinner2();
 //                addListenerOnButton();
 //                addListenerOnSpinnerItemSelection();
-//            }
-//            else{
-//
-//            }
-            container.addView(view);
 
-            return view;
+                View  view=layoutInflater.inflate(R.layout.fragment_driver, container, false);
+
+                container.addView(view);
+
+                return view;
+            }
+            else{
+                View view=layoutInflater.inflate(R.layout.fragment_driver2, container, false);
+
+
+                container.addView(view);
+
+                return view;
+            }
         }
+
+
 
         @Override
         public int getCount() {
@@ -221,44 +225,59 @@ public class DriverActivity extends AppCompatActivity {
             container.removeView(view);
         }
     }
-    // add items into spinner dynamically
-    public void addItemsOnSpinner2() {
-
-        spinner2 = (Spinner) findViewById(R.id.spinner2);
-        List<String> list = new ArrayList<String>();
-        list.add("list 1");
-        list.add("list 2");
-        list.add("list 3");
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, list);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner2.setAdapter(dataAdapter);
-    }
 
     public void addListenerOnSpinnerItemSelection() {
         spinner1 = (Spinner) findViewById(R.id.spinner);
         spinner1.setOnItemSelectedListener(new CustomOnItemSelectedListener());
     }
 
-    // get the selected dropdown list value
-    public void addListenerOnButton() {
 
-        spinner1 = (Spinner) findViewById(R.id.spinner);
-        spinner2 = (Spinner) findViewById(R.id.spinner2);
-       yalla_Button = (Button) findViewById(R.id.yalla_Button);
+    private void layout2() {
+        yalla_Button = (Button) findViewById(R.id.yalla_Button);
 
-       yalla_Button.setOnClickListener(new View.OnClickListener() {
+        yalla_Button.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
 
                 Toast.makeText(DriverActivity.this,
-                        "OnClickListener : " +
-                                "\nSpinner 1 : "+ String.valueOf(spinner1.getSelectedItem()) +
-                                "\nSpinner 2 : "+ String.valueOf(spinner2.getSelectedItem()),
+                        "OnClickListener : ",
+
                         Toast.LENGTH_SHORT).show();
             }
 
         });
+      //  addListenerOnSpinnerItemSelection();
+    }
+    private void layout1() {
+        ImageButton LicenseImage = (ImageButton) findViewById(R.id.license_image);
+
+        LicenseImage.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(DriverActivity.this,
+                        "OnClickListener : ",
+
+                        Toast.LENGTH_SHORT).show();
+            }
+
+        });
+        ImageButton idImage = (ImageButton) findViewById(R.id.idImage);
+
+       idImage.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(DriverActivity.this,
+                        "OnClickListener : ",
+
+                        Toast.LENGTH_SHORT).show();
+            }
+
+        });
+        addListenerOnSpinnerItemSelection();
     }
 }
