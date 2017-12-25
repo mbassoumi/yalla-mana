@@ -3,259 +3,366 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Trip_information">
+    android:layout_height="match_parent">
 
-    <include layout="@layout/toolbar"
-        android:id="@+id/info_toolbar"/>
-    <RelativeLayout
-        android:layout_width="368dp"
-        android:layout_height="551dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints">
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
-
-        <Space
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:id="@+id/st"/>
+            android:layout_height="match_parent"
+            android:background="@color/white">
 
-        <ImageView
-            android:id="@+id/driver_image_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/st"
-            android:layout_marginTop="27dp"
-            android:src="@drawable/ic_person_outline_black_24dp" />
+            <include
+                android:id="@+id/toolbar"
+                layout="@layout/toolbar" />
 
-        <TextView
-            android:id="@+id/VDriver_name_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/driver_image_info"
-            android:layout_toEndOf="@+id/driver_image_info"
-            android:layout_toRightOf="@+id/driver_image_info"
-            android:textColor="@color/black"
-            android:hint="person name"
-            android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/VDriver_phone_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/VDriver_name_info"
-            android:layout_toRightOf="@id/driver_image_info"
-            android:hint="0599000123"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
-
-        <LinearLayout
-            android:id="@+id/lay1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/driver_image_info"
-            android:layout_marginTop="38dp"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/vfrom_info"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/from_info"
-                    android:textColor="@color/black"
-                    android:textSize="18sp" />
-
-                <Space
-                    android:layout_width="20dp"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:id="@+id/Vfrom_info"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="ramalah"
-                    android:textColor="@color/black"
-                    android:textSize="18sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
+            <RelativeLayout
+                android:id="@+id/rel2"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@id/lay1"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:layout_below="@id/toolbar"
+                android:background="@drawable/btn">
+
+                <android.support.v7.widget.AppCompatImageButton xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/driver_image"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/btn"
+                    android:src="@drawable/no_pic_person" />
 
                 <TextView
-                    android:id="@+id/vTo_info"
+                    android:id="@+id/driver_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/driver_image"
+                    android:layout_marginLeft="42dp"
+                    android:layout_marginStart="42dp"
+                    android:layout_toEndOf="@+id/driver_image"
+                    android:layout_toRightOf="@+id/driver_image"
+                    android:text="Driver name "
+                    android:textColor="#000000"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/driver_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/driver_name"
+                    android:layout_alignStart="@+id/driver_name"
+                    android:layout_below="@+id/driver_name"
+                    android:layout_marginBottom="8dp"
+                    android:text="0595555555"
+                    android:textColor="#000000"
+                    android:textSize="18dp" />
+
+                <ImageButton
+                    android:id="@+id/imageButton_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/white"
+                    app:srcCompat="@drawable/ic_directions_car_black_48dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rel3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rel2">
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/from_info"
+                    android:textColor="#000000"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/from_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/textView8"
+                    android:layout_alignBottom="@+id/textView8"
+                    android:layout_marginLeft="16dp"
+                    android:layout_toEndOf="@+id/textView8"
+                    android:layout_toRightOf="@+id/textView8"
+                    android:text="Ramallah"
+                    android:textColor="#BDBDBD"
+                    android:textSize="18dp" />
+
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textView8"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/to_info"
+                    android:textColor="#000000"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/to_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/textView9"
+                    android:layout_alignBottom="@+id/textView9"
+                    android:layout_marginLeft="16dp"
+                    android:layout_toEndOf="@+id/textView9"
+                    android:layout_toRightOf="@+id/textView9"
+                    android:text="Ramallah"
+                    android:textColor="#BDBDBD"
+                    android:textSize="18dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rel5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rel4"
+                android:layout_marginTop="16dp">
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/still_time_info"
+                    android:textColor="#000000"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/trip_still_time1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/trip_still_time2"
+                    android:layout_alignBottom="@+id/trip_still_time2"
+                    android:layout_alignLeft="@+id/textView11"
+                    android:layout_alignStart="@+id/textView11"
+                    android:text="12-12-2012"
+                    android:textColor="#BDBDBD"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/trip_still_time2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textView11"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_toRightOf="@+id/trip_still_time1"
+                    android:text="7:00 "
+                    android:textColor="#BDBDBD"
+                    android:textSize="18dp" />
+
+                <Spinner
+                    android:id="@+id/spinner1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/trip_still_time2"
+                    android:layout_alignBottom="@+id/trip_still_time2"
+                    android:layout_toEndOf="@+id/trip_still_time2"
+                    android:layout_toRightOf="@+id/trip_still_time2"
+                    android:dropDownWidth="match_parent"
+                    android:entries="@array/date_arrays"
+                    android:popupBackground="@color/green"
+                    android:spinnerMode="dialog"
+                    android:visibility="visible" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rel4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rel3"
+                android:layout_marginTop="16dp">
+
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/time_info"
+                    android:textColor="#000000"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/trip_time1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textView10"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="16dp"
+                    android:text="12-12-2012"
+                    android:textColor="#BDBDBD"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/trip_time2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textView10"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_toRightOf="@+id/trip_time1"
+                    android:text="7:00 "
+                    android:textColor="#BDBDBD"
+                    android:textSize="18dp" />
+
+                <Spinner
+                    android:id="@+id/spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/trip_time2"
+                    android:layout_alignBottom="@+id/_trip_time2"
+                    android:layout_toEndOf="@+id/trip_time2"
+                    android:layout_toRightOf="@+id/trip_time2"
+                    android:dropDownWidth="match_parent"
+                    android:entries="@array/date_arrays"
+                    android:popupBackground="@color/green"
+                    android:spinnerMode="dialog"
+                    android:visibility="visible" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rel5"
+                android:layout_marginTop="16dp">
+
+                <TextView
+                    android:id="@+id/text10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
-                    android:text="@string/to_info"
-                    android:textColor="@color/black"
-                    android:textSize="18sp" />
-
-                <Space
-                    android:layout_width="40dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/number_of_riders"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
 
                 <TextView
-                    android:id="@+id/VTO_info"
+                    android:id="@+id/number_rider"
+                    android:layout_width="40dp"
+                    android:layout_height="25dp"
+                    android:layout_toEndOf="@+id/text10"
+                    android:text="7"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/relativeLayout2"
+                android:layout_marginTop="16dp">
+
+                <TextView
+                    android:id="@+id/text12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/vTo_info"
-                    android:hint="birzeit"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/price"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/price"
+                    android:layout_width="40dp"
+                    android:layout_height="25dp"
+                    android:layout_toEndOf="@+id/text12"
+                    android:text="10"
+                    android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:textSize="20sp" />
+            </RelativeLayout>
 
-            </LinearLayout>
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/vtime_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/lay1"
-            android:layout_marginTop="25dp"
-            android:text="@string/time_info"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/Vtime_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="07:00am 31/2/2017"
-            android:textSize="18sp"
-            android:layout_toRightOf="@+id/driver_image_info"
-            android:layout_toEndOf="@+id/driver_image_info" />
-
-        <TextView
-            android:id="@+id/info_vstill_day"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/Vtime_info"
-            android:layout_marginTop="28dp"
-            android:textSize="18sp"
-            android:textColor="@color/black"
-            android:text="@string/still_time_info" />
-
-        <TextView
-            android:id="@+id/Vstill_day_info"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:layout_below="@+id/info_vstill_day"
-            android:text="07:00 am   2/2/2018"
-            android:layout_alignLeft="@+id/Vtime_info"
-            android:layout_alignStart="@+id/Vtime_info" />
-
-        <TextView
-            android:id="@+id/vprice_info"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/price_info"
-            android:layout_marginTop="22dp"
-            android:layout_below="@+id/Vstill_day_info"
-            android:layout_alignParentLeft="true"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:layout_alignParentStart="true" />
-
-        <TextView
-            android:id="@+id/Vprice_info"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="20 NIS"
-            android:layout_below="@+id/vprice_info"
-            android:layout_alignLeft="@+id/Vstill_day_info"
-            android:layout_alignStart="@+id/Vstill_day_info" />
-
-        <TextView
-            android:id="@+id/vnum_rider_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/Vprice_info"
-            android:layout_marginTop="33dp"
-            android:text="@string/Num_of_rider"
-            android:textSize="18sp"
-            android:textColor="@color/black"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-        <TextView
-            android:id="@+id/Vnum_rider_info"
-            android:layout_width="30dp"
-            android:layout_height="wrap_content"
-            android:text="1"
-            android:layout_alignRight="@+id/VDriver_name_info"
-            android:layout_alignEnd="@+id/VDriver_name_info"
-            android:layout_alignLeft="@+id/Vstill_day_info"
-            android:layout_alignStart="@+id/Vstill_day_info"
-            android:layout_below="@+id/vnum_rider_info" />
-
-        <ImageButton
-            android:id="@+id/imageButton_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/VDriver_name_info"
-            android:layout_marginLeft="39dp"
-            android:layout_marginStart="39dp"
-            android:layout_toEndOf="@+id/Vtime_info"
-            android:layout_toRightOf="@+id/Vtime_info"
-            android:autofillHints=""
-            app:srcCompat="@drawable/ic_directions_car_black_24dp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_below="@+id/Vnum_rider_info"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="15dp"
-            android:weightSum="1">
-
-            <ImageButton
-                android:id="@+id/image_music_info"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight=".33"
-                app:srcCompat="@drawable/ic_music_note_black_24dp" />
+                android:layout_below="@+id/relativeLayout3"
+                android:layout_marginTop="32dp">
 
-            <ImageButton
-                android:id="@+id/image_smoke_info"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight=".33"
-                app:srcCompat="@drawable/ic_smoke_free_black_24dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/Vnum_rider_info"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/btn"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
 
-            <ImageButton
-                android:id="@+id/image_wifi_info"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight=".33"
-                app:srcCompat="@drawable/wifi_high" />
-        </LinearLayout>
+                    <ImageButton
+                        android:id="@+id/image_music_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn"
+                        app:srcCompat="@drawable/ic_music_note_black_24dp" />
+
+                    <ImageButton
+                        android:id="@+id/image_smoke_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn"
+                        app:srcCompat="@drawable/ic_smoke_free_black_24dp" />
+
+                    <ImageButton
+                        android:id="@+id/image_women"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn"
+                        app:srcCompat="@drawable/ic_men_black_24dp" />
+
+                    <ImageButton
+                        android:id="@+id/image_men"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn"
+                        app:srcCompat="@drawable/ic_face_black_24dp" />
+
+                    <ImageButton
+                        android:id="@+id/image_wifi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn"
+                        app:srcCompat="@drawable/ic_wifi_black_8dp" />
+                </LinearLayout>
 
 
-    </RelativeLayout>
-
+            </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
 </android.support.constraint.ConstraintLayout>

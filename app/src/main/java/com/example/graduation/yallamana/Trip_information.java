@@ -18,7 +18,7 @@ public class Trip_information extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trip_information);
-        tool=(Toolbar)findViewById(R.id.info_toolbar);
+        tool=(Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(tool);
         getSupportActionBar().setTitle(R.string.trip_information);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

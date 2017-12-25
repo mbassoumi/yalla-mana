@@ -78,34 +78,34 @@ public class HomeFragment extends android.support.v4.app.Fragment {
         recyclerView.setAdapter(postAdapter);
 
 
-        AppBarLayout mAppBarLayout = (AppBarLayout) getActivity().findViewById(R.id.appbar);
-        mAppBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
-            boolean isShow = false;
-            int scrollRange = -1;
-
-            @Override
-            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-                if (scrollRange == -1) {
-                    scrollRange = appBarLayout.getTotalScrollRange();
-                }
-                if (scrollRange + verticalOffset == 0) {
-                    isShow = true;
-                    collapsingToolbarLayout = (CollapsingToolbarLayout) getActivity().findViewById(R.id.collapsing_toolbar);
-                    collapsingToolbarLayout.setTitle(user_name.getText().toString());
-                    collapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE);
-                    showOption(R.id.action_add);
-
-
-                    showOption(R.id.action_add);
-                } else if (isShow) {
-                    isShow = false;
-                    collapsingToolbarLayout = (CollapsingToolbarLayout) getActivity().findViewById(R.id.collapsing_toolbar);
-                    collapsingToolbarLayout.setTitle("");
-
-                    hideOption(R.id.action_add);
-                }
-            }
-        });
+//        AppBarLayout mAppBarLayout = (AppBarLayout) getActivity().findViewById(R.id.appbar);
+//        mAppBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+//            boolean isShow = false;
+//            int scrollRange = -1;
+//
+//            @Override
+//            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+//                if (scrollRange == -1) {
+//                    scrollRange = appBarLayout.getTotalScrollRange();
+//                }
+//                if (scrollRange + verticalOffset == 0) {
+//                    isShow = true;
+//                    collapsingToolbarLayout = (CollapsingToolbarLayout) getActivity().findViewById(R.id.collapsing_toolbar);
+//                    collapsingToolbarLayout.setTitle(user_name.getText().toString());
+//                    collapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE);
+//                    showOption(R.id.action_add);
+//
+//
+//                    showOption(R.id.action_add);
+//                } else if (isShow) {
+//                    isShow = false;
+//                    collapsingToolbarLayout = (CollapsingToolbarLayout) getActivity().findViewById(R.id.collapsing_toolbar);
+//                    collapsingToolbarLayout.setTitle("");
+//
+//                    hideOption(R.id.action_add);
+//                }
+//            }
+//        });
     }
 
 

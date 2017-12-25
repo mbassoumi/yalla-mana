@@ -68,23 +68,26 @@ card_view:cardUseCompatPadding="true">
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+android:background="@drawable/btn"
         android:layout_below="@+id/post_area"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        android:background="@drawable/btn"
+
         android:orientation="horizontal"
-        android:weightSum="1">
+        >
 
         <ImageButton
-            android:id="@+id/like_btn"
+            android:id="@+id/comment_btn"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:background="@drawable/btn"
+            android:background="@color/white"
+            android:layout_marginLeft="16dp"
+
+
             android:src="@drawable/ic_comment_black_24dp" />
         />
         <TextView
@@ -96,12 +99,12 @@ card_view:cardUseCompatPadding="true">
             />
 
         <ImageButton
-            android:id="@+id/comment_btn"
+            android:id="@+id/like_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginLeft="32dp"
-            android:background="@drawable/btn"
+            android:background="@color/white"
             android:src="@drawable/ic_thumb_up_black_24dp" />
 
         >
@@ -113,6 +116,8 @@ card_view:cardUseCompatPadding="true">
             android:text="200K"
             />
     </LinearLayout>
+
+
 
 
 

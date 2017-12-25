@@ -9,6 +9,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,8 +18,11 @@ import android.widget.Toast;
 
 import com.example.graduation.yallamana.R;
 import com.example.graduation.yallamana.presenation.alltrips.TripsAdapter;
+import com.example.graduation.yallamana.util.network.api.User;
 
 import java.util.List;
+
+import static com.example.graduation.yallamana.R.*;
 
 
 public class TripAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -56,7 +61,7 @@ public class TripAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(activity).inflate(R.layout.trip_row, parent, false);
+        View view = LayoutInflater.from(activity).inflate(layout.trip_row, parent, false);
         return new UserViewHolder(view);
 
     }
@@ -65,10 +70,17 @@ public class TripAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof UserViewHolder) {
             Trips trip = trips.get(position);
-            UserViewHolder userViewHolder = (UserViewHolder) holder;
+            final UserViewHolder userViewHolder = (UserViewHolder) holder;
             userViewHolder.from.setText(trip.getFrom());
             userViewHolder.to.setText(trip.getTo());
             userViewHolder.date.setText(trip.getDate());
+            //userViewHolder.profile.setImageDrawable(drawable.person1);
+            userViewHolder.overflow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    showPopupMenu(userViewHolder.overflow);
+                }
+            });
         }
     }
 
@@ -84,7 +96,7 @@ public class TripAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         // inflate menu
         PopupMenu popup = new PopupMenu(mContext, view);
         MenuInflater inflater = popup.getMenuInflater();
-        inflater.inflate(R.menu.menu_trip, popup.getMenu());
+        inflater.inflate(menu.menu_trip, popup.getMenu());
         popup.setOnMenuItemClickListener(new TripAdapter.MyMenuItemClickListener());
         popup.show();
     }
@@ -100,11 +112,11 @@ public class TripAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         @Override
         public boolean onMenuItemClick(MenuItem menuItem) {
             switch (menuItem.getItemId()) {
-                case R.id.action_more_information:
+                case id.action_more_information:
                     Toast.makeText(mContext, "More Info", Toast.LENGTH_SHORT).show();
                     return true;
 
-                case R.id.action_reserve_trip:
+                case id.action_reserve_trip:
                     Toast.makeText(mContext, "Reserve Trip", Toast.LENGTH_SHORT).show();
                     return true;
                 default:
@@ -119,12 +131,19 @@ public class TripAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         public TextView from;
         public TextView to;
         public TextView date;
+        public ImageButton profile;
+        ImageView overflow ;
+
 
         public UserViewHolder(View view) {
             super(view);
-            from = (TextView) view.findViewById(R.id.city_from);
-           date = (TextView) view.findViewById(R.id.date);
-           to = (TextView) view.findViewById(R.id.city_to);
+            from = (TextView) view.findViewById(id.city_from);
+           date = (TextView) view.findViewById(id.date);
+           to = (TextView) view.findViewById(id.city_to);
+            overflow = (ImageView) view.findViewById(id.overflow);
+            profile = (ImageButton) view.findViewById(id.profile_image);
+
+
         }
     }
 }

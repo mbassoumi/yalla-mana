@@ -72,7 +72,11 @@ public class PostActivity extends AppCompatActivity  {
         viewPager.setAdapter(homeViewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_home_black_24dp);
+        tabLayout.getTabAt(0).select();
+        tabLayout.getTabAt(0).getIcon().setColorFilter(ContextCompat.getColor(PostActivity.this, R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
+
         tabLayout.getTabAt(1).setIcon(R.drawable.ic_dashboard_black_24dp);
         tabLayout.getTabAt(2).setIcon(R.drawable.ic_notifications_black_24dp);
 
@@ -81,7 +85,7 @@ public class PostActivity extends AppCompatActivity  {
             public void onTabSelected(TabLayout.Tab tab) {
                 AppBarLayout appbar =(AppBarLayout)findViewById(R.id.appbar);
                 Toolbar toolbar =(Toolbar)findViewById(R.id.toolbar);
-                tab.getIcon().setColorFilter(ContextCompat.getColor(PostActivity.this, R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
+              tab.getIcon().setColorFilter(ContextCompat.getColor(PostActivity.this, R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
                 if (tabLayout.getTabAt(1).isSelected()||tabLayout.getTabAt(2).isSelected()){
                     CoordinatorLayout.LayoutParams params =(CoordinatorLayout.LayoutParams)appbar.getLayoutParams();
                     params.height = 0; // COLLAPSED_HEIGHT

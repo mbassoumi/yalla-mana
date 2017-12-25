@@ -60,15 +60,14 @@ public class TripsActivity extends AppCompatActivity {
             }
         });
 
-        tabLayout.getTabAt(0).setText("Today");
-        tabLayout.getTabAt(1).setText("Future");
-        tabLayout.getTabAt(2).setText("Past");
+        tabLayout.getTabAt(0).setText("TODAY");
+        tabLayout.getTabAt(0).select();
 
+        tabLayout.getTabAt(1).setText("FUTURE");
+        tabLayout.getTabAt(2).setText("PAST");
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                AppBarLayout appbar =(AppBarLayout)findViewById(R.id.appbar);
-                Toolbar toolbar =(Toolbar)findViewById(R.id.toolbar);
 
             }
 
