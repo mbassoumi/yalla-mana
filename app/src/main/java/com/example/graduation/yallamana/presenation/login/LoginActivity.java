@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     Button signupButton;
     EditText userPhone;
     Toolbar toolbar;
-//    @BindView(R.id.login_facebook)
+    //    @BindView(R.id.login_facebook)
 //    LoginButton loginButton;
 //    CallbackManager callbackManager;
     LoginPresenter loginPresenter;
@@ -48,13 +48,13 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
 //        FacebookSdk.sdkInitialize(getApplicationContext());
 //        LoginFB();
 
-        signupButton=(Button)findViewById(R.id.signupButton);
-        Button yalla_button =(Button)findViewById(R.id.yallaButton);
+        signupButton = (Button) findViewById(R.id.signupButton);
+        Button yalla_button = (Button) findViewById(R.id.yallaButton);
 
-       signupButton.setOnClickListener(new View.OnClickListener() {
+        signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this,SignupActivity.class);
+                Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -63,7 +63,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(LoginActivity.this,Drawer_List.class);
+                Intent intent = new Intent(LoginActivity.this, Drawer_List.class);
                 startActivity(intent);
                 finish();
             }
@@ -114,32 +114,5 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         Toast.makeText(this, "Login Invalid: User must be 4 letters or longer, and password 6 or more", Toast.LENGTH_SHORT).show();
     }
 
-   /* // login withf acebook account
-    private void LoginFB() {
-        LoginManager.getInstance().registerCallback(callbackManager,
-                new FacebookCallback<LoginResult>() {
-                    @Override
-                    public void onSuccess(LoginResult loginResult) {
-                        // App code
-                    }
 
-                    @Override
-                    public void onCancel() {
-                        // App code
-                    }
-
-                    @Override
-                    public void onError(FacebookException exception) {
-                        // App code
-                    }
-                });
-
-    }
-
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        callbackManager.onActivityResult(requestCode, resultCode, data);
-    }*/
 }
