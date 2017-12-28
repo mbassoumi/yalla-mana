@@ -87,12 +87,11 @@ public class MainActivity extends AppCompatActivity implements
 
     ProgressBar progressBar;
     RetrofitInterface retrofitInterface;
-String phone_number;
+String phone;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         retrofitInterface = ApiClient.getClient().create(RetrofitInterface.class);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -397,9 +396,43 @@ String phone_number;
 
             //// connect with server
 
-              mAuth.signOut();
-                updateUI(STATE_INITIALIZED);
+//              mAuth.signOut();
+//                updateUI(STATE_INITIALIZED);
 
+            Toast.makeText(getApplicationContext(), "the user is " + "phone", Toast.LENGTH_SHORT).show();
+
+            Call<Example> call2 = retrofitInterface.getTokenLogin(phone);
+            call2.enqueue(new Callback<Example>() {
+                @Override
+                public void onResponse(Call<Example> call, Response<Example> response) {
+                    Example example = response.body();
+                  Data data = example.getData();
+                  Boolean userStatus =data.getNewUser();
+                    System.out.println(userStatus.booleanValue()+"hiiiiiiiiiiiiiiiiiiiiiiii");
+
+                    Log.d("Postsss", userStatus.booleanValue()+ "");
+                    Toast.makeText(getApplicationContext(), "the user is " + example.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    if (userStatus.booleanValue()) {
+// if new user go and sign up
+                        Intent intent = new Intent(MainActivity.this, SignupActivity.class);
+                        startActivity(intent);
+                        finish();
+
+                    } else {
+                        // if already user go and start
+                        Intent intent = new Intent(MainActivity.this, Drawer_List.class);
+                        startActivity(intent);
+                        finish();
+
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Example> call, Throwable t) {
+
+                }
+            });
 
 
 
@@ -408,7 +441,8 @@ String phone_number;
 
     private boolean validatePhoneNumber() {
         String phoneNumber = "+97"+mPhoneNumberField.getText().toString();
-        phone_number=mPhoneNumberField.getText().toString();
+
+        phone=mPhoneNumberField.getText().toString();
         if (TextUtils.isEmpty(phoneNumber)) {
             mPhoneNumberField.setError("Invalid phone number.");
             //mPhoneNumberField.setTextColor(Color.parseColor("#ff1744"));

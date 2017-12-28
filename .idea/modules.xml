@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/YallaMana.iml" filepath="$PROJECT_DIR$/YallaMana.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/builds.gradle/builds.gradle.iml" filepath="$PROJECT_DIR$/builds.gradle/builds.gradle.iml" />
+      <module fileurl="file://$PROJECT_DIR$/facebook.gradle/facebook.gradle.iml" filepath="$PROJECT_DIR$/facebook.gradle/facebook.gradle.iml" />
       <module fileurl="file://$PROJECT_DIR$/libraries/libraries.iml" filepath="$PROJECT_DIR$/libraries/libraries.iml" />
       <module fileurl="file://$PROJECT_DIR$/libraries/library/library.iml" filepath="$PROJECT_DIR$/libraries/library/library.iml" />
     </modules>
