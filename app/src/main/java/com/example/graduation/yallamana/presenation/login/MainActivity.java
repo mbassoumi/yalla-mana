@@ -22,7 +22,13 @@ import android.widget.Toast;
 
 import com.example.graduation.yallamana.Drawer_List;
 import com.example.graduation.yallamana.R;
+import com.example.graduation.yallamana.data.DataRepository;
 import com.example.graduation.yallamana.presenation.signup.SignupActivity;
+import com.example.graduation.yallamana.util.Navigator;
+import com.example.graduation.yallamana.util.network.api.Data;
+import com.example.graduation.yallamana.util.network.api.Example;
+import com.example.graduation.yallamana.util.network.retrofit.ApiClient;
+import com.example.graduation.yallamana.util.network.retrofit.RetrofitInterface;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
@@ -36,11 +42,18 @@ import com.google.firebase.auth.PhoneAuthProvider;
 
 import java.util.concurrent.TimeUnit;
 
-public class MainActivity extends AppCompatActivity  implements
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class MainActivity extends AppCompatActivity implements
         View.OnClickListener {
 
     private static final String TAG = "PhoneAuthActivity";
-
+    private LoginView loginView;
+    LoginPresenter loginPresenter;
     private static final String KEY_VERIFY_IN_PROGRESS = "key_verify_in_progress";
 
     private static final int STATE_INITIALIZED = 1;
@@ -71,14 +84,17 @@ public class MainActivity extends AppCompatActivity  implements
     private Button mStartButton;
     private Button mVerifyButton;
     private Button mResendButton;
-    private Button mSignupButton;
 
     ProgressBar progressBar;
-
+    RetrofitInterface retrofitInterface;
+String phone_number;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        retrofitInterface = ApiClient.getClient().create(RetrofitInterface.class);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -100,13 +116,11 @@ public class MainActivity extends AppCompatActivity  implements
         mStartButton = (Button) findViewById(R.id.button_start_verification);
         mVerifyButton = (Button) findViewById(R.id.button_verify_phone);
         mResendButton = (Button) findViewById(R.id.button_resend);
-        mSignupButton = (Button) findViewById(R.id.sign_up_button);
 
         // Assign click listeners
         mStartButton.setOnClickListener(this);
         mVerifyButton.setOnClickListener(this);
         mResendButton.setOnClickListener(this);
-        mSignupButton.setOnClickListener(this);
 
         // [START initialize_auth]
         mAuth = FirebaseAuth.getInstance();
@@ -310,7 +324,7 @@ public class MainActivity extends AppCompatActivity  implements
         switch (uiState) {
             case STATE_INITIALIZED:
                 // Initialized state, show only the phone number field and start button
-                enableViews(mStartButton, mPhoneNumberField,mSignupButton);
+                enableViews(mStartButton, mPhoneNumberField);
                 disableViews(mVerifyButton, mResendButton, mVerificationField);
                 mDetailText.setText(null);
                 break;
@@ -365,7 +379,8 @@ public class MainActivity extends AppCompatActivity  implements
             mPhoneNumberViews.setVisibility(View.VISIBLE);
             //mSignedInViews.setVisibility(View.GONE);
 
-            mStatusText.setText(R.string.signed_out);;
+            mStatusText.setText(R.string.signed_out);
+            ;
         } else {
             // Signed in
             mPhoneNumberViews.setVisibility(View.GONE);
@@ -379,15 +394,21 @@ public class MainActivity extends AppCompatActivity  implements
             mStatusText.setText(R.string.signed_in);
             mDetailText.setText(getString(R.string.firebase_status_fmt, user.getUid()));
             */
-            Intent intent = new Intent(this,Drawer_List.class);
-            startActivity(intent);
-            finish();
+
+            //// connect with server
+
+              mAuth.signOut();
+                updateUI(STATE_INITIALIZED);
+
+
+
 
         }
     }
 
     private boolean validatePhoneNumber() {
-        String phoneNumber = mPhoneNumberField.getText().toString();
+        String phoneNumber = "+97"+mPhoneNumberField.getText().toString();
+        phone_number=mPhoneNumberField.getText().toString();
         if (TextUtils.isEmpty(phoneNumber)) {
             mPhoneNumberField.setError("Invalid phone number.");
             //mPhoneNumberField.setTextColor(Color.parseColor("#ff1744"));
@@ -433,18 +454,14 @@ public class MainActivity extends AppCompatActivity  implements
                     // Do whatever here
 
 
-                    Toast.makeText(getApplicationContext(),"wifi is not connected !",
+                    Toast.makeText(getApplicationContext(), "wifi is not connected !",
                             Toast.LENGTH_LONG).show();
 
 
+                }
 
 
-
-    }
-
-
-
-               /// mStatusText.setText("Authenticating....!");
+                /// mStatusText.setText("Authenticating....!");
                 progressBar.setVisibility(View.VISIBLE);
                 startPhoneNumberVerification(mPhoneNumberField.getText().toString());
 
@@ -461,15 +478,9 @@ public class MainActivity extends AppCompatActivity  implements
             case R.id.button_resend:
                 resendVerificationCode(mPhoneNumberField.getText().toString(), mResendToken);
                 break;
-            case R.id.sign_up_button:
-                Intent t= new Intent(getApplicationContext(),SignupActivity.class);
-                finish();
-                startActivity(t);
-                break;
+
         }
     }
-
-
 
 
 }

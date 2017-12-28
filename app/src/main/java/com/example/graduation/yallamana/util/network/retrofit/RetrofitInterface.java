@@ -5,34 +5,35 @@ package com.example.graduation.yallamana.util.network.retrofit;
  */
 
 
-import com.example.graduation.yallamana.util.network.api.Comment;
-import com.example.graduation.yallamana.util.network.api.CommentReaction;
-import com.example.graduation.yallamana.util.network.api.Post;
-import com.example.graduation.yallamana.util.network.api.PostReaction;
-import com.example.graduation.yallamana.util.network.api.User;
+import com.example.graduation.yallamana.util.network.api.Data;
+import com.example.graduation.yallamana.util.network.api.Example;
 
-import java.util.List;
 
-import io.reactivex.Observable;
 import retrofit2.http.Body;
-import retrofit2.http.DELETE;
-import retrofit2.http.GET;
 import retrofit2.http.POST;
-import retrofit2.http.PUT;
-import retrofit2.http.Path;
 
 /**
  * Created by Mais
  */
+import retrofit2.Call;
+import retrofit2.http.Body;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
+import retrofit2.http.POST;
+import retrofit2.http.Path;
+import retrofit2.http.Query;
+
+
+
 
 public interface RetrofitInterface {
+    @POST("api/auth/login")
+    Call<Example> getTokenLogin(@Body String phone);
 
-
-    @POST("/exalt/users")
-    Observable<Boolean> getToken(@Body String usernumber);
-
-//    @GET("/exalt/users/username/{user}")
-//    Observable<User> getUser(@Path("user") String username);
+//    @POST("/api/auth/login")
+//    Observable<Boolean> getToken(@Body String usernumber);@GET("/exalt/users/username/{user}")
+// //   Observable<User> getUser(@Path("user") String username);
 //
 //    @POST("/exalt/users")
 //    Observable<User> addUser(@Body User user);
@@ -52,8 +53,6 @@ public interface RetrofitInterface {
 //    @DELETE("/exalt/posts/{id}")
 //    Observable<Void> deletePost(@Path("id") long postId);
 //
-//    @POST("/exalt/users/{user}/posts/{postId}/postReaction")
-//    Observable<PostReaction> reactPost(@Path("user") String username, @Path("postId") long postId, @Body PostReaction postReaction);
 //
 //    @POST("/exalt/users/{user}/posts/{postId}")
 //    Observable<Comment> addComment(@Path("user") String username, @Path("postId") long postId, @Body Comment comment);
@@ -66,8 +65,6 @@ public interface RetrofitInterface {
 //
 //    @GET("/exalt/users/{user}/posts/{postId}/comments")
 //    Observable<List<Comment>> getComments(@Path("user") String username, @Path("postId") long postId);
-//
-//    @POST("/exalt/users/{user}/comments/{commentId}/commentReaction")
-//    Observable<CommentReaction> reactComment(@Path("user") String username, @Path("commentId") long postId, @Body CommentReaction commentReaction);
+
 
 }

@@ -8,12 +8,9 @@ import java.sql.Date;
 
 public class User {
     UserID id;
-    String Password;
     long TimeCreation;
     String FirstName;
     String LastName;
-    String Gender;
-    Date Birthday;
     byte[] Picture;
 
     public UserID getId() {
@@ -24,13 +21,6 @@ public class User {
         this.id = id;
     }
 
-    public String getPassword() {
-        return Password;
-    }
-
-    public void setPassword(String password) {
-        Password = password;
-    }
 
     public long getTimeCreation() {
         return TimeCreation;
@@ -56,21 +46,6 @@ public class User {
         LastName = lastName;
     }
 
-    public String getGender() {
-        return Gender;
-    }
-
-    public void setGender(String gender) {
-        Gender = gender;
-    }
-
-    public Date getBirthday() {
-        return Birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        Birthday = birthday;
-    }
 
     public byte[] getPicture() {
         return Picture;

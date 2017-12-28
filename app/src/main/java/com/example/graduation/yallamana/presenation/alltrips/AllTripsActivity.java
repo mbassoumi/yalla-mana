@@ -1,5 +1,6 @@
 package com.example.graduation.yallamana.presenation.alltrips;
 
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Rect;
@@ -65,11 +66,13 @@ public class AllTripsActivity extends AppCompatActivity {
                 Snackbar.make(view, "Request trip", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
                 RequestedTripFragment request = new RequestedTripFragment();
+
+// add
                 android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.fram , request,"Request");
+                ft.add(R.id.fram, request);
                 ft.commit();
 
-        }
+            }
         });
 
 

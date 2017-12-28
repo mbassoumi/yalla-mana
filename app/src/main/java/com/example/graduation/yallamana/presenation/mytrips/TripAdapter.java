@@ -132,14 +132,14 @@ public class TripAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         public TextView to;
         public TextView date;
         public ImageButton profile;
-        ImageView overflow ;
+        public ImageView overflow ;
 
 
         public UserViewHolder(View view) {
             super(view);
             from = (TextView) view.findViewById(id.city_from);
-           date = (TextView) view.findViewById(id.date);
-           to = (TextView) view.findViewById(id.city_to);
+            date = (TextView) view.findViewById(id.date);
+            to = (TextView) view.findViewById(id.city_to);
             overflow = (ImageView) view.findViewById(id.overflow);
             profile = (ImageButton) view.findViewById(id.profile_image);
 

@@ -114,15 +114,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:weightSum="4.0">
-
-                <Button
-                    android:id="@+id/sign_up_button"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1.0"
-                    android:text="Sign up"
-                    android:theme="@style/ThemeOverlay.MyDarkButton" />
+                android:weightSum="3.0">
 
                 <Button
                     android:theme="@style/ThemeOverlay.MyDarkButton"

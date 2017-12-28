@@ -45,22 +45,22 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
             if (settingType.getText().equals("Edit Account")) {
                 RequestedTripFragment request = new RequestedTripFragment();
                 android.support.v4.app.FragmentTransaction ft =((AppCompatActivity)context).getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.fram, request, "Request");
+                ft.replace(R.id.framm, request, "Request");
                 ft.commit();
             } else if (settingType.getText().equals("Notification")) {
                 RequestedTripFragment request = new RequestedTripFragment();
                 android.support.v4.app.FragmentTransaction ft =  ((AppCompatActivity)context).getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.fram, request, "Request");
+                ft.replace(R.id.framm, request, "Request");
                 ft.commit();
             } else if (settingType.getText().equals("Rating App")) {
                 RequestedTripFragment request = new RequestedTripFragment();
                 FragmentTransaction ft = ((AppCompatActivity)context).getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.fram, request, "Request");
+                ft.replace(R.id.framm, request, "Request");
                 ft.commit();
             } else if (settingType.getText().equals("Feedback")) {
                 RequestedTripFragment request = new RequestedTripFragment();
                 android.support.v4.app.FragmentTransaction ft = ((AppCompatActivity)context).getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.fram, request, "Request");
+                ft.replace(R.id.framm, request, "Request");
                 ft.commit();
             }
             myClickListener.onItemClick(getAdapterPosition(), v);
