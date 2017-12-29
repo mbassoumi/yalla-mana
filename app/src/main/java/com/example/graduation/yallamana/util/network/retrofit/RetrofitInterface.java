@@ -5,6 +5,7 @@ package com.example.graduation.yallamana.util.network.retrofit;
  */
 
 
+import com.example.graduation.yallamana.util.network.api.CheckUser;
 import com.example.graduation.yallamana.util.network.api.Data;
 import com.example.graduation.yallamana.util.network.api.Example;
 
@@ -29,7 +30,7 @@ import retrofit2.http.Query;
 
 public interface RetrofitInterface {
     @POST("api/auth/login")
-    Call<Example> getTokenLogin(@Body String phone);
+    Call<Example> getTokenLogin(@Body CheckUser checkUser);
 
 //    @POST("/api/auth/login")
 //    Observable<Boolean> getToken(@Body String usernumber);@GET("/exalt/users/username/{user}")

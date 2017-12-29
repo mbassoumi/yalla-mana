@@ -22,11 +22,14 @@ import android.widget.Toast;
 
 import com.example.graduation.yallamana.Drawer_List;
 import com.example.graduation.yallamana.R;
+import com.example.graduation.yallamana.SplashActivity;
 import com.example.graduation.yallamana.data.DataRepository;
 import com.example.graduation.yallamana.presenation.signup.SignupActivity;
 import com.example.graduation.yallamana.util.Navigator;
+import com.example.graduation.yallamana.util.network.api.CheckUser;
 import com.example.graduation.yallamana.util.network.api.Data;
 import com.example.graduation.yallamana.util.network.api.Example;
+import com.example.graduation.yallamana.util.network.api.User1;
 import com.example.graduation.yallamana.util.network.retrofit.ApiClient;
 import com.example.graduation.yallamana.util.network.retrofit.RetrofitInterface;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -87,7 +90,8 @@ public class MainActivity extends AppCompatActivity implements
 
     ProgressBar progressBar;
     RetrofitInterface retrofitInterface;
-String phone;
+    String phone;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -173,6 +177,7 @@ String phone;
 
                 // Show a message and update the UI
                 // [START_EXCLUDE]
+
                 updateUI(STATE_SIGNIN_FAILED);
                 // [END_EXCLUDE]
             }
@@ -239,6 +244,7 @@ String phone;
 
         mVerificationInProgress = true;
         mStatusText.setVisibility(View.INVISIBLE);
+
     }
 
     private void verifyPhoneNumberWithCode(String verificationId, String code) {
@@ -258,7 +264,10 @@ String phone;
                 this,               // Activity (for callback binding)
                 mCallbacks,         // OnVerificationStateChangedCallbacks
                 token);             // ForceResendingToken from callbacks
+        updateUI(STATE_CODE_SENT);
+
     }
+
     // [END resend_verification]
 
     // [START sign_in_with_phone]
@@ -329,6 +338,8 @@ String phone;
                 break;
             case STATE_CODE_SENT:
                 // Code sent state, show the verification field, the
+                Toast.makeText(getApplicationContext(), "Try to send code again ! ", Toast.LENGTH_SHORT).show();
+
                 enableViews(mVerifyButton, mResendButton, mPhoneNumberField, mVerificationField);
                 disableViews(mStartButton);
                 mDetailText.setText(R.string.status_code_sent);
@@ -363,6 +374,8 @@ String phone;
                 break;
             case STATE_SIGNIN_FAILED:
                 // No-op, handled by sign-in check
+                disableViews( mVerifyButton, mResendButton, mVerificationField);
+                enableViews(mStartButton);
                 mDetailText.setText(R.string.status_sign_in_failed);
                 mDetailText.setTextColor(Color.parseColor("#dd2c00"));
                 progressBar.setVisibility(View.INVISIBLE);
@@ -396,32 +409,55 @@ String phone;
 
             //// connect with server
 
-//              mAuth.signOut();
-//                updateUI(STATE_INITIALIZED);
+            mAuth.signOut();
+            updateUI(STATE_INITIALIZED);
 
-            Toast.makeText(getApplicationContext(), "the user is " + "phone", Toast.LENGTH_SHORT).show();
+            Example examplee = new Example();
 
-            Call<Example> call2 = retrofitInterface.getTokenLogin(phone);
+            Toast.makeText(getApplicationContext(), "the user is " + phone, Toast.LENGTH_SHORT).show();
+
+            CheckUser checkUser = new CheckUser();
+            checkUser.setPhone(phone);
+
+            Call<Example> call2 = retrofitInterface.getTokenLogin(checkUser);
             call2.enqueue(new Callback<Example>() {
                 @Override
                 public void onResponse(Call<Example> call, Response<Example> response) {
                     Example example = response.body();
-                  Data data = example.getData();
-                  Boolean userStatus =data.getNewUser();
-                    System.out.println(userStatus.booleanValue()+"hiiiiiiiiiiiiiiiiiiiiiiii");
-
-                    Log.d("Postsss", userStatus.booleanValue()+ "");
+                    Data data = example.getData();
+                    Boolean userStatus = data.getNewUser();
+                    User1 user1 = data.getUser();
+                    System.out.println(" the user is  " + userStatus.booleanValue());
                     Toast.makeText(getApplicationContext(), "the user is " + example.getMessage(), Toast.LENGTH_SHORT).show();
 
-                    if (userStatus.booleanValue()) {
-// if new user go and sign up
-                        Intent intent = new Intent(MainActivity.this, SignupActivity.class);
-                        startActivity(intent);
-                        finish();
+                    if (!userStatus.booleanValue()) {
+                          // if new user go and sign up
+                        System.out.println(" the user is " + user1.getStatus().toString());
+
+                        if (user1.getStatus().equals("active")) {
+                            Log.d("status", user1.getStatus() + "");
+
+                            System.out.println(" the user is  " + user1.getStatus().toString());
+
+                            Toast.makeText(getApplicationContext(), "the user is rider", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(MainActivity.this, Drawer_List.class);
+                            startActivity(intent);
+                            finish();
+                        } else {
+                            Log.d("status", user1.getStatus() + "");
+
+                            Snackbar.make(findViewById(android.R.id.content),
+                                    "You rigested as a driver we will contact with you soon",
+                                    Snackbar.LENGTH_LONG).show();
+                            //  Intent intent = new Intent(MainActivity.this,Drawer_List.class);
+//                            startActivity(intent);
+//                            finish();
+                        }
+
 
                     } else {
                         // if already user go and start
-                        Intent intent = new Intent(MainActivity.this, Drawer_List.class);
+                        Intent intent = new Intent(MainActivity.this, SignupActivity.class);
                         startActivity(intent);
                         finish();
 
@@ -431,18 +467,18 @@ String phone;
                 @Override
                 public void onFailure(Call<Example> call, Throwable t) {
 
+                    call2.cancel();
                 }
             });
-
 
 
         }
     }
 
     private boolean validatePhoneNumber() {
-        String phoneNumber = "+97"+mPhoneNumberField.getText().toString();
+        String phoneNumber = "+97" + mPhoneNumberField.getText().toString();
 
-        phone=mPhoneNumberField.getText().toString();
+        phone = mPhoneNumberField.getText().toString();
         if (TextUtils.isEmpty(phoneNumber)) {
             mPhoneNumberField.setError("Invalid phone number.");
             //mPhoneNumberField.setTextColor(Color.parseColor("#ff1744"));

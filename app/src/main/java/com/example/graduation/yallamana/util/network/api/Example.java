@@ -18,6 +18,7 @@ public class Example {
     @SerializedName("data")
     @Expose
     private Data data;
+
     public String getMessage() {
         return message;
     }
