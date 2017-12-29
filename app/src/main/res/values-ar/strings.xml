@@ -252,6 +252,7 @@
     <string name="requested_time">Requested Time:</string>
     <string name="properties">Properties:</string>
     <string name="price">Price:</string>
+    <string name="gender">Gender:</string>
     <string-array name="seat_arrays">
         <item>1</item>
         <item>2</item>
@@ -262,4 +263,12 @@
         <item>7</item>
 
     </string-array>
+
+<string name="gender_prompt">Choose your gender</string>
+
+<string-array name="gender_arrays">
+<item>Female</item>
+<item>male</item>
+
+</string-array>
 </resources>

@@ -6,8 +6,8 @@ package com.example.graduation.yallamana.util.network.retrofit;
 
 
 import com.example.graduation.yallamana.util.network.api.CheckUser;
-import com.example.graduation.yallamana.util.network.api.Data;
-import com.example.graduation.yallamana.util.network.api.Example;
+import com.example.graduation.yallamana.util.network.api.ReplyCheck;
+import com.example.graduation.yallamana.util.network.api.NewUser;
 
 
 import retrofit2.http.Body;
@@ -17,20 +17,16 @@ import retrofit2.http.POST;
  * Created by Mais
  */
 import retrofit2.Call;
-import retrofit2.http.Body;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.GET;
-import retrofit2.http.POST;
-import retrofit2.http.Path;
-import retrofit2.http.Query;
-
-
 
 
 public interface RetrofitInterface {
+    // check if user register or not
     @POST("api/auth/login")
-    Call<Example> getTokenLogin(@Body CheckUser checkUser);
+    Call<ReplyCheck> getTokenLogin(@Body CheckUser checkUser);
+
+    // when user sign up . send info
+    @POST("api/auth/login")
+    Call<NewUser> setUserInfo(@Body NewUser newuser);
 
 //    @POST("/api/auth/login")
 //    Observable<Boolean> getToken(@Body String usernumber);@GET("/exalt/users/username/{user}")

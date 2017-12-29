@@ -22,13 +22,10 @@ import android.widget.Toast;
 
 import com.example.graduation.yallamana.Drawer_List;
 import com.example.graduation.yallamana.R;
-import com.example.graduation.yallamana.SplashActivity;
-import com.example.graduation.yallamana.data.DataRepository;
 import com.example.graduation.yallamana.presenation.signup.SignupActivity;
-import com.example.graduation.yallamana.util.Navigator;
 import com.example.graduation.yallamana.util.network.api.CheckUser;
 import com.example.graduation.yallamana.util.network.api.Data;
-import com.example.graduation.yallamana.util.network.api.Example;
+import com.example.graduation.yallamana.util.network.api.ReplyCheck;
 import com.example.graduation.yallamana.util.network.api.User1;
 import com.example.graduation.yallamana.util.network.retrofit.ApiClient;
 import com.example.graduation.yallamana.util.network.retrofit.RetrofitInterface;
@@ -45,8 +42,6 @@ import com.google.firebase.auth.PhoneAuthProvider;
 
 import java.util.concurrent.TimeUnit;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -412,23 +407,23 @@ public class MainActivity extends AppCompatActivity implements
             mAuth.signOut();
             updateUI(STATE_INITIALIZED);
 
-            Example examplee = new Example();
+            ReplyCheck examplee = new ReplyCheck();
 
             Toast.makeText(getApplicationContext(), "the user is " + phone, Toast.LENGTH_SHORT).show();
 
             CheckUser checkUser = new CheckUser();
             checkUser.setPhone(phone);
 
-            Call<Example> call2 = retrofitInterface.getTokenLogin(checkUser);
-            call2.enqueue(new Callback<Example>() {
+            Call<ReplyCheck> call2 = retrofitInterface.getTokenLogin(checkUser);
+            call2.enqueue(new Callback<ReplyCheck>() {
                 @Override
-                public void onResponse(Call<Example> call, Response<Example> response) {
-                    Example example = response.body();
-                    Data data = example.getData();
+                public void onResponse(Call<ReplyCheck> call, Response<ReplyCheck> response) {
+                    ReplyCheck replyCheck = response.body();
+                    Data data = replyCheck.getData();
                     Boolean userStatus = data.getNewUser();
                     User1 user1 = data.getUser();
                     System.out.println(" the user is  " + userStatus.booleanValue());
-                    Toast.makeText(getApplicationContext(), "the user is " + example.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "the user is " + replyCheck.getMessage(), Toast.LENGTH_SHORT).show();
 
                     if (!userStatus.booleanValue()) {
                           // if new user go and sign up
@@ -445,10 +440,11 @@ public class MainActivity extends AppCompatActivity implements
                             finish();
                         } else {
                             Log.d("status", user1.getStatus() + "");
+                            Toast.makeText(getApplicationContext(),"You rigested as a driver we will contact with you soon",
+                                    Toast.LENGTH_SHORT).show();
 
-                            Snackbar.make(findViewById(android.R.id.content),
-                                    "You rigested as a driver we will contact with you soon",
-                                    Snackbar.LENGTH_LONG).show();
+
+
                             //  Intent intent = new Intent(MainActivity.this,Drawer_List.class);
 //                            startActivity(intent);
 //                            finish();
@@ -465,7 +461,7 @@ public class MainActivity extends AppCompatActivity implements
                 }
 
                 @Override
-                public void onFailure(Call<Example> call, Throwable t) {
+                public void onFailure(Call<ReplyCheck> call, Throwable t) {
 
                     call2.cancel();
                 }

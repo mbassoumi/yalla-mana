@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
 
-    tools:context="com.example.graduation.yallamana.presenation.post.fragments.HomeFragment">
+    tools:context="com.replyCheck.graduation.yallamana.presenation.post.fragments.HomeFragment">
 
 
         <android.support.v7.widget.RecyclerView
