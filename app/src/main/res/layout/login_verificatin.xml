@@ -8,14 +8,14 @@
     android:orientation="vertical"
     android:weightSum="6"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.replyCheck.graduation.yallamana.presenation.login.MainActivity"
+    tools:context="com.example.graduation.yallamana.presenation.login.MainActivity"
     tools:showIn="@layout/activity_main">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="3"
+        android:layout_weight="4.2"
         android:background="@drawable/com_facebook_button_login_silver_background"
         android:gravity="center_horizontal"
         android:orientation="vertical">
@@ -71,7 +71,7 @@
 
         <LinearLayout
             android:id="@+id/phone_auth_fields"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingLeft="16dp"
@@ -90,6 +90,7 @@
                     android:layout_weight="1.0"
                     android:hint="@string/hint_phone_number"
                     android:inputType="phone"
+                    android:textColor="@color/colorAccent"
                     android:theme="@style/ThemeOverlay.MyLightEditText" />
 
                 <EditText
@@ -99,7 +100,7 @@
                     android:layout_weight="1.0"
                     android:hint="@string/hint_verification_code"
                     android:inputType="number"
-                    android:textColor="@color/green"
+                    android:textColor="@color/colorAccent"
 
                     android:theme="@style/ThemeOverlay.MyLightEditText" />
 

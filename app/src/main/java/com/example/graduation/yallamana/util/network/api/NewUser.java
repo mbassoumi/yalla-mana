@@ -101,7 +101,7 @@ public class NewUser implements Serializable {
         this.type = type;
     }
 
-    public NewUser(String name, String phone, String email, String gender, String photo, String driverLicence, String type, Car car) {
+    public NewUser(String name, String phone, String email, String gender,  String driverLicence, String type, Car car) {
         this.name = name;
         this.phone = phone;
         this.photo = photo;
@@ -112,13 +112,13 @@ public class NewUser implements Serializable {
         this.email = email;
     }
 
-    public NewUser(String name, String phone, String email, String type, String gender, String photo) {
+    public NewUser(String name, String phone, String type, String gender, String email,String photo) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.type = type;
         this.gender = gender;
-        this.photo = photo;
+        this.photo=photo;
     }
 
 }

@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.replyCheck.graduation.yallamana.presenation.post.fragments.DashboardFragment">
+    tools:context="com.example.graduation.yallamana.presenation.post.fragments.DashboardFragment">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view2"

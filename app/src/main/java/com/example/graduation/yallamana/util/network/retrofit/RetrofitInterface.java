@@ -6,7 +6,7 @@ package com.example.graduation.yallamana.util.network.retrofit;
 
 
 import com.example.graduation.yallamana.util.network.api.CheckUser;
-import com.example.graduation.yallamana.util.network.api.ReplyCheck;
+import com.example.graduation.yallamana.util.network.api.Example;
 import com.example.graduation.yallamana.util.network.api.NewUser;
 
 
@@ -22,10 +22,10 @@ import retrofit2.Call;
 public interface RetrofitInterface {
     // check if user register or not
     @POST("api/auth/login")
-    Call<ReplyCheck> getTokenLogin(@Body CheckUser checkUser);
+    Call<Example> getTokenLogin(@Body CheckUser checkUser);
 
     // when user sign up . send info
-    @POST("api/auth/login")
+    @POST("api/auth/signup")
     Call<NewUser> setUserInfo(@Body NewUser newuser);
 
 //    @POST("/api/auth/login")

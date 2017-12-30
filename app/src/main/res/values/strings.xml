@@ -239,6 +239,7 @@
     <string name="gender_prompt">Choose your gender</string>
 
     <string-array name="gender_arrays">
+        <item>Gender</item>
         <item>Female</item>
         <item>male</item>
 

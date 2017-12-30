@@ -25,7 +25,7 @@ import com.example.graduation.yallamana.R;
 import com.example.graduation.yallamana.presenation.signup.SignupActivity;
 import com.example.graduation.yallamana.util.network.api.CheckUser;
 import com.example.graduation.yallamana.util.network.api.Data;
-import com.example.graduation.yallamana.util.network.api.ReplyCheck;
+import com.example.graduation.yallamana.util.network.api.Example;
 import com.example.graduation.yallamana.util.network.api.User1;
 import com.example.graduation.yallamana.util.network.retrofit.ApiClient;
 import com.example.graduation.yallamana.util.network.retrofit.RetrofitInterface;
@@ -407,23 +407,23 @@ public class MainActivity extends AppCompatActivity implements
             mAuth.signOut();
             updateUI(STATE_INITIALIZED);
 
-            ReplyCheck examplee = new ReplyCheck();
+            Example examplee = new Example();
 
             Toast.makeText(getApplicationContext(), "the user is " + phone, Toast.LENGTH_SHORT).show();
 
             CheckUser checkUser = new CheckUser();
             checkUser.setPhone(phone);
 
-            Call<ReplyCheck> call2 = retrofitInterface.getTokenLogin(checkUser);
-            call2.enqueue(new Callback<ReplyCheck>() {
+            Call<Example> call2 = retrofitInterface.getTokenLogin(checkUser);
+            call2.enqueue(new Callback<Example>() {
                 @Override
-                public void onResponse(Call<ReplyCheck> call, Response<ReplyCheck> response) {
-                    ReplyCheck replyCheck = response.body();
-                    Data data = replyCheck.getData();
+                public void onResponse(Call<Example> call, Response<Example> response) {
+                    Example example = response.body();
+                    Data data = example.getData();
                     Boolean userStatus = data.getNewUser();
                     User1 user1 = data.getUser();
                     System.out.println(" the user is  " + userStatus.booleanValue());
-                    Toast.makeText(getApplicationContext(), "the user is " + replyCheck.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "the user is " + example.getMessage(), Toast.LENGTH_SHORT).show();
 
                     if (!userStatus.booleanValue()) {
                           // if new user go and sign up
@@ -461,7 +461,7 @@ public class MainActivity extends AppCompatActivity implements
                 }
 
                 @Override
-                public void onFailure(Call<ReplyCheck> call, Throwable t) {
+                public void onFailure(Call<Example> call, Throwable t) {
 
                     call2.cancel();
                 }

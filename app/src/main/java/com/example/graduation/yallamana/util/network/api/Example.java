@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName;
 
 
 
-public class ReplyCheck {
+public class Example {
 
 
     @SerializedName("message")
