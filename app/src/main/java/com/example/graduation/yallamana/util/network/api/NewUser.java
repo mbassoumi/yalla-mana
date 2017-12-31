@@ -6,6 +6,7 @@ import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.File;
 import java.io.Serializable;
 
 /**
@@ -18,6 +19,7 @@ public class NewUser implements Serializable {
     @SerializedName("name")
     @Expose
     private String name;
+
     @SerializedName("gender")
     @Expose
     private String gender;
@@ -30,10 +32,11 @@ public class NewUser implements Serializable {
 
     @SerializedName("photo")
     @Expose
-    private String photo;
+    private File photo;
     @SerializedName("driving_licence")
     @Expose
-    private String driverLicence;
+//    private File driverLicence;
+private String driverLicence;
     @SerializedName("type")
 
     @Expose
@@ -42,6 +45,23 @@ public class NewUser implements Serializable {
     @SerializedName("car")
     @Expose
     private Car car;
+
+    public NewUser(String name, String gender, String phone, String email, String driverLicence, String type) {
+        this.name = name;
+        this.gender = gender;
+        this.phone = phone;
+        this.email = email;
+        this.driverLicence = driverLicence;
+        this.type = type;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 
     public String getEmail() {
         return email;
@@ -84,11 +104,11 @@ public class NewUser implements Serializable {
     }
 
 
-    public String getPhoto() {
+    public File getPhoto() {
         return photo;
     }
 
-    public void setPhoto(String photo) {
+    public void setPhoto(File photo) {
         this.photo = photo;
     }
 
@@ -101,7 +121,7 @@ public class NewUser implements Serializable {
         this.type = type;
     }
 
-    public NewUser(String name, String phone, String email, String gender,  String driverLicence, String type, Car car) {
+    public NewUser(String name, String phone, String email, String gender, String driverLicence, String type, Car car) {
         this.name = name;
         this.phone = phone;
         this.photo = photo;
@@ -110,15 +130,15 @@ public class NewUser implements Serializable {
         this.car = car;
         this.gender = gender;
         this.email = email;
+
     }
 
-    public NewUser(String name, String phone, String type, String gender, String email,String photo) {
+    public NewUser(String name, String phone, String type, String gender, String email) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.type = type;
         this.gender = gender;
-        this.photo=photo;
     }
 
 }

@@ -5,17 +5,27 @@ public class Trip {
 
     private String To;
     private String date;
+    private String price;
     private int numOfSongs;
     private int thumbnail;
 
     public Trip() {
     }
 
-    public Trip(String from, String date, int thumbnail, String To) {
+    public Trip(String from, String date, int thumbnail, String To,String price) {
         this.from = from;
         this.To = To;
         this.date = date;
         this.thumbnail = thumbnail;
+        this.price = price;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
     }
 
     public String getDate() {

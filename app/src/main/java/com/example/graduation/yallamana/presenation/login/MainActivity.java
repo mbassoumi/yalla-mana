@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -238,7 +239,15 @@ public class MainActivity extends AppCompatActivity implements
         // [END start_phone_auth]
 
         mVerificationInProgress = true;
-        mStatusText.setVisibility(View.INVISIBLE);
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                // Actions to do after 10 seconds
+                Toast.makeText(getApplicationContext(), "Try to send code again ! " + phone, Toast.LENGTH_SHORT).show();
+
+            }
+        }, 6000);
+
 
     }
 
@@ -333,12 +342,21 @@ public class MainActivity extends AppCompatActivity implements
                 break;
             case STATE_CODE_SENT:
                 // Code sent state, show the verification field, the
-                Toast.makeText(getApplicationContext(), "Try to send code again ! ", Toast.LENGTH_SHORT).show();
 
                 enableViews(mVerifyButton, mResendButton, mPhoneNumberField, mVerificationField);
                 disableViews(mStartButton);
                 mDetailText.setText(R.string.status_code_sent);
                 mDetailText.setTextColor(Color.parseColor("#43a047"));
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+                        // Actions to do after 10 seconds
+                        Toast.makeText(getApplicationContext(), "Try to send code again ! " + phone, Toast.LENGTH_SHORT).show();
+
+                    }
+                }, 6000);
+
+
                 break;
             case STATE_VERIFY_FAILED:
                 // Verification has failed, show all options
@@ -403,9 +421,9 @@ public class MainActivity extends AppCompatActivity implements
             */
 
             //// connect with server
-
-            mAuth.signOut();
-            updateUI(STATE_INITIALIZED);
+//
+//            mAuth.signOut();
+//            updateUI(STATE_INITIALIZED);
 
             Example examplee = new Example();
 
@@ -427,6 +445,9 @@ public class MainActivity extends AppCompatActivity implements
 
                     if (!userStatus.booleanValue()) {
                           // if new user go and sign up
+                        if (response.code() == 200) {
+                            // Do awesome stuff
+
                         System.out.println(" the user is " + user1.getStatus().toString());
 
                         if (user1.getStatus().equals("active")) {
@@ -434,14 +455,17 @@ public class MainActivity extends AppCompatActivity implements
 
                             System.out.println(" the user is  " + user1.getStatus().toString());
 
-                            Toast.makeText(getApplicationContext(), "the user is rider", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Welcome to your profile :)", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(MainActivity.this, Drawer_List.class);
                             startActivity(intent);
                             finish();
                         } else {
                             Log.d("status", user1.getStatus() + "");
                             Toast.makeText(getApplicationContext(),"You rigested as a driver we will contact with you soon",
-                                    Toast.LENGTH_SHORT).show();
+                                    Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(MainActivity.this,SignupActivity.class);
+                            startActivity(intent);
+                            finish();
 
 
 
@@ -459,10 +483,16 @@ public class MainActivity extends AppCompatActivity implements
 
                     }
                 }
+                else{
+                        Toast.makeText(getApplicationContext(),"Something goes wrong ,please try again!",
+                                Toast.LENGTH_LONG).show();
+                    }
+                }
 
                 @Override
                 public void onFailure(Call<Example> call, Throwable t) {
-
+                    Toast.makeText(getApplicationContext(),"Server Down!",
+                            Toast.LENGTH_LONG).show();
                     call2.cancel();
                 }
             });
@@ -472,7 +502,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private boolean validatePhoneNumber() {
-        String phoneNumber = "+97" + mPhoneNumberField.getText().toString();
+        String phoneNumber = "+970" + mPhoneNumberField.getText().toString();
 
         phone = mPhoneNumberField.getText().toString();
         if (TextUtils.isEmpty(phoneNumber)) {

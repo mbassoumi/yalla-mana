@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.graduation.yallamana.presenation.login.MainActivity;
+import com.example.graduation.yallamana.presenation.signup.SignupActivity;
 import com.example.graduation.yallamana.util.Navigator;
 
 
@@ -58,7 +59,7 @@ public class SplashActivity extends Activity {
                 @Override
                 public void run() {
 
-                    Intent t= new Intent(getApplicationContext(),MainActivity.class);
+                    Intent t= new Intent(getApplicationContext(),SignupActivity.class);
                     finish();
                     startActivity(t);
 
@@ -66,13 +67,6 @@ public class SplashActivity extends Activity {
             }, SPLASH_TIME_OUT);
         }
     }
-
-    public void checkWiFi(View view) {
-        Intent intent = getIntent();
-        finish();
-        startActivity(intent);
-    }
-
 
 
 }

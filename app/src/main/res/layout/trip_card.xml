@@ -22,82 +22,94 @@
                 android:layout_height="@dimen/trip_cover_height"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
-                android:src="@drawable/person1"
-                android:scaleType="fitXY" />
+                android:scaleType="fitXY"
+                android:src="@drawable/person1" />
 
-            <TextView
-                android:id="@+id/from"
+            <LinearLayout
+                android:id="@+id/linear"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/textView"
+                android:layout_below="@id/thumbnail"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="8dp"
+                android:weightSum="2.2">
 
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentStart="true"
+                <TextView
+                    android:id="@+id/from"
 
-                android:paddingLeft="@dimen/trip_from_padding"
-                android:paddingRight="@dimen/trip_from_padding"
-                android:textColor="@color/from_trip"
-                android:textSize="@dimen/from_size" />
+                    android:layout_width="21dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-condensed"
+                    android:hint="Ramallah"
+                    android:paddingLeft="@dimen/trip_from_padding"
+                    android:paddingRight="@dimen/trip_from_padding"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
 
-            <TextView
-                android:id="@+id/to"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/from"
-                android:layout_alignStart="@+id/from"
-                android:layout_below="@+id/textView2"
-                android:paddingLeft="@dimen/trip_from_padding"
-                android:paddingRight="@dimen/trip_from_padding"
-                android:textColor="@color/from_trip"
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
 
-                android:textSize="@dimen/from_size" />
+                    android:layout_weight=".1"
+                    android:paddingLeft="@dimen/trip_from_padding"
+                    android:paddingRight="@dimen/trip_from_padding"
+                    android:text="->"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/to"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textView2"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-condensed"
+                    android:hint="Nablus"
+                    android:paddingLeft="@dimen/trip_from_padding"
+                    android:paddingRight="@dimen/trip_from_padding"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:id="@+id/overflow"
+                    android:layout_width="@dimen/ic_trip_overflow_width"
+                    android:layout_height="@dimen/ic_trip_overflow_height"
+                    android:layout_below="@id/thumbnail"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight=".1"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_dots" />
+            </LinearLayout>
+
 
             <TextView
                 android:id="@+id/date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/to"
-                android:paddingBottom="@dimen/trip_padding_bottom"
-                android:paddingLeft="@dimen/trip_from_padding"
-                android:paddingRight="@dimen/trip_from_padding"
-                android:textSize="@dimen/trip_date" />
 
-            <ImageView
-                android:id="@+id/overflow"
-                android:layout_width="@dimen/ic_trip_overflow_width"
-                android:layout_height="@dimen/ic_trip_overflow_height"
-                android:layout_alignParentRight="true"
-                android:layout_below="@id/thumbnail"
-                android:layout_marginRight="15dp"
-                android:layout_marginTop="@dimen/ic_trip_overflow_margin_top"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_dots" />
+                android:layout_below="@id/linear"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="sans-serif-condensed"
+                android:hint="2-2-2017"
+                android:text="2-2-2018"
+                android:textColor="@color/grey_300"
+                android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
+                android:id="@+id/price"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignTop="@+id/overflow"
-                android:text="From:"
-
-                android:textSize="@dimen/from_size"
-                android:paddingLeft="@dimen/trip_from_padding"
-                android:paddingRight="@dimen/trip_from_padding"/>
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/from"
-                android:text="To:"
-                android:paddingLeft="@dimen/trip_from_padding"
+                android:layout_below="@+id/date"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
                 android:paddingRight="@dimen/trip_from_padding"
-                android:textSize="@dimen/from_size"/>
+                android:text="20 Nis"
+                android:textColor="@color/colorPrimary" />
 
         </RelativeLayout>
 

@@ -3,11 +3,13 @@ package com.example.graduation.yallamana.presenation.signup;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -16,13 +18,25 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.graduation.yallamana.Drawer_List;
 import com.example.graduation.yallamana.R;
+import com.example.graduation.yallamana.util.network.api.Attributess;
+import com.example.graduation.yallamana.util.network.api.Car;
+import com.example.graduation.yallamana.util.network.api.NewUser;
+import com.example.graduation.yallamana.util.network.retrofit.ApiClient;
+import com.example.graduation.yallamana.util.network.retrofit.RetrofitInterface;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class DriverActivity extends AppCompatActivity {
@@ -35,23 +49,34 @@ public class DriverActivity extends AppCompatActivity {
     private int[] layouts;
     private Button btnSkip, btnNext;
     private PreferenceManager prefManager;
-    private Spinner spinner1, spinner2;
-    private Button  yalla_Button;
+    private Spinner bank, year, seats;
+    private Button yalla_Button;
+    private Car car;
+    private Attributess attributess;
+    private CheckBox androidUser, age;
+    private String check1, check2;
+    private String bankAccount, carYear, seatsNumber;
+    private EditText carModel;
+    private NewUser driverUser;
+    RetrofitInterface retrofitInterface;
+    View view1,view2;
+    String carModell;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver);
 
+        retrofitInterface = ApiClient.getClient().create(RetrofitInterface.class);
 
         mToolBar = (Toolbar) findViewById(R.id.toolbar);
         mToolBar.setTitle(R.string.driver_toolbar);
         mToolBar.setTitleTextColor(getResources().getColor(R.color.white));
         mToolBar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
         setSupportActionBar(mToolBar);
-
-
-
+        Intent i = getIntent();
+        driverUser = (NewUser) i.getSerializableExtra("driverUser");
+        attributess=new Attributess(bankAccount,check2,check1);
         mToolBar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -145,17 +170,12 @@ public class DriverActivity extends AppCompatActivity {
         @Override
         public void onPageSelected(int position) {
             addBottomDots(position);
-            if (position ==0){
-                layout1();
-            }
-else {
-                layout2();
-            }
-//
+
         }
 
         @Override
         public void onPageScrolled(int arg0, float arg1, int arg2) {
+            layout1();
         }
 
         @Override
@@ -173,6 +193,7 @@ else {
             window.setStatusBarColor(Color.TRANSPARENT);
         }
     }
+
     /**
      * View pager adapter
      */
@@ -186,29 +207,31 @@ else {
         public Object instantiateItem(ViewGroup container, int position) {
             layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-            if (position==0){
+            if (position == 0) {
 //                addItemsOnSpinner2();
+
 //                addListenerOnButton();
 //                addListenerOnSpinnerItemSelection();
 
-                View  view=layoutInflater.inflate(R.layout.fragment_driver, container, false);
+                 view1 = layoutInflater.inflate(R.layout.fragment_driver, container, false);
 
-                container.addView(view);
+                container.addView(view1);
 
-                return view;
-            }
-            else{
-                View view=layoutInflater.inflate(R.layout.fragment_driver2, container, false);
+                return view1;
+            } else {
+                view2 = layoutInflater.inflate(R.layout.fragment_driver2, container, false);
 
 
-                container.addView(view);
+                container.addView(view2);
 
-                return view;
+                return view2;
             }
         }
 
-
-
+        @Override
+        public int getItemPosition(Object object) {
+            return super.getItemPosition(object);
+        }
         @Override
         public int getCount() {
             return layouts.length;
@@ -226,31 +249,72 @@ else {
         }
     }
 
-    public void addListenerOnSpinnerItemSelection() {
-        spinner1 = (Spinner) findViewById(R.id.spinner);
-        spinner1.setOnItemSelectedListener(new CustomOnItemSelectedListener());
-    }
 
 
-    private void layout2() {
+
+    private void layout1( ) {
+
+
+        bank = (Spinner)findViewById(R.id.spinnerBank);
+        androidUser = (CheckBox) findViewById(R.id.checkBox);
+        age = (CheckBox) findViewById(R.id.checkBox2);
+        year = (Spinner) findViewById(R.id.spinner_year);
+        seats = (Spinner)findViewById(R.id.seats);
+        carYear = year.getSelectedItem().toString();
+        seatsNumber = seats.getSelectedItem().toString();
+        carModel=(EditText)findViewById(R.id.car_model) ;
+
+        bankAccount = bank.getSelectedItem().toString();
+
+
+        if (androidUser.isChecked()) {
+            check1 = "true";
+        } else {
+            check1 = "false";
+        }
+        if (age.isChecked()) {
+            check2 = "true";
+        } else {
+            check2 = "false";
+        }
+        carModell=carModel.getText().toString();
+        if(carModell.isEmpty()){
+            carModell="no type";
+        }
+        int seatsNum=Integer.parseInt(seatsNumber);
         yalla_Button = (Button) findViewById(R.id.yalla_Button);
+        car= new Car("VV",carYear,carModell,seatsNum,attributess);
 
         yalla_Button.setOnClickListener(new View.OnClickListener() {
 
+
             @Override
             public void onClick(View v) {
+                NetworkInfo wifiCheck;
 
-                Toast.makeText(DriverActivity.this,
-                        "OnClickListener : ",
 
-                        Toast.LENGTH_SHORT).show();
+                ConnectivityManager connectionManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+                wifiCheck = connectionManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+
+
+                if (wifiCheck.isConnected()) {
+                    // Do whatever here
+                    NewUser driverUser1 = new NewUser(driverUser.getName(), driverUser.getPhone(), driverUser.getEmail(), driverUser.getGender(),
+                            driverUser.getDriverLicence(), driverUser.getType(), car);
+                    skip(driverUser1);
+                }
+                else{
+                    Toast.makeText(getApplicationContext(),"wifi is not connected !",
+                            Toast.LENGTH_LONG).show();
+                }
+
             }
 
         });
-      //  addListenerOnSpinnerItemSelection();
-    }
-    private void layout1() {
-        ImageButton LicenseImage = (ImageButton) findViewById(R.id.license_image);
+        //  addListenerOnSpinnerItemSelection();
+        attributess=new Attributess(bankAccount,check2,check1);
+
+        ImageButton LicenseImage = (ImageButton) findViewById(R.id.licenseImage);
 
         LicenseImage.setOnClickListener(new View.OnClickListener() {
 
@@ -266,7 +330,7 @@ else {
         });
         ImageButton idImage = (ImageButton) findViewById(R.id.idImage);
 
-       idImage.setOnClickListener(new View.OnClickListener() {
+        idImage.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -278,6 +342,49 @@ else {
             }
 
         });
-        addListenerOnSpinnerItemSelection();
+
+    }
+
+    private void skip(NewUser driverUser) {
+
+        Call<NewUser> call2 = retrofitInterface.setUserInfo(driverUser);
+        // Toast.makeText(getApplicationContext(), "imagee"+encodedImage, Toast.LENGTH_SHORT).show();
+
+        call2.enqueue(new Callback<NewUser>() {
+            @Override
+            public void onResponse(Call<NewUser> call, Response<NewUser> response) {
+
+                if (response.code() == 200) {
+                Toast.makeText(getApplicationContext(), "Thank you , we will contact you soon :)", Toast.LENGTH_SHORT).show();
+                moveToMyProfile();
+            }
+            else  if (response.code() == 400) {
+                    Toast.makeText(getApplicationContext(), "You are already registed !", Toast.LENGTH_LONG).show();
+
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "Ops! something goes wrong", Toast.LENGTH_LONG).show();
+
+                }
+            }
+
+
+            @Override
+            public void onFailure(Call<NewUser> call, Throwable t) {
+
+                call2.cancel();
+            }
+        });
+
+
+    }
+
+    private void moveToMyProfile() {
+
+        Intent i = new Intent(DriverActivity.this, SignupActivity.class);
+        startActivity(i);
+
+
+        finish();
     }
 }

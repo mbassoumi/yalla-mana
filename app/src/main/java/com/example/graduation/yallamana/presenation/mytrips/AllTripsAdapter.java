@@ -27,15 +27,15 @@ public class AllTripsAdapter extends RecyclerView.Adapter<AllTripsAdapter.MyView
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 //        public TextView from, to,date;
-//        public ImageView thumbnail, overflow;
+//        public ImageView driverImage, dots;
 
         public MyViewHolder(View view) {
             super(view);
 //            from = (TextView) view.findViewById(R.id.from);
 //            to = (TextView) view.findViewById(R.id.to);
 //            date = (TextView) view.findViewById(R.id.date);
-//            thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
-//            overflow = (ImageView) view.findViewById(R.id.overflow);
+//            driverImage = (ImageView) view.findViewById(R.id.driverImage);
+//            dots = (ImageView) view.findViewById(R.id.dots);
         }
     }
 
@@ -61,12 +61,12 @@ public class AllTripsAdapter extends RecyclerView.Adapter<AllTripsAdapter.MyView
 //        holder.date.setText(trip.getDate() );
 
         // loading trip cover using Glide library
-       //Glide.with(mContext).load(trip.getThumbnail()).into(holder.thumbnail);
+       //Glide.with(mContext).load(trip.getThumbnail()).into(holder.driverImage);
 
-//        holder.overflow.setOnClickListener(new View.OnClickListener() {
+//        holder.dots.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
-//                showPopupMenu(holder.overflow);
+//                showPopupMenu(holder.dots);
 //            }
 //        });
     }

@@ -14,6 +14,7 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.graduation.yallamana.Trip_information;
 import com.example.graduation.yallamana.util.network.api.Trip;
 
@@ -28,16 +29,17 @@ public class TripsAdapter extends RecyclerView.Adapter<TripsAdapter.MyViewHolder
     private List<Trip> tripList;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView from, to,date;
-        public ImageView thumbnail, overflow;
+        public TextView from, to,date,price;
+        public ImageView driverImage, dots;
 
         public MyViewHolder(View view) {
             super(view);
             from = (TextView) view.findViewById(R.id.from);
             to = (TextView) view.findViewById(R.id.to);
             date = (TextView) view.findViewById(R.id.date);
-            thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
-            overflow = (ImageView) view.findViewById(R.id.overflow);
+            driverImage = (ImageView) view.findViewById(R.id.thumbnail);
+            dots = (ImageView) view.findViewById(R.id.overflow);
+            price = (TextView) view.findViewById(R.id.price);
         }
     }
 
@@ -61,14 +63,15 @@ public class TripsAdapter extends RecyclerView.Adapter<TripsAdapter.MyViewHolder
         holder.from.setText(trip.getFrom());
         holder.to.setText(trip.getTo() );
         holder.date.setText(trip.getDate() );
+        holder.price.setText(trip.getPrice());
 
         // loading trip cover using Glide library
-       //Glide.with(mContext).load(trip.getThumbnail()).into(holder.thumbnail);
+       Glide.with(mContext).load(trip.getThumbnail()).into(holder.driverImage);
 
-        holder.overflow.setOnClickListener(new View.OnClickListener() {
+        holder.dots.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showPopupMenu(holder.overflow);
+                showPopupMenu(holder.dots);
             }
         });
     }

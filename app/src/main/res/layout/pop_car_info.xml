@@ -15,10 +15,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:layout_below="@+id/linearLayout"
-            android:layout_marginBottom="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_alignBottom="@+id/car_image"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="11dp"
+            android:layout_marginEnd="28dp"
+            android:layout_marginRight="28dp"
             android:background="@drawable/mybutton"
             android:fontFamily="sans-serif-condensed"
             android:text="Cancle"
@@ -27,8 +29,11 @@
 
         <android.support.v7.widget.AppCompatImageView
             android:id="@+id/car_image"
-            android:layout_width="140dp"
+            android:layout_width="200dp"
             android:layout_height="200dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
             app:srcCompat="@drawable/ic_directions_car_black_48dp" />
 
         <LinearLayout
@@ -38,7 +43,7 @@
             android:layout_marginTop="16dp"
             android:layout_toRightOf="@+id/car_image"
             android:orientation="vertical"
-            android:weightSum="4">
+            android:weightSum="2">
 
             <ImageView
                 android:id="@+id/image_num"
@@ -46,14 +51,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/ic_airline_seat_recline_normal_black_48dp" />
-
-            <ImageView
-                android:id="@+id/image_num_Car"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-
-                app:srcCompat="@drawable/ic_bubble_chart_black_24dp" />
 
 
             <ImageView
@@ -63,14 +60,6 @@
                 android:layout_weight="1"
 
                 app:srcCompat="@drawable/ic_more_black_24dp" />
-
-            <ImageView
-                android:id="@+id/image_car_color"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-
-                app:srcCompat="@drawable/ic_color_lens_black_24dp" />
 
 
         </LinearLayout>
@@ -82,7 +71,7 @@
             android:layout_marginTop="16dp"
             android:layout_toRightOf="@+id/linearLayout2"
             android:orientation="vertical"
-            android:weightSum="4">
+            android:weightSum="2">
 
             <TextView
                 android:id="@+id/seats_number"
@@ -91,18 +80,10 @@
                 android:layout_marginLeft="8dp"
 
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-condensed"
+
+
                 android:text="8"
-
-
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/car_number"
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:layout_marginLeft="8dp"
-                android:layout_weight="1"
-                android:text="7889767890"
                 android:textSize="18sp" />
 
             <TextView
@@ -114,18 +95,6 @@
                 android:layout_weight="1"
 
                 android:text="2008"
-
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/car_color"
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
-
-                android:layout_marginLeft="8dp"
-                android:layout_weight="1"
-
-                android:text="green"
 
                 android:textSize="18sp" />
 

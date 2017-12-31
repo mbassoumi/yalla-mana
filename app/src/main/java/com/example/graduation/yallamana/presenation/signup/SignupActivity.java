@@ -1,33 +1,35 @@
 package com.example.graduation.yallamana.presenation.signup;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
-
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
-
 
 import com.example.graduation.yallamana.Drawer_List;
 import com.example.graduation.yallamana.R;
-import com.facebook.AccessToken;
+import com.example.graduation.yallamana.util.network.api.Car;
+import com.example.graduation.yallamana.util.network.api.NewUser;
+import com.example.graduation.yallamana.util.network.retrofit.ApiClient;
+import com.example.graduation.yallamana.util.network.retrofit.RetrofitInterface;
 import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
-import com.facebook.FacebookSdk;
-import com.facebook.login.LoginResult;
-import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -35,15 +37,20 @@ import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.squareup.picasso.Picasso;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static com.facebook.login.widget.ProfilePictureView.TAG;
 
 
 public class SignupActivity extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
@@ -57,8 +64,18 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
     ImageButton driverButton;
     ImageButton riderButton;
     ImageView userImage;
-    private static final String TAG = "FacebookLogin";
+    Spinner genderSpinner;
+    String gender;
+    String imagePath;
+    Bitmap image;
+    Bitmap bitmap;
+    String imgString;
+  private  Uri filePath;
+  private String selectedFilePath;
+    NetworkInfo wifiCheck;
 
+
+    RetrofitInterface retrofitInterface;
     // [START declare_auth]
 
     private FirebaseAuth mAuth;
@@ -72,41 +89,23 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_signup);
+
+        ConnectivityManager connectionManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        wifiCheck = connectionManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+
 
         mToolBar = (Toolbar) findViewById(R.id.toolbar);
         mToolBar.setTitle(R.string.new_user);
         mToolBar.setTitleTextColor(getResources().getColor(R.color.white));
         mToolBar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
+
         setSupportActionBar(mToolBar);
         mAuth = FirebaseAuth.getInstance();
 // Initialize Facebook Login button
         mCallbackManager = CallbackManager.Factory.create();
-        LoginButton loginButton = (LoginButton) findViewById(R.id.login_button);
-        loginButton.setReadPermissions("email", "public_profile");
-        loginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                Log.d(TAG, "facebook:onSuccess:" + loginResult);
-                handleFacebookAccessToken(loginResult.getAccessToken());
-            }
-
-            @Override
-            public void onCancel() {
-                Log.d(TAG, "facebook:onCancel");
-                // ...
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-                Log.d(TAG, "facebook:onError", error);
-                // ...
-            }
-        });
-
-
-        loginButton.setReadPermissions("email", "public_profile");
+        genderSpinner = (Spinner) findViewById(R.id.spinner5);
+        retrofitInterface = ApiClient.getClient().create(RetrofitInterface.class);
 
         firstName = (EditText) findViewById(R.id.firstName);
         lastName = (EditText) findViewById(R.id.lastName);
@@ -114,12 +113,9 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         phone = (EditText) findViewById(R.id.mobile);
         String hint1 = firstName.getHint().toString();
         String hint2 = lastName.getHint().toString();
-        String hint3 = email.getHint().toString();
         String hint4 = phone.getHint().toString();
         firstName.setHint(Html.fromHtml(hint1 + "<font color=\"red\">*</font>"));
-
         lastName.setHint(Html.fromHtml(hint2 + "<font color=\"red\">*</font>"));
-        email.setHint(Html.fromHtml(hint3 + "<font color=\"red\">*</font>"));
         phone.setHint(Html.fromHtml(hint4 + "<font color=\"red\">*</font>"));
         userImage = (ImageView) findViewById(R.id.userImage);
 
@@ -141,37 +137,106 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onClick(View arg0) {
                 // TODO Auto-generated method stub
-                Intent intent = new Intent(Intent.ACTION_PICK,
-                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                intent.setType("image/*");
                 startActivityForResult(intent, 0);
             }
         });
-
+/////////////////////////////////////rider//////////////////////////////////////////////////////////
         riderButton = (ImageButton) findViewById(R.id.rider);
 
         riderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(SignupActivity.this,Drawer_List.class);
-                startActivity(intent);
-                finish();
-            }
-        });
 
+                if (wifiCheck.isConnected()) {
+                if (firstName.getText().toString().isEmpty()) {
+                    Toast.makeText( SignupActivity.this, "First name cant be emty!", Toast.LENGTH_LONG).show();
+
+                } else if (lastName.getText().toString().isEmpty()) {
+                    Toast.makeText(SignupActivity.this, "Last name cant be emty!", Toast.LENGTH_LONG).show();
+
+                } else if (phone.getText().toString().isEmpty()) {
+                    Toast.makeText(SignupActivity.this, "phone  cant be emty!", Toast.LENGTH_LONG).show();
+
+                } else {
+//                Intent intent = new Intent(SignupActivity.this,Drawer_List.class);
+//                startActivity(intent);
+//                finish();
+
+                    NewUser riderUser;
+                    String userName = firstName.getText().toString() + " " + lastName.getText().toString();
+                    String number = phone.getText().toString();
+                    String emaill = email.getText().toString();
+
+                    //Adding setOnItemSelectedListener method on spinner.
+                    String userGender = genderSpinner.getSelectedItem().toString();
+                    Log.i(TAG, "gender" + userGender);
+
+
+
+                   riderUser = new NewUser(userName, number, "rider", userGender, emaill);
+
+                    skip(riderUser);
+//                    getIntent().putExtra("riderUser", riderUser);
+//
+//                    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+//                    RiderFragment f1 = new RiderFragment();
+//                    ft.replace(R.id.frame_container, f1);
+//                    ft.commit();
+                }
+            }
+            else {
+                Toast.makeText(getApplicationContext(),"wifi is not connected !",
+                        Toast.LENGTH_LONG).show();
+            }}
+
+        });
+////////////////////driverrr//////////////////////////////////////////////////////////////////
         driverButton = (ImageButton) findViewById(R.id.driver);
 
         driverButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
-                Intent intent = new Intent(SignupActivity.this, DriverActivity.class);
-                startActivity(intent);
-                finish();
+                if (wifiCheck.isConnected()) {
+                if (firstName.getText().toString().isEmpty()) {
+                    Toast.makeText(SignupActivity.this, "First name cant be emty!", Toast.LENGTH_LONG).show();
+
+                } else if (lastName.getText().toString().isEmpty()) {
+                    Toast.makeText(SignupActivity.this, "Last name cant be emty!", Toast.LENGTH_LONG).show();
+
+                } else if (phone.getText().toString().isEmpty()) {
+                    Toast.makeText(SignupActivity.this, "phone  cant be emty!", Toast.LENGTH_LONG).show();
+
+                } else {
+                    String userName = firstName.getText().toString() + " " + lastName.getText().toString();
+                    String number = phone.getText().toString();
+                    String emaill = email.getText().toString();
+
+                    String userGender = genderSpinner.getSelectedItem().toString();
+
+                    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 
 
+                    NewUser driverUser = new NewUser(userName, number, emaill, userGender, "photo url","driver",null);
+
+
+
+                    Intent intent = new Intent(SignupActivity.this, DriverActivity.class);
+                    intent.putExtra("driverUser", driverUser);
+                    startActivity(intent);
+                    finish();
+
+
+                }
+                }
+                else {
+                    Toast.makeText(getApplicationContext(),"wifi is not connected !",
+                            Toast.LENGTH_LONG).show();
+                }
             }
-
         });
 
         sign = (SignInButton) findViewById(R.id.sign_in_button);
@@ -188,7 +253,6 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
 
 
     }
-
 
 
 
@@ -209,8 +273,6 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
     }
 
 
-
-
     private void signIn() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(client);
         startActivityForResult(signInIntent, REQ_CODE);
@@ -226,19 +288,26 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
             handleSignInResult(result);
         } else if (resultCode == RESULT_OK) {
             Uri targetUri = data.getData();
-
-            Bitmap bitmap;
+            userImage.setImageURI(targetUri);
+            imagePath = targetUri.getPath().toString();
+            filePath = data.getData();
             try {
-                bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(targetUri));
-
+                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
                 userImage.setImageBitmap(bitmap);
-            } catch (FileNotFoundException e) {
-                // TODO Auto-generated catch block
+                Picasso.with(getApplicationContext())
+                        .load(filePath)
+                        .resize(200, 200)
+                        .centerCrop()
+                        .into(userImage);
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
 
+
     }
+
+
 
     private void handleSignInResult(GoogleSignInResult result) {
 
@@ -267,45 +336,46 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
     }
+////   reguest for new user as rider
+    private void skip(NewUser riderUser) {
+
+        Call<NewUser> call2 = retrofitInterface.setUserInfo(riderUser);
+       // Toast.makeText(getApplicationContext(), "imagee"+encodedImage, Toast.LENGTH_SHORT).show();
+
+        call2.enqueue(new Callback<NewUser>() {
+            @Override
+            public void onResponse(Call<NewUser> call, Response<NewUser> response) {
+                if (response.code() == 200) {
+
+                    Toast.makeText(getApplicationContext(), "Welcome to your profile :)", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(SignupActivity.this, Drawer_List.class);
+                    startActivity(i);
+
+                    finish();
+                }   else  if (response.code() == 400) {
+                    Toast.makeText(getApplicationContext(), "You are already registed !", Toast.LENGTH_LONG).show();
+
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "Ops! something goes wrong", Toast.LENGTH_LONG).show();
+
+                }
 
 
 
+            }
 
 
+            @Override
+            public void onFailure(Call<NewUser> call, Throwable t) {
+                Toast.makeText(getApplicationContext(),"server down",
+                        Toast.LENGTH_LONG).show();
+                call2.cancel();
+            }
+        });
 
-    private void handleFacebookAccessToken(AccessToken token) {
-        Log.d(TAG, "handleFacebookAccessToken:" + token);
 
-        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithCredential:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            String name = user.getDisplayName().toString();
-                            String[] parts = name.split(" ");
-                            String part1 = parts[0];
-                            String part2 = parts[1]; // 034556
-                            firstName.setText(parts[0].toString());
-                            lastName.setText(parts[1].toString());
-                            email.setText(user.getEmail());
-                            findViewById(R.id.login_button).setVisibility(View.GONE);
-
-                            findViewById(R.id.sign_in_button).setVisibility(View.GONE);
-
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            Toast.makeText(SignupActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-
-                        }
-
-                        // ...
-                    }
-                });
     }
+
+
 }

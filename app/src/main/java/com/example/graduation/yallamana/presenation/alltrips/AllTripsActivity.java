@@ -156,34 +156,34 @@ public class AllTripsActivity extends AppCompatActivity {
         int[] covers = new int[]{
                 R.drawable.person1,
 
+                R.drawable.unknown_user,
                 R.drawable.person2,
-                R.drawable.person2,
-                R.drawable.person2,
-                R.drawable.person2,
+                R.drawable.unknown_user,
+                R.drawable.person1,
 
 
         };
 
-        Trip a = new Trip("Ramallah", "13-12-2017", covers[0],"Nablus");
+        Trip a = new Trip("Ramallah", "13-12-2017", covers[0],"Nablus","20 Nis");
         tripList.add(a);
 
-        a = new Trip("Ramallah", "13-12-2017", covers[1],"Nablus");
+        a = new Trip("Ramallah", "13-12-2017", covers[1],"Nablus","20 Nis");
         tripList.add(a);
-        a = new Trip("Ramallah", "3-12-2017", covers[2],"Nablus");
+        a = new Trip("Ramallah", "3-12-2017", covers[2],"Nablus","20 Nis");
         tripList.add(a);
-        a = new Trip("Ramallah", "13-12-2017", covers[0],"Nablus");
+        a = new Trip("Ramallah", "13-12-2017", covers[0],"Nablus","20 Nis");
         tripList.add(a);
-        a = new Trip("Al-Bireh","13-12-2017", covers[3],"Nablus");
+        a = new Trip("Al-Bireh","13-12-2017", covers[3],"Nablus","20 Nis");
         tripList.add(a);
-        a = new Trip("Ramallah", "13-12-2017", covers[1],"Nablus");
+        a = new Trip("Ramallah", "13-12-2017", covers[1],"Nablus","20 Nis");
         tripList.add(a);
-        a = new Trip("Ramallah", "13-12-2017", covers[2],"Nablus");
+        a = new Trip("Ramallah", "13-12-2017", covers[2],"Nablus","20 Nis");
         tripList.add(a);
-        a = new Trip("Ramallah","13-12-2017", covers[0],"Nablus");
+        a = new Trip("Ramallah","13-12-2017", covers[0],"Nablus","20 Nis");
         tripList.add(a);
-        a = new Trip("Hebron","13-12-2017", covers[0],"Jericho");
+        a = new Trip("Hebron","13-12-2017", covers[0],"Jericho","20 Nis");
         tripList.add(a);
-        a = new Trip("Jericho", "13-12-2017", covers[1],"Nablus");
+        a = new Trip("Jericho", "13-12-2017", covers[1],"Nablus","20 Nis");
         tripList.add(a);
 
         adapter.notifyDataSetChanged();

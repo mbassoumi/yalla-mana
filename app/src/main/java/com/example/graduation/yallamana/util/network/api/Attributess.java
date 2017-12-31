@@ -7,43 +7,47 @@ import com.google.gson.annotations.SerializedName;
  * Created by m_7el on 12/29/2017.
  */
 
-class Attributess {
-    @SerializedName("color")
+public class Attributess {
+    @SerializedName("bank")
     @Expose
-    private String color ;
+    private String bank;
 
-    @SerializedName("type")
+    @SerializedName("age")
     @Expose
-    private String type;
+    private String age;
 
-    @SerializedName("wheels")
-
+    @SerializedName("android_User")
     @Expose
-    private String wheels;
+    private String androidUser;
 
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getWheels() {
-        return wheels;
-    }
-
-    public void setWheels(String wheels) {
-        this.wheels = wheels;
+    public Attributess(String bank, String age, String androidUser) {
+        this.bank = bank;
+        this.age = age;
+        this.androidUser = androidUser;
     }
 
 
+    public String getBank() {
+        return bank;
+    }
+
+    public void setBank(String bank) {
+        this.bank = bank;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public String getAndroidUser() {
+        return androidUser;
+    }
+
+    public void setAndroidUser(String androidUser) {
+        this.androidUser = androidUser;
+    }
 }
