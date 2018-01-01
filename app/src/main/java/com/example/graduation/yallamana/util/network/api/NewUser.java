@@ -33,7 +33,7 @@ public class NewUser implements Serializable {
     @SerializedName("photo")
     @Expose
     private File photo;
-    @SerializedName("driving_licence")
+    @SerializedName("driver_licence")
     @Expose
 //    private File driverLicence;
 private String driverLicence;
@@ -46,14 +46,6 @@ private String driverLicence;
     @Expose
     private Car car;
 
-    public NewUser(String name, String gender, String phone, String email, String driverLicence, String type) {
-        this.name = name;
-        this.gender = gender;
-        this.phone = phone;
-        this.email = email;
-        this.driverLicence = driverLicence;
-        this.type = type;
-    }
 
     public String getGender() {
         return gender;

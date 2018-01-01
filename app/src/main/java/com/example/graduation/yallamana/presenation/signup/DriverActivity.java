@@ -26,9 +26,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.graduation.yallamana.Drawer_List;
 import com.example.graduation.yallamana.R;
-import com.example.graduation.yallamana.util.network.api.Attributess;
+import com.example.graduation.yallamana.util.network.api.Attributes;
 import com.example.graduation.yallamana.util.network.api.Car;
 import com.example.graduation.yallamana.util.network.api.NewUser;
 import com.example.graduation.yallamana.util.network.retrofit.ApiClient;
@@ -52,7 +51,7 @@ public class DriverActivity extends AppCompatActivity {
     private Spinner bank, year, seats;
     private Button yalla_Button;
     private Car car;
-    private Attributess attributess;
+    private Attributes attributess;
     private CheckBox androidUser, age;
     private String check1, check2;
     private String bankAccount, carYear, seatsNumber;
@@ -76,7 +75,7 @@ public class DriverActivity extends AppCompatActivity {
         setSupportActionBar(mToolBar);
         Intent i = getIntent();
         driverUser = (NewUser) i.getSerializableExtra("driverUser");
-        attributess=new Attributess(bankAccount,check2,check1);
+        attributess=new Attributes(bankAccount,check2,check1);
         mToolBar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -283,7 +282,7 @@ public class DriverActivity extends AppCompatActivity {
         }
         int seatsNum=Integer.parseInt(seatsNumber);
         yalla_Button = (Button) findViewById(R.id.yalla_Button);
-        car= new Car("VV",carYear,carModell,seatsNum,attributess);
+        car= new Car("photo url",carYear,carModell,seatsNum,attributess);
 
         yalla_Button.setOnClickListener(new View.OnClickListener() {
 
@@ -297,22 +296,19 @@ public class DriverActivity extends AppCompatActivity {
                 wifiCheck = connectionManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
 
 
-                if (wifiCheck.isConnected()) {
+
                     // Do whatever here
                     NewUser driverUser1 = new NewUser(driverUser.getName(), driverUser.getPhone(), driverUser.getEmail(), driverUser.getGender(),
                             driverUser.getDriverLicence(), driverUser.getType(), car);
                     skip(driverUser1);
-                }
-                else{
-                    Toast.makeText(getApplicationContext(),"wifi is not connected !",
-                            Toast.LENGTH_LONG).show();
-                }
+
+
 
             }
 
         });
         //  addListenerOnSpinnerItemSelection();
-        attributess=new Attributess(bankAccount,check2,check1);
+        attributess=new Attributes(bankAccount,check2,check1);
 
         ImageButton LicenseImage = (ImageButton) findViewById(R.id.licenseImage);
 
@@ -354,16 +350,14 @@ public class DriverActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<NewUser> call, Response<NewUser> response) {
 
-                if (response.code() == 200) {
+                if (response.code() == 403) {
                 Toast.makeText(getApplicationContext(), "Thank you , we will contact you soon :)", Toast.LENGTH_SHORT).show();
                 moveToMyProfile();
             }
-            else  if (response.code() == 400) {
-                    Toast.makeText(getApplicationContext(), "You are already registed !", Toast.LENGTH_LONG).show();
 
-                }
+
                 else {
-                    Toast.makeText(getApplicationContext(), "Ops! something goes wrong", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), response.message().toString(), Toast.LENGTH_LONG).show();
 
                 }
             }

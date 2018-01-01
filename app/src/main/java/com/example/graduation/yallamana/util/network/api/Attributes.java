@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by m_7el on 12/29/2017.
  */
 
-public class Attributess {
+public class Attributes {
     @SerializedName("bank")
     @Expose
     private String bank;
@@ -20,7 +20,7 @@ public class Attributess {
     @Expose
     private String androidUser;
 
-    public Attributess(String bank, String age, String androidUser) {
+    public Attributes(String bank, String age, String androidUser) {
         this.bank = bank;
         this.age = age;
         this.androidUser = androidUser;

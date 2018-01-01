@@ -15,6 +15,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -83,16 +84,19 @@ public class MainActivity extends AppCompatActivity implements
     private Button mStartButton;
     private Button mVerifyButton;
     private Button mResendButton;
-
+  private   String phoneNumber;
     ProgressBar progressBar;
     RetrofitInterface retrofitInterface;
     String phone;
+   private NetworkInfo wifiCheck;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         retrofitInterface = ApiClient.getClient().create(RetrofitInterface.class);
+        ConnectivityManager connectionManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        wifiCheck = connectionManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -162,6 +166,7 @@ public class MainActivity extends AppCompatActivity implements
                     // Invalid request
                     // [START_EXCLUDE]
                     mPhoneNumberField.setError("Invalid phone number.");
+                    mPhoneNumberField.setTextColor(Color.parseColor("#ff1744"));
                     // [END_EXCLUDE]
                 } else if (e instanceof FirebaseTooManyRequestsException) {
                     // The SMS quota for the project has been exceeded
@@ -209,7 +214,7 @@ public class MainActivity extends AppCompatActivity implements
 
         // [START_EXCLUDE]
         if (mVerificationInProgress && validatePhoneNumber()) {
-            startPhoneNumberVerification(mPhoneNumberField.getText().toString());
+            startPhoneNumberVerification(phone);
         }
         // [END_EXCLUDE]
     }
@@ -237,16 +242,6 @@ public class MainActivity extends AppCompatActivity implements
                 this,               // Activity (for callback binding)
                 mCallbacks);        // OnVerificationStateChangedCallbacks
         // [END start_phone_auth]
-
-        mVerificationInProgress = true;
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            public void run() {
-                // Actions to do after 10 seconds
-                Toast.makeText(getApplicationContext(), "Try to send code again ! " + phone, Toast.LENGTH_SHORT).show();
-
-            }
-        }, 6000);
 
 
     }
@@ -295,6 +290,7 @@ public class MainActivity extends AppCompatActivity implements
                                 // The verification code entered was invalid
                                 // [START_EXCLUDE silent]
                                 mVerificationField.setError("Invalid code.");
+                                mVerificationField.setTextColor(Color.parseColor("#ff1744"));
                                 // [END_EXCLUDE]
                             }
                             // [START_EXCLUDE silent]
@@ -347,14 +343,8 @@ public class MainActivity extends AppCompatActivity implements
                 disableViews(mStartButton);
                 mDetailText.setText(R.string.status_code_sent);
                 mDetailText.setTextColor(Color.parseColor("#43a047"));
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    public void run() {
-                        // Actions to do after 10 seconds
-                        Toast.makeText(getApplicationContext(), "Try to send code again ! " + phone, Toast.LENGTH_SHORT).show();
 
-                    }
-                }, 6000);
+
 
 
                 break;
@@ -421,16 +411,16 @@ public class MainActivity extends AppCompatActivity implements
             */
 
             //// connect with server
-//
-//            mAuth.signOut();
-//            updateUI(STATE_INITIALIZED);
+            if (wifiCheck.isConnected()) {
+            mAuth.signOut();
+            updateUI(STATE_INITIALIZED);
 
             Example examplee = new Example();
 
-            Toast.makeText(getApplicationContext(), "the user is " + phone, Toast.LENGTH_SHORT).show();
+          //  Toast.makeText(getApplicationContext(), "the user  " + phoneNumber, Toast.LENGTH_SHORT).show();
 
             CheckUser checkUser = new CheckUser();
-            checkUser.setPhone(phone);
+            checkUser.setPhone(phoneNumber);
 
             Call<Example> call2 = retrofitInterface.getTokenLogin(checkUser);
             call2.enqueue(new Callback<Example>() {
@@ -440,58 +430,51 @@ public class MainActivity extends AppCompatActivity implements
                     Data data = example.getData();
                     Boolean userStatus = data.getNewUser();
                     User1 user1 = data.getUser();
-                    System.out.println(" the user is  " + userStatus.booleanValue());
                     Toast.makeText(getApplicationContext(), "the user is " + example.getMessage(), Toast.LENGTH_SHORT).show();
+                    if (response.code() == 200) {
+                        if (!userStatus.booleanValue()) {
+                            // if new user go and sign up
 
-                    if (!userStatus.booleanValue()) {
-                          // if new user go and sign up
-                        if (response.code() == 200) {
                             // Do awesome stuff
 
-                        System.out.println(" the user is " + user1.getStatus().toString());
 
-                        if (user1.getStatus().equals("active")) {
-                            Log.d("status", user1.getStatus() + "");
-
-                            System.out.println(" the user is  " + user1.getStatus().toString());
-
-                            Toast.makeText(getApplicationContext(), "Welcome to your profile :)", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(MainActivity.this, Drawer_List.class);
-                            startActivity(intent);
-                            finish();
-                        } else {
-                            Log.d("status", user1.getStatus() + "");
-                            Toast.makeText(getApplicationContext(),"You rigested as a driver we will contact with you soon",
-                                    Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(MainActivity.this,SignupActivity.class);
-                            startActivity(intent);
-                            finish();
+                            if (user1.getStatus().equals("active")) {
+                                Log.d("status", user1.getStatus() + "");
 
 
+                                Toast.makeText(getApplicationContext(), "Welcome to your profile :)", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(MainActivity.this, Drawer_List.class);
+                                startActivity(intent);
+                                finish();
+                            } else {
+                                Log.d("status", user1.getStatus() + "");
+                                Toast.makeText(getApplicationContext(), "You rigested as a driver we will contact with you soon",
+                                        Toast.LENGTH_LONG).show();
+                                Intent intent = new Intent(MainActivity.this, SignupActivity.class);
+                                startActivity(intent);
+                                finish();
 
-                            //  Intent intent = new Intent(MainActivity.this,Drawer_List.class);
+
+                                //  Intent intent = new Intent(MainActivity.this,Drawer_List.class);
 //                            startActivity(intent);
 //                            finish();
+                            }
+
+
+                        } else {
+                            // if already user go and start
+                            Intent intent = new Intent(MainActivity.this, SignupActivity.class);
+                            startActivity(intent);
+                            finish();
+
                         }
 
-
-                    } else {
-                        // if already user go and start
-                        Intent intent = new Intent(MainActivity.this, SignupActivity.class);
-                        startActivity(intent);
-                        finish();
-
-                    }
-                }
-                else{
-                        Toast.makeText(getApplicationContext(),"Something goes wrong ,please try again!",
-                                Toast.LENGTH_LONG).show();
                     }
                 }
 
                 @Override
                 public void onFailure(Call<Example> call, Throwable t) {
-                    Toast.makeText(getApplicationContext(),"Server Down!",
+                    Toast.makeText(getApplicationContext(),"OPs!",
                             Toast.LENGTH_LONG).show();
                     call2.cancel();
                 }
@@ -499,15 +482,18 @@ public class MainActivity extends AppCompatActivity implements
 
 
         }
+            else {   Toast.makeText(getApplicationContext(),"check your connection !",
+                    Toast.LENGTH_SHORT).show();}}
+
     }
 
     private boolean validatePhoneNumber() {
-        String phoneNumber = "+970" + mPhoneNumberField.getText().toString();
+        phoneNumber = "0" + mPhoneNumberField.getText().toString();
+        phone ="+970"+ mPhoneNumberField.getText().toString();
 
-        phone = mPhoneNumberField.getText().toString();
-        if (TextUtils.isEmpty(phoneNumber)) {
+        if (mPhoneNumberField.getText().toString().isEmpty()) {
             mPhoneNumberField.setError("Invalid phone number.");
-            //mPhoneNumberField.setTextColor(Color.parseColor("#ff1744"));
+            mPhoneNumberField.setTextColor(Color.parseColor("#ff1744"));
             return false;
         }
 
@@ -535,12 +521,12 @@ public class MainActivity extends AppCompatActivity implements
                     return;
                 }
 
-                ///////hide keyboard start
-//                InputMethodManager inputManager = (InputMethodManager)
-//                        getSystemService(Context.INPUT_METHOD_SERVICE);
-//
-//                inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
-//                        InputMethodManager.HIDE_NOT_ALWAYS);
+                /////hide keyboard start
+                InputMethodManager inputManager = (InputMethodManager)
+                        getSystemService(Context.INPUT_METHOD_SERVICE);
+
+                inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
+                        InputMethodManager.HIDE_NOT_ALWAYS);
 //                /////////hide keyboard end
                 ConnectivityManager connectionManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
                 NetworkInfo wifiCheck = connectionManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
@@ -559,20 +545,22 @@ public class MainActivity extends AppCompatActivity implements
 
                 /// mStatusText.setText("Authenticating....!");
                 progressBar.setVisibility(View.VISIBLE);
-                startPhoneNumberVerification(mPhoneNumberField.getText().toString());
+                startPhoneNumberVerification(phone);
 
                 break;
             case R.id.button_verify_phone:
                 String code = mVerificationField.getText().toString();
                 if (TextUtils.isEmpty(code)) {
                     mVerificationField.setError("Cannot be empty.");
+                    mVerificationField.setTextColor(Color.parseColor("#ff1744"));
+
                     return;
                 }
 
                 verifyPhoneNumberWithCode(mVerificationId, code);
                 break;
             case R.id.button_resend:
-                resendVerificationCode(mPhoneNumberField.getText().toString(), mResendToken);
+                resendVerificationCode(phone, mResendToken);
                 break;
 
         }

@@ -4,7 +4,6 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.File;
-import java.util.jar.Attributes;
 
 /**
  * Created by m_7el on 12/29/2017.
@@ -27,7 +26,7 @@ public class Car {
         @SerializedName("attributes")
         @Expose
 
-        private Attributess attributes;
+        private Attributes attributes;
         @SerializedName("photo")
         @Expose
         private File photo;
@@ -75,16 +74,16 @@ public class Car {
         }
 
 
-        public Attributess getAttributes() {
+        public Attributes getAttributes() {
             return attributes;
         }
 
-        public void setAttributes(Attributess attributes) {
+        public void setAttributes(Attributes attributes) {
             this.attributes = attributes;
         }
 
 
-        public Car(String carLicence, String modelYear, String modelType,int seatsNumber, Attributess attributes) {
+        public Car(String carLicence, String modelYear, String modelType,int seatsNumber, Attributes attributes) {
             this.carLicence = carLicence;
             this.modelYear = modelYear;
             this.modelType = modelType;

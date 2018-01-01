@@ -51,7 +51,7 @@ public class SplashActivity extends Activity {
             }, SPLASH_TIME_OUT);
 
         } else {
-            Toast.makeText(getApplicationContext(),"wifi is not connected !",
+            Toast.makeText(getApplicationContext(),"check your connection !",
                     Toast.LENGTH_LONG).show();
 
             new Handler().postDelayed(new Runnable() {
@@ -59,7 +59,7 @@ public class SplashActivity extends Activity {
                 @Override
                 public void run() {
 
-                    Intent t= new Intent(getApplicationContext(),SignupActivity.class);
+                    Intent t= new Intent(getApplicationContext(),MainActivity.class);
                     finish();
                     startActivity(t);
 

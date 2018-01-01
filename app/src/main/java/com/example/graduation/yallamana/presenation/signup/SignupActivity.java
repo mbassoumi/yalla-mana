@@ -150,7 +150,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
             public void onClick(View view) {
 
 
-                if (wifiCheck.isConnected()) {
+
                 if (firstName.getText().toString().isEmpty()) {
                     Toast.makeText( SignupActivity.this, "First name cant be emty!", Toast.LENGTH_LONG).show();
 
@@ -187,10 +187,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
 //                    ft.commit();
                 }
             }
-            else {
-                Toast.makeText(getApplicationContext(),"wifi is not connected !",
-                        Toast.LENGTH_LONG).show();
-            }}
+
 
         });
 ////////////////////driverrr//////////////////////////////////////////////////////////////////
@@ -200,7 +197,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
 
             @Override
             public void onClick(View arg0) {
-                if (wifiCheck.isConnected()) {
+
                 if (firstName.getText().toString().isEmpty()) {
                     Toast.makeText(SignupActivity.this, "First name cant be emty!", Toast.LENGTH_LONG).show();
 
@@ -232,11 +229,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
 
                 }
                 }
-                else {
-                    Toast.makeText(getApplicationContext(),"wifi is not connected !",
-                            Toast.LENGTH_LONG).show();
-                }
-            }
+
         });
 
         sign = (SignInButton) findViewById(R.id.sign_in_button);
@@ -296,8 +289,8 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                 userImage.setImageBitmap(bitmap);
                 Picasso.with(getApplicationContext())
                         .load(filePath)
-                        .resize(200, 200)
-                        .centerCrop()
+                        .resize(600, 150)
+                        .centerInside()
                         .into(userImage);
             } catch (IOException e) {
                 e.printStackTrace();
