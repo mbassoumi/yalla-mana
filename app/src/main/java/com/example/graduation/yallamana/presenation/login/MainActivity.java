@@ -166,7 +166,7 @@ public class MainActivity extends AppCompatActivity implements
                     // Invalid request
                     // [START_EXCLUDE]
                     mPhoneNumberField.setError("Invalid phone number.");
-                    mPhoneNumberField.setTextColor(Color.parseColor("#ff1744"));
+                 //   mPhoneNumberField.setTextColor(Color.parseColor("#ff1744"));
                     // [END_EXCLUDE]
                 } else if (e instanceof FirebaseTooManyRequestsException) {
                     // The SMS quota for the project has been exceeded
@@ -290,7 +290,7 @@ public class MainActivity extends AppCompatActivity implements
                                 // The verification code entered was invalid
                                 // [START_EXCLUDE silent]
                                 mVerificationField.setError("Invalid code.");
-                                mVerificationField.setTextColor(Color.parseColor("#ff1744"));
+                               // mVerificationField.setTextColor(Color.parseColor("#ff1744"));
                                 // [END_EXCLUDE]
                             }
                             // [START_EXCLUDE silent]
@@ -444,6 +444,7 @@ public class MainActivity extends AppCompatActivity implements
 
                                 Toast.makeText(getApplicationContext(), "Welcome to your profile :)", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(MainActivity.this, Drawer_List.class);
+
                                 startActivity(intent);
                                 finish();
                             } else {
@@ -451,6 +452,7 @@ public class MainActivity extends AppCompatActivity implements
                                 Toast.makeText(getApplicationContext(), "You rigested as a driver we will contact with you soon",
                                         Toast.LENGTH_LONG).show();
                                 Intent intent = new Intent(MainActivity.this, SignupActivity.class);
+                                intent.putExtra(phoneNumber,"phone");
                                 startActivity(intent);
                                 finish();
 
@@ -493,7 +495,7 @@ public class MainActivity extends AppCompatActivity implements
 
         if (mPhoneNumberField.getText().toString().isEmpty()) {
             mPhoneNumberField.setError("Invalid phone number.");
-            mPhoneNumberField.setTextColor(Color.parseColor("#ff1744"));
+          //  mPhoneNumberField.setTextColor(Color.parseColor("#ff1744"));
             return false;
         }
 
@@ -552,7 +554,7 @@ public class MainActivity extends AppCompatActivity implements
                 String code = mVerificationField.getText().toString();
                 if (TextUtils.isEmpty(code)) {
                     mVerificationField.setError("Cannot be empty.");
-                    mVerificationField.setTextColor(Color.parseColor("#ff1744"));
+                 //   mVerificationField.setTextColor(Color.parseColor("#ff1744"));
 
                     return;
                 }

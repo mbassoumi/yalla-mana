@@ -236,6 +236,13 @@
         <item>7</item>
 
     </string-array>
+    <string name="type_prompt">Car type</string>
+
+    <string-array name="type_arrays">
+        <item>Taxi</item>
+        <item>Private</item>
+
+    </string-array>
     <string name="year_prompt">Choose car model year</string>
 
     <string-array name="year_arrays">
@@ -343,4 +350,5 @@
     <string name="gender">Gender:</string>
     <string name="car_model">Car model:</string>
     <string name="car_year">Car year:</string>
+    <string name="car_type">Car type:</string>
 </resources>

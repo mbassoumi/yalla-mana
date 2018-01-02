@@ -11,7 +11,11 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
 import android.text.Html;
+import android.text.InputType;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,14 +52,14 @@ public class DriverActivity extends AppCompatActivity {
     private int[] layouts;
     private Button btnSkip, btnNext;
     private PreferenceManager prefManager;
-    private Spinner bank, year, seats;
+    private Spinner bank, year, seats,carModel;
     private Button yalla_Button;
     private Car car;
     private Attributes attributess;
     private CheckBox androidUser, age;
     private String check1, check2;
-    private String bankAccount, carYear, seatsNumber;
-    private EditText carModel;
+    private String bankAccount, carYear, seatsNumber, carType;
+
     private NewUser driverUser;
     RetrofitInterface retrofitInterface;
     View view1,view2;
@@ -257,14 +261,8 @@ public class DriverActivity extends AppCompatActivity {
         bank = (Spinner)findViewById(R.id.spinnerBank);
         androidUser = (CheckBox) findViewById(R.id.checkBox);
         age = (CheckBox) findViewById(R.id.checkBox2);
-        year = (Spinner) findViewById(R.id.spinner_year);
-        seats = (Spinner)findViewById(R.id.seats);
-        carYear = year.getSelectedItem().toString();
-        seatsNumber = seats.getSelectedItem().toString();
-        carModel=(EditText)findViewById(R.id.car_model) ;
 
         bankAccount = bank.getSelectedItem().toString();
-
 
         if (androidUser.isChecked()) {
             check1 = "true";
@@ -276,22 +274,26 @@ public class DriverActivity extends AppCompatActivity {
         } else {
             check2 = "false";
         }
-        carModell=carModel.getText().toString();
-        if(carModell.isEmpty()){
-            carModell="no type";
-        }
-        int seatsNum=Integer.parseInt(seatsNumber);
-        yalla_Button = (Button) findViewById(R.id.yalla_Button);
-        car= new Car("photo url",carYear,carModell,seatsNum,attributess);
+        year = (Spinner)findViewById(R.id.spinner_year);
+        seats = (Spinner)findViewById(R.id.seats);
+        carModel=(Spinner)findViewById(R.id.car_model) ;
 
-        yalla_Button.setOnClickListener(new View.OnClickListener() {
+        yalla_Button = (Button) findViewById(R.id.yalla_Button);
+
+
+    yalla_Button.setOnClickListener(new View.OnClickListener() {
 
 
             @Override
             public void onClick(View v) {
                 NetworkInfo wifiCheck;
 
+                carType=carModel.getSelectedItem().toString();
+                carYear = year.getSelectedItem().toString();
+                seatsNumber = seats.getSelectedItem().toString();
+                int seatsNum=Integer.parseInt(seatsNumber);
 
+                car= new Car("photo url",carYear,carType,seatsNum,attributess);
                 ConnectivityManager connectionManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
                 wifiCheck = connectionManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
 

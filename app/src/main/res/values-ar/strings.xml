@@ -252,7 +252,17 @@
     <string name="requested_time">Requested Time:</string>
     <string name="properties">Properties:</string>
     <string name="price">Price:</string>
+
+    <string name="type_prompt">Car type</string>
+
+    <string-array name="type_arrays">
+    <item>Taxi</item>
+    <item>Private</item>
+
+    </string-array>
+
     <string name="gender">Gender:</string>
+
     <string-array name="seat_arrays">
         <item>1</item>
         <item>2</item>
@@ -282,6 +292,7 @@
 <string name="gender_prompt">Choose your gender</string>
     <string name="car_model">Car model:</string>
     <string name="car_year">Car year:</string>
+    <string name="car_type">Car type:</string>
 
     <string-array name="gender_arrays">
 

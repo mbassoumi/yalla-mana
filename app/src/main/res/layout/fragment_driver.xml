@@ -94,9 +94,8 @@
             android:layout_marginTop="20dp"
             android:dropDownWidth="match_parent"
             android:entries="@array/bank_arrays"
-            android:popupBackground="@color/green"
             android:prompt="@string/bank_prompt"
-            android:spinnerMode="dialog"
+
             android:visibility="visible" />
 
         <CheckBox

@@ -59,7 +59,7 @@ public class SplashActivity extends Activity {
                 @Override
                 public void run() {
 
-                    Intent t= new Intent(getApplicationContext(),MainActivity.class);
+                    Intent t= new Intent(getApplicationContext(),SignupActivity.class);
                     finish();
                     startActivity(t);
 

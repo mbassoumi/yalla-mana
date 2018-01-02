@@ -2,9 +2,7 @@ package com.example.graduation.yallamana.presenation.signup;
 
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -14,18 +12,17 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
-import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.graduation.yallamana.Drawer_List;
 import com.example.graduation.yallamana.R;
-import com.example.graduation.yallamana.util.network.api.Car;
 import com.example.graduation.yallamana.util.network.api.NewUser;
 import com.example.graduation.yallamana.util.network.retrofit.ApiClient;
 import com.example.graduation.yallamana.util.network.retrofit.RetrofitInterface;
@@ -42,9 +39,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -59,19 +54,14 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
     private SignInButton sign;
     private GoogleApiClient client;
     private static final int REQ_CODE = 9001;
-    EditText firstName, lastName, email, phone;
-    Toolbar mToolBar;
-    ImageButton driverButton;
-    ImageButton riderButton;
-    ImageView userImage;
-    Spinner genderSpinner;
-    String gender;
-    String imagePath;
-    Bitmap image;
-    Bitmap bitmap;
-    String imgString;
-  private  Uri filePath;
-  private String selectedFilePath;
+    private EditText firstName, lastName, email, phone;
+    private Toolbar mToolBar;
+    private ImageButton driverButton, riderButton;
+    private ImageView userImage;
+    private Spinner genderSpinner;
+    private Bitmap image, bitmap;
+    private Uri filePath;
+    private String selectedFilePath ,gender, imagePath, imgString, authant_phone;
     NetworkInfo wifiCheck;
 
 
@@ -94,11 +84,12 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         ConnectivityManager connectionManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         wifiCheck = connectionManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
 
-
+        Intent i = getIntent();
+        authant_phone =(String) i.getSerializableExtra("phone");
         mToolBar = (Toolbar) findViewById(R.id.toolbar);
         mToolBar.setTitle(R.string.new_user);
         mToolBar.setTitleTextColor(getResources().getColor(R.color.white));
-        mToolBar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
+        //  mToolBar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
 
         setSupportActionBar(mToolBar);
         mAuth = FirebaseAuth.getInstance();
@@ -107,27 +98,29 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         genderSpinner = (Spinner) findViewById(R.id.spinner5);
         retrofitInterface = ApiClient.getClient().create(RetrofitInterface.class);
 
-        firstName = (EditText) findViewById(R.id.firstName);
-        lastName = (EditText) findViewById(R.id.lastName);
-        email = (EditText) findViewById(R.id.email);
+        firstName = (EditText) findViewById(R.id.firstName1);
+        lastName = (EditText) findViewById(R.id.lastName1);
+        email = (EditText) findViewById(R.id.email1);
         phone = (EditText) findViewById(R.id.mobile);
-        String hint1 = firstName.getHint().toString();
-        String hint2 = lastName.getHint().toString();
-        String hint4 = phone.getHint().toString();
-        firstName.setHint(Html.fromHtml(hint1 + "<font color=\"red\">*</font>"));
-        lastName.setHint(Html.fromHtml(hint2 + "<font color=\"red\">*</font>"));
-        phone.setHint(Html.fromHtml(hint4 + "<font color=\"red\">*</font>"));
+        phone.setText(authant_phone);
+        phone.setEnabled(false);
+
+
+      //  String hint1 = firstName.getHint().toString();
+      //  String hint2 = lastName.getHint().toString();
+       // firstName.setHint(Html.fromHtml(hint1 + "<font color=\"red\">*</font>"));
+      //  lastName.setHint(Html.fromHtml(hint2 + "<font color=\"red\">*</font>"));
         userImage = (ImageView) findViewById(R.id.userImage);
 
-        mToolBar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(SignupActivity.this, "Back clicked!", Toast.LENGTH_SHORT).show();
-//                Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
-//                startActivity(intent);
-//                finish();
-            }
-        });
+//        mToolBar.setNavigationOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Toast.makeText(SignupActivity.this, "Back clicked!", Toast.LENGTH_SHORT).show();
+////                Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
+////                startActivity(intent);
+////                finish();
+//            }
+//        });
 
 
         userImage.setOnClickListener(new ImageView.OnClickListener()
@@ -150,15 +143,12 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
             public void onClick(View view) {
 
 
-
                 if (firstName.getText().toString().isEmpty()) {
-                    Toast.makeText( SignupActivity.this, "First name cant be emty!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(SignupActivity.this, "First name cant be empty!", Toast.LENGTH_LONG).show();
 
                 } else if (lastName.getText().toString().isEmpty()) {
-                    Toast.makeText(SignupActivity.this, "Last name cant be emty!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(SignupActivity.this, "Last name cant be empty!", Toast.LENGTH_LONG).show();
 
-                } else if (phone.getText().toString().isEmpty()) {
-                    Toast.makeText(SignupActivity.this, "phone  cant be emty!", Toast.LENGTH_LONG).show();
 
                 } else {
 //                Intent intent = new Intent(SignupActivity.this,Drawer_List.class);
@@ -175,8 +165,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                     Log.i(TAG, "gender" + userGender);
 
 
-
-                   riderUser = new NewUser(userName, number, "rider", userGender, emaill);
+                    riderUser = new NewUser(userName, number, "rider", userGender, emaill);
 
                     skip(riderUser);
 //                    getIntent().putExtra("riderUser", riderUser);
@@ -199,15 +188,12 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
             public void onClick(View arg0) {
 
                 if (firstName.getText().toString().isEmpty()) {
-                    Toast.makeText(SignupActivity.this, "First name cant be emty!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(SignupActivity.this, "First name cant be empty!", Toast.LENGTH_LONG).show();
 
                 } else if (lastName.getText().toString().isEmpty()) {
-                    Toast.makeText(SignupActivity.this, "Last name cant be emty!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(SignupActivity.this, "Last name cant be empty!", Toast.LENGTH_LONG).show();
 
-                } else if (phone.getText().toString().isEmpty()) {
-                    Toast.makeText(SignupActivity.this, "phone  cant be emty!", Toast.LENGTH_LONG).show();
-
-                } else {
+                }  else {
                     String userName = firstName.getText().toString() + " " + lastName.getText().toString();
                     String number = phone.getText().toString();
                     String emaill = email.getText().toString();
@@ -217,8 +203,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                     ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 
 
-                    NewUser driverUser = new NewUser(userName, number, emaill, userGender, "photo url","driver",null);
-
+                    NewUser driverUser = new NewUser(userName, number, emaill, userGender, "photo url", "driver", null);
 
 
                     Intent intent = new Intent(SignupActivity.this, DriverActivity.class);
@@ -228,7 +213,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
 
 
                 }
-                }
+            }
 
         });
 
@@ -246,7 +231,6 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
 
 
     }
-
 
 
     @Override
@@ -301,7 +285,6 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
     }
 
 
-
     private void handleSignInResult(GoogleSignInResult result) {
 
         if (result.isSuccess()) {
@@ -314,7 +297,6 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
             firstName.setText(parts[0].toString());
             lastName.setText(parts[1].toString());
             email.setText(acct.getEmail());
-            findViewById(R.id.login_button).setVisibility(View.GONE);
 
             findViewById(R.id.sign_in_button).setVisibility(View.GONE);
 
@@ -329,11 +311,12 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
     }
-////   reguest for new user as rider
+
+    ////   reguest for new user as rider
     private void skip(NewUser riderUser) {
 
         Call<NewUser> call2 = retrofitInterface.setUserInfo(riderUser);
-       // Toast.makeText(getApplicationContext(), "imagee"+encodedImage, Toast.LENGTH_SHORT).show();
+        // Toast.makeText(getApplicationContext(), "imagee"+encodedImage, Toast.LENGTH_SHORT).show();
 
         call2.enqueue(new Callback<NewUser>() {
             @Override
@@ -345,15 +328,13 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                     startActivity(i);
 
                     finish();
-                }   else  if (response.code() == 400) {
+                } else if (response.code() == 400) {
                     Toast.makeText(getApplicationContext(), "You are already registed !", Toast.LENGTH_LONG).show();
 
-                }
-                else {
+                } else {
                     Toast.makeText(getApplicationContext(), "Ops! something goes wrong", Toast.LENGTH_LONG).show();
 
                 }
-
 
 
             }
@@ -361,7 +342,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
 
             @Override
             public void onFailure(Call<NewUser> call, Throwable t) {
-                Toast.makeText(getApplicationContext(),"server down",
+                Toast.makeText(getApplicationContext(), "server down",
                         Toast.LENGTH_LONG).show();
                 call2.cancel();
             }
