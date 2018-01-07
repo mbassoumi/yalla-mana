@@ -5,6 +5,8 @@ package com.example.graduation.yallamana.util.network.api;
  */import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class Data {
 
     @SerializedName("user")
@@ -13,9 +15,20 @@ public class Data {
     @SerializedName("new_user")
     @Expose
     private Boolean newUser;
+    @SerializedName("cities")
+    @Expose
+    private List<Cities> cities ;
     @SerializedName("token")
     @Expose
     private String token;
+
+    public List<Cities> getCities() {
+        return cities;
+    }
+
+    public void setCities(List<Cities> cities) {
+        this.cities = cities;
+    }
 
     public User1 getUser() {
         return user;

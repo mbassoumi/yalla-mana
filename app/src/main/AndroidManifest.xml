@@ -20,10 +20,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".presenation.login.LoginActivity" />
+        <activity android:name=".presenation.login.MainActivity" />
         <activity android:name=".presenation.signup.DriverActivity" />
         <activity android:name=".presenation.signup.ToBeDriverActivity" />
         <activity android:name=".presenation.post.PostActivity" />
-        <activity android:name=".presenation.login.MainActivity" />
+        <activity android:name=".OfferActivity" />
+        <activity android:name=".RequestActivity" />
         <activity android:name=".presenation.alltrips.AllTripsActivity" />
         <activity android:name=".presenation.signup.SignupActivity" />
         <activity android:name=".presenation.mytrips.TripsActivity" />

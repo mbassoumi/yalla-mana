@@ -33,7 +33,10 @@ import android.widget.Toast;
 import com.example.graduation.yallamana.R;
 import com.example.graduation.yallamana.util.network.api.Attributes;
 import com.example.graduation.yallamana.util.network.api.Car;
+import com.example.graduation.yallamana.util.network.api.Example;
 import com.example.graduation.yallamana.util.network.api.NewUser;
+import com.example.graduation.yallamana.util.network.api.User;
+import com.example.graduation.yallamana.util.network.api.User1;
 import com.example.graduation.yallamana.util.network.retrofit.ApiClient;
 import com.example.graduation.yallamana.util.network.retrofit.RetrofitInterface;
 
@@ -53,6 +56,7 @@ public class DriverActivity extends AppCompatActivity {
     private Button btnSkip, btnNext;
     private PreferenceManager prefManager;
     private Spinner bank, year, seats,carModel;
+    private EditText carModeel;
     private Button yalla_Button;
     private Car car;
     private Attributes attributess;
@@ -79,12 +83,13 @@ public class DriverActivity extends AppCompatActivity {
         setSupportActionBar(mToolBar);
         Intent i = getIntent();
         driverUser = (NewUser) i.getSerializableExtra("driverUser");
-        attributess=new Attributes(bankAccount,check2,check1);
+
         mToolBar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 Intent intent = new Intent(DriverActivity.this, SignupActivity.class);
+                intent.putExtra("userPhone","");
                 startActivity(intent);
                 finish();
             }
@@ -277,6 +282,7 @@ public class DriverActivity extends AppCompatActivity {
         year = (Spinner)findViewById(R.id.spinner_year);
         seats = (Spinner)findViewById(R.id.seats);
         carModel=(Spinner)findViewById(R.id.car_model) ;
+        carModeel=(EditText) findViewById(R.id.my_car_model) ;
 
         yalla_Button = (Button) findViewById(R.id.yalla_Button);
 
@@ -292,8 +298,8 @@ public class DriverActivity extends AppCompatActivity {
                 carYear = year.getSelectedItem().toString();
                 seatsNumber = seats.getSelectedItem().toString();
                 int seatsNum=Integer.parseInt(seatsNumber);
-
-                car= new Car("photo url",carYear,carType,seatsNum,attributess);
+String modeeel=carModeel.getText().toString();
+                car= new Car("photo url",carYear,modeeel,seatsNum,attributess);
                 ConnectivityManager connectionManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
                 wifiCheck = connectionManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
 
@@ -310,7 +316,7 @@ public class DriverActivity extends AppCompatActivity {
 
         });
         //  addListenerOnSpinnerItemSelection();
-        attributess=new Attributes(bankAccount,check2,check1);
+        attributess=new Attributes(carType,bankAccount,check2,check1);
 
         ImageButton LicenseImage = (ImageButton) findViewById(R.id.licenseImage);
 
@@ -345,12 +351,12 @@ public class DriverActivity extends AppCompatActivity {
 
     private void skip(NewUser driverUser) {
 
-        Call<NewUser> call2 = retrofitInterface.setUserInfo(driverUser);
+        Call<Example> call2 = retrofitInterface.setUserInfo(driverUser);
         // Toast.makeText(getApplicationContext(), "imagee"+encodedImage, Toast.LENGTH_SHORT).show();
 
-        call2.enqueue(new Callback<NewUser>() {
+        call2.enqueue(new Callback<Example>() {
             @Override
-            public void onResponse(Call<NewUser> call, Response<NewUser> response) {
+            public void onResponse(Call<Example> call, Response<Example> response) {
 
                 if (response.code() == 403) {
                 Toast.makeText(getApplicationContext(), "Thank you , we will contact you soon :)", Toast.LENGTH_SHORT).show();
@@ -366,7 +372,7 @@ public class DriverActivity extends AppCompatActivity {
 
 
             @Override
-            public void onFailure(Call<NewUser> call, Throwable t) {
+            public void onFailure(Call<Example> call, Throwable t) {
 
                 call2.cancel();
             }
@@ -378,6 +384,7 @@ public class DriverActivity extends AppCompatActivity {
     private void moveToMyProfile() {
 
         Intent i = new Intent(DriverActivity.this, SignupActivity.class);
+        i.putExtra("userPhone","");
         startActivity(i);
 
 

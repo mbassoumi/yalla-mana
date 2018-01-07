@@ -3,7 +3,6 @@ package com.example.graduation.yallamana.presenation.mytrips;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -16,7 +15,6 @@ import android.view.View;
 
 import com.example.graduation.yallamana.Drawer_List;
 import com.example.graduation.yallamana.R;
-import com.example.graduation.yallamana.RequestedTripFragment;
 
 
 public class TripsActivity extends AppCompatActivity {
@@ -171,10 +169,6 @@ public class TripsActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_add) {
             //check rider or driver
-            RequestedTripFragment request = new RequestedTripFragment();
-            android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.fram , request,"Request");
-            ft.commit();
             return true;
         }
         return super.onOptionsItemSelected(item);

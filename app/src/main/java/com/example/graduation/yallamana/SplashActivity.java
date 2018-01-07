@@ -43,7 +43,9 @@ public class SplashActivity extends Activity {
                 @Override
                 public void run() {
 
-                    Intent t= new Intent(getApplicationContext(),MainActivity.class);
+                    //Intent t= new Intent(getApplicationContext(),MainActivity.class);
+                    Intent t= new Intent(getApplicationContext(),SignupActivity.class);
+                    t.putExtra("userPhon"," ");
                     finish();
                     startActivity(t);
 
@@ -60,9 +62,9 @@ public class SplashActivity extends Activity {
                 public void run() {
 
                     Intent t= new Intent(getApplicationContext(),SignupActivity.class);
-                    finish();
+                   t.putExtra("userPhon"," ");
                     startActivity(t);
-
+                    finish();
                 }
             }, SPLASH_TIME_OUT);
         }

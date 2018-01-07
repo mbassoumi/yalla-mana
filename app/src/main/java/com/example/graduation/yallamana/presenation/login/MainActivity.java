@@ -2,6 +2,7 @@ package com.example.graduation.yallamana.presenation.login;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -430,7 +431,7 @@ public class MainActivity extends AppCompatActivity implements
                     Data data = example.getData();
                     Boolean userStatus = data.getNewUser();
                     User1 user1 = data.getUser();
-                    Toast.makeText(getApplicationContext(), "the user is " + example.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),  example.getMessage(), Toast.LENGTH_SHORT).show();
                     if (response.code() == 200) {
                         if (!userStatus.booleanValue()) {
                             // if new user go and sign up
@@ -440,21 +441,29 @@ public class MainActivity extends AppCompatActivity implements
 
                             if (user1.getStatus().equals("active")) {
                                 Log.d("status", user1.getStatus() + "");
+// shared prefrances :token , number,type
 
+                                SharedPreferences sharedPref = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sharedPref.edit();
+                                editor.putString("token", data.getToken().toString());
+                                editor.putString("type", user1.getType().toString());
+                                editor.putString("number", user1.getPhone().toString());
+                                editor.putString("name", user1.getName().toString());
+
+                                editor.commit();
 
                                 Toast.makeText(getApplicationContext(), "Welcome to your profile :)", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(MainActivity.this, Drawer_List.class);
 
+
+                                Intent intent = new Intent(MainActivity.this, Drawer_List.class);
+                             //   intent.putExtra("userInfo",user1);
                                 startActivity(intent);
                                 finish();
                             } else {
                                 Log.d("status", user1.getStatus() + "");
                                 Toast.makeText(getApplicationContext(), "You rigested as a driver we will contact with you soon",
                                         Toast.LENGTH_LONG).show();
-                                Intent intent = new Intent(MainActivity.this, SignupActivity.class);
-                                intent.putExtra(phoneNumber,"phone");
-                                startActivity(intent);
-                                finish();
+                                        signOut();
 
 
                                 //  Intent intent = new Intent(MainActivity.this,Drawer_List.class);
@@ -466,6 +475,8 @@ public class MainActivity extends AppCompatActivity implements
                         } else {
                             // if already user go and start
                             Intent intent = new Intent(MainActivity.this, SignupActivity.class);
+
+                            intent.putExtra("userPhone",phoneNumber);
                             startActivity(intent);
                             finish();
 

@@ -19,11 +19,15 @@ public class Attributes {
     @SerializedName("android_User")
     @Expose
     private String androidUser;
+    @SerializedName("car_type")
+    @Expose
+    private String carType;
 
-    public Attributes(String bank, String age, String androidUser) {
+    public Attributes(String carType,String bank, String age, String androidUser) {
         this.bank = bank;
         this.age = age;
         this.androidUser = androidUser;
+        this.carType=carType;
     }
 
 

@@ -11,14 +11,15 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+    android:theme="@style/ThemeOverlay.AppCompat.Dark"
+   >
 
     <com.mikhaellopez.circularimageview.CircularImageView xmlns:app="http://schemas.android.com/apk/lib/com.app.chasebank"
         android:id="@id/profile_image"
         android:layout_width="104dp"
         android:layout_height="100dp"
-        android:layout_centerInParent="true"
-        android:src="@drawable/no_pic_person"
+        android:paddingTop="@dimen/nav_header_vertical_spacing"
+        android:src="@drawable/unknown_user"
         app:civ_border_color="#FFFFFF"
         app:civ_border_width="2dp"
         app:civ_shadow="true"
@@ -29,17 +30,14 @@
         android:id="@+id/user_namee"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-android:layout_marginTop="4dp"
         android:text="User name"
-        android:layout_marginLeft="16dp"
+        android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
     <TextView
         android:id="@+id/user_numberr"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:text="User number"
-        android:layout_marginTop="4dp"
-        android:layout_marginLeft="16dp"
     android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
 

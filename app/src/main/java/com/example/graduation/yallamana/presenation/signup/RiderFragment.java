@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.example.graduation.yallamana.Drawer_List;
 import com.example.graduation.yallamana.R;
 import com.example.graduation.yallamana.util.network.api.NewUser;
+import com.example.graduation.yallamana.util.network.api.User1;
 import com.example.graduation.yallamana.util.network.retrofit.ApiClient;
 import com.example.graduation.yallamana.util.network.retrofit.RetrofitInterface;
 
@@ -71,24 +72,24 @@ public class RiderFragment extends Fragment implements View.OnClickListener {
 
     private void skip() {
 
-        Call<NewUser> call2 = retrofitInterface.setUserInfo(riderUser);
-        call2.enqueue(new Callback<NewUser>() {
-            @Override
-            public void onResponse(Call<NewUser> call, Response<NewUser> response) {
-
-
-                Log.i(TAG, "post submitted to API." + response.body().toString());
-                Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_SHORT).show();
-                moveToMyProfile();
-                    }
-
-
-            @Override
-            public void onFailure(Call<NewUser> call, Throwable t) {
-
-                call2.cancel();
-            }
-        });
+//        Call<User1> call2 = retrofitInterface.setUserInfo(riderUser);
+//        call2.enqueue(new Callback<User1>() {
+//            @Override
+//            public void onResponse(Call<User1> call, Response<User1> response) {
+//
+//
+//                Log.i(TAG, "post submitted to API." + response.body().toString());
+//                Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_SHORT).show();
+//                moveToMyProfile();
+//                    }
+//
+//
+//            @Override
+//            public void onFailure(Call<User1> call, Throwable t) {
+//
+//                call2.cancel();
+//            }
+//        });
 
 
     }

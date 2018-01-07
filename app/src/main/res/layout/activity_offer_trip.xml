@@ -36,15 +36,18 @@
                     android:layout_marginTop="8dp"
                     android:text="@string/From_req"
                     android:textColor="#000000"
-                    android:textSize="20dp" />
+                    android:textSize="18sp" />
 
                 <Spinner
                     android:id="@+id/spinner_from"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/textView7"
                     android:layout_marginBottom="8dp"
-                    android:layout_marginLeft="16dp" />
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="4dp"
+                    android:entries="@array/city_arrays"
+                    android:spinnerMode="dialog" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -62,16 +65,20 @@
                     android:layout_marginTop="8dp"
                     android:text="@string/To_req"
                     android:textColor="#000000"
-                    android:textSize="20dp" />
+                    android:textSize="18sp" />
 
 
                 <Spinner
                     android:id="@+id/spinner_to"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/textView8"
                     android:layout_marginBottom="8dp"
-                    android:layout_marginLeft="16dp" />
+
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="4dp"
+                    android:entries="@array/city_arrays"
+                    android:spinnerMode="dialog" />
 
             </RelativeLayout>
 
@@ -100,7 +107,7 @@
                     android:layout_below="@+id/textView9"
                     android:layout_marginBottom="8dp"
                     android:layout_marginLeft="16dp"
-                    android:hint="12-12-2012"
+                    android:hint="2012-12-12"
                     android:textColor="#000000"
                     android:textSize="18dp" />
 
@@ -112,23 +119,10 @@
                     android:layout_marginBottom="8dp"
                     android:layout_marginLeft="16dp"
                     android:layout_toRightOf="@+id/requested_trip_time1"
-                    android:hint="7:00 "
+                    android:hint="7:00"
                     android:textColor="#000000"
                     android:textSize="18dp" />
 
-                <Spinner
-                    android:id="@+id/spinner"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBaseline="@+id/requested_trip_time2"
-                    android:layout_alignBottom="@+id/requested_trip_time2"
-                    android:layout_toEndOf="@+id/requested_trip_time2"
-                    android:layout_toRightOf="@+id/requested_trip_time2"
-                    android:dropDownWidth="match_parent"
-                    android:entries="@array/date_arrays"
-                    android:popupBackground="@color/green"
-                    android:spinnerMode="dialog"
-                    android:visibility="visible" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -150,7 +144,7 @@
                     android:textSize="18dp" />
 
                 <Spinner
-                    android:id="@+id/spinner2"
+                    android:id="@+id/spinner_riders"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_above="@+id/yalla_Button"
@@ -191,14 +185,15 @@
         android:textSize="18dp" />
 
     <EditText
+        android:id="@+id/price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/text33"
         android:layout_alignBottom="@+id/text33"
+        android:layout_marginLeft="2dp"
         android:layout_toEndOf="@+id/text33"
         android:layout_toRightOf="@+id/text33"
-        android:layout_marginLeft="2dp"
-        android:hint="20 nis"
+        android:hint="20 "
         android:textColor="#000000"
         android:textSize="18dp" />
 
@@ -274,6 +269,20 @@
 
 
             </RelativeLayout>
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/rel6"
+                android:layout_alignBottom="@+id/rel6"
+                android:layout_marginLeft="12dp"
+                android:layout_marginStart="12dp"
+                android:layout_toEndOf="@+id/rel6"
+                android:layout_toRightOf="@+id/rel6"
+                android:fontFamily="sans-serif-condensed"
+                android:hint="Nis"
+                android:textSize="18sp" />
         </RelativeLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>

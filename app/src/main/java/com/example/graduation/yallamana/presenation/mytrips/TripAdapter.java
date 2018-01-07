@@ -117,7 +117,7 @@ public class TripAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     return true;
 
                 case id.action_reserve_trip:
-                    Toast.makeText(mContext, "Reserve Trip", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "Reserve Tripe", Toast.LENGTH_SHORT).show();
                     return true;
                 default:
             }

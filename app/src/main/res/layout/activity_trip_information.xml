@@ -171,19 +171,6 @@
                     android:textColor="#BDBDBD"
                     android:textSize="18dp" />
 
-                <Spinner
-                    android:id="@+id/spinner1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBaseline="@+id/trip_still_time2"
-                    android:layout_alignBottom="@+id/trip_still_time2"
-                    android:layout_toEndOf="@+id/trip_still_time2"
-                    android:layout_toRightOf="@+id/trip_still_time2"
-                    android:dropDownWidth="match_parent"
-                    android:entries="@array/date_arrays"
-                    android:popupBackground="@color/green"
-                    android:spinnerMode="dialog"
-                    android:visibility="visible" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -226,19 +213,6 @@
                     android:textColor="#BDBDBD"
                     android:textSize="18dp" />
 
-                <Spinner
-                    android:id="@+id/spinner"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBaseline="@+id/trip_time2"
-                    android:layout_alignBottom="@+id/_trip_time2"
-                    android:layout_toEndOf="@+id/trip_time2"
-                    android:layout_toRightOf="@+id/trip_time2"
-                    android:dropDownWidth="match_parent"
-                    android:entries="@array/date_arrays"
-                    android:popupBackground="@color/green"
-                    android:spinnerMode="dialog"
-                    android:visibility="visible" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -307,7 +281,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/relativeLayout3"
-                android:layout_marginTop="32dp">
+                android:id="@+id/relativeLayout4">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -363,6 +337,20 @@
 
 
             </RelativeLayout>
+
+            <Button
+                android:id="@+id/reserve"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/relativeLayout4"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/mybutton"
+                android:text="@string/action_reserve_trip"
+                android:textColor="@color/white" />
         </RelativeLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>

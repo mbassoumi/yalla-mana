@@ -6,11 +6,19 @@ package com.example.graduation.yallamana.util.network.retrofit;
 
 
 import com.example.graduation.yallamana.util.network.api.CheckUser;
+import com.example.graduation.yallamana.util.network.api.Cities;
 import com.example.graduation.yallamana.util.network.api.Example;
+import com.example.graduation.yallamana.util.network.api.NewTrip;
 import com.example.graduation.yallamana.util.network.api.NewUser;
+import com.example.graduation.yallamana.util.network.api.Trip;
+import com.example.graduation.yallamana.util.network.api.User1;
 
+
+import java.util.List;
 
 import retrofit2.http.Body;
+import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 
 /**
@@ -26,7 +34,17 @@ public interface RetrofitInterface {
 
     // when user sign up . send info
     @POST("api/auth/signup")
-    Call<NewUser> setUserInfo(@Body NewUser newuser);
+    Call<Example> setUserInfo(@Body NewUser newuser);
+
+    // get cities
+    @GET("api/city")
+    Call<List<Cities>> getCities( );
+    @GET("api/trip")
+    Call<List<Trip>> getTrips( );
+    @POST("api/trip/offer")
+    Call<Trip> setOfferTrip(@Header("Token") String token, @Body NewTrip offer);
+    @POST("api/trip/request")
+    Call<Trip> setRequestTrip(@Header("Token") String token,@Body NewTrip request);
 
 //    @POST("/api/auth/login")
 //    Observable<Boolean> getToken(@Body String usernumber);@GET("/exalt/users/username/{user}")

@@ -27,15 +27,15 @@
     <string name="driver_toolbar">Driver</string>
 
     <string name="request_toolbar">Request Trip</string>
-    <string name="From_req">Your trip start from :</string>
+    <string name="From_req">Your tripe start from :</string>
     <string name="hFrom_req"> Enter your start location </string>
-    <string name="To_req">Your trip end to : </string>
+    <string name="To_req">Your tripe end to : </string>
     <string name="hTo_req"> Enter your destination </string>
-    <string name="time_req">Date of your trip : </string>
+    <string name="time_req">Date of your tripe : </string>
     <string name="Num_of_rider"> Num. of riders :</string>
     <string name="button_req">Request </string>
 
-    <string name="trip_information">Information trip</string>
+    <string name="trip_information">Information tripe</string>
     <string name="from_info">From :</string>
     <string name="to_info"> To :</string>
     <string name="time_info"> Date and time :</string>
@@ -259,6 +259,12 @@
         <item>2017</item>
 
     </string-array>
+    <string-array name="city_arrays">
+    <item>رام الله</item>
+    <item>بيرزيت</item>
+
+
+</string-array>
     <string name="gender_prompt">Choose your gender</string>
 
     <string-array name="gender_arrays">
@@ -342,7 +348,7 @@
     <string name="pref_title_vibrate">Vibrate</string>
     <string name="request">Request</string>
     <string name="number_of_riders">Number of riders:</string>
-    <string name="you_want_to_a_trip_from">You want to a trip from:</string>
+    <string name="you_want_to_a_trip_from">You want to a tripe from:</string>
     <string name="your_destination">Your Destination:</string>
     <string name="requested_time">Requested Time:</string>
     <string name="properties">Properties:</string>

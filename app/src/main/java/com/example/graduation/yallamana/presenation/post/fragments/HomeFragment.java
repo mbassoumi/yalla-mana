@@ -24,6 +24,7 @@ import android.widget.TextView;
 import com.example.graduation.yallamana.R;
 import com.example.graduation.yallamana.presenation.post.utils.PostAdapter;
 import com.example.graduation.yallamana.presenation.post.Post;
+import com.example.graduation.yallamana.util.network.api.Tripe;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,13 +65,26 @@ public class HomeFragment extends android.support.v4.app.Fragment {
         random = new Random();
 
         //set dummy data
-        for (int i = 0; i < 10; i++) {
-            Post post = new Post();
-            post.setName("Mais helou ");
-            post.setDate("3-12-2017");
-            post.setPost("Hi i want t say hi ............................................ bye");
-            posts.add(post);
-        }
+
+
+        Post post = new Post();
+        post.setName("Mais AbuHelou ");
+        post.setDate("9-1-2018");
+        post.setPost("Hi i want t say hi ");
+        posts.add(post);
+        post.setName("Mais AbuHelou ");
+        post.setDate("11-1-2018");
+        post.setPost("There is any one here want to go to Jericho ");
+        posts.add(post);
+
+
+//        for (int i = 0; i < 3; i++) {
+//            Post post = new Post();
+//            post.setName("Mais helou ");
+//            post.setDate("9-1-2018");
+//            post.setPost("Hi i want t say hi ");
+//            posts.add(post);
+//        }
         //find view by id and attaching adapter for the RecyclerView
         RecyclerView recyclerView = (RecyclerView) getActivity().findViewById(R.id.recycler_view1);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));

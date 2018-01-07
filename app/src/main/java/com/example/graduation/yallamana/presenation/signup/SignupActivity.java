@@ -2,6 +2,7 @@ package com.example.graduation.yallamana.presenation.signup;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -23,7 +24,10 @@ import android.widget.Toast;
 
 import com.example.graduation.yallamana.Drawer_List;
 import com.example.graduation.yallamana.R;
+import com.example.graduation.yallamana.util.network.api.Data;
+import com.example.graduation.yallamana.util.network.api.Example;
 import com.example.graduation.yallamana.util.network.api.NewUser;
+import com.example.graduation.yallamana.util.network.api.User1;
 import com.example.graduation.yallamana.util.network.retrofit.ApiClient;
 import com.example.graduation.yallamana.util.network.retrofit.RetrofitInterface;
 import com.facebook.CallbackManager;
@@ -85,7 +89,11 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         wifiCheck = connectionManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
 
         Intent i = getIntent();
-        authant_phone =(String) i.getSerializableExtra("phone");
+        Bundle bundle = getIntent().getExtras();
+        authant_phone = bundle.getString("userPhone");
+
+     //   Toast.makeText(SignupActivity.this, authant_phone, Toast.LENGTH_SHORT).show();
+
         mToolBar = (Toolbar) findViewById(R.id.toolbar);
         mToolBar.setTitle(R.string.new_user);
         mToolBar.setTitleTextColor(getResources().getColor(R.color.white));
@@ -103,7 +111,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         email = (EditText) findViewById(R.id.email1);
         phone = (EditText) findViewById(R.id.mobile);
         phone.setText(authant_phone);
-        phone.setEnabled(false);
+       // phone.setEnabled(false);
 
 
       //  String hint1 = firstName.getHint().toString();
@@ -315,16 +323,31 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
     ////   reguest for new user as rider
     private void skip(NewUser riderUser) {
 
-        Call<NewUser> call2 = retrofitInterface.setUserInfo(riderUser);
+        Call<Example> call2 = retrofitInterface.setUserInfo(riderUser);
         // Toast.makeText(getApplicationContext(), "imagee"+encodedImage, Toast.LENGTH_SHORT).show();
 
-        call2.enqueue(new Callback<NewUser>() {
+        call2.enqueue(new Callback<Example>() {
             @Override
-            public void onResponse(Call<NewUser> call, Response<NewUser> response) {
+            public void onResponse(Call<Example> call, Response<Example> response) {
+                Example example = response.body();
+                Data data = example.getData();
+                Boolean userStatus = data.getNewUser();
+                User1 riderInfo = data.getUser();
                 if (response.code() == 200) {
+                    SharedPreferences sharedPref = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPref.edit();
+                    editor.putString("token", data.getToken().toString());
+                    editor.putString("type", riderInfo.getType().toString());
+                    editor.putString("number", riderInfo.getPhone().toString());
+                    editor.putString("name", riderInfo.getName().toString());
 
+                    editor.commit();
                     Toast.makeText(getApplicationContext(), "Welcome to your profile :)", Toast.LENGTH_SHORT).show();
+
                     Intent i = new Intent(SignupActivity.this, Drawer_List.class);
+
+
+                   // i.putExtra("userInfo",riderInfo);
                     startActivity(i);
 
                     finish();
@@ -341,9 +364,8 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
 
 
             @Override
-            public void onFailure(Call<NewUser> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "server down",
-                        Toast.LENGTH_LONG).show();
+            public void onFailure(Call<Example> call, Throwable t) {
+
                 call2.cancel();
             }
         });

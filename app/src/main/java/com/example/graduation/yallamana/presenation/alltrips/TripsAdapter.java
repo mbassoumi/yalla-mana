@@ -3,6 +3,7 @@ package com.example.graduation.yallamana.presenation.alltrips;
 import android.content.Context;
 
 import android.content.Intent;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
@@ -16,7 +17,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.graduation.yallamana.Trip_information;
-import com.example.graduation.yallamana.util.network.api.Trip;
+import com.example.graduation.yallamana.util.network.api.Tripe;
 
 import com.example.graduation.yallamana.R;
 
@@ -26,11 +27,12 @@ import java.util.List;
 public class TripsAdapter extends RecyclerView.Adapter<TripsAdapter.MyViewHolder> {
 
     private Context mContext;
-    private List<Trip> tripList;
+    private List<Tripe> tripeList;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView from, to,date,price;
         public ImageView driverImage, dots;
+        public CardView userCard;
 
         public MyViewHolder(View view) {
             super(view);
@@ -40,13 +42,15 @@ public class TripsAdapter extends RecyclerView.Adapter<TripsAdapter.MyViewHolder
             driverImage = (ImageView) view.findViewById(R.id.thumbnail);
             dots = (ImageView) view.findViewById(R.id.overflow);
             price = (TextView) view.findViewById(R.id.price);
+            userCard =(CardView)view.findViewById(R.id.card_view);
+
         }
     }
 
 
-    public TripsAdapter(Context mContext, List<Trip> tripList) {
+    public TripsAdapter(Context mContext, List<Tripe> tripeList) {
         this.mContext = mContext;
-        this.tripList = tripList;
+        this.tripeList = tripeList;
     }
 
     @Override
@@ -59,14 +63,24 @@ public class TripsAdapter extends RecyclerView.Adapter<TripsAdapter.MyViewHolder
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
-        Trip trip = tripList.get(position);
-        holder.from.setText(trip.getFrom());
-        holder.to.setText(trip.getTo() );
-        holder.date.setText(trip.getDate() );
-        holder.price.setText(trip.getPrice());
 
-        // loading trip cover using Glide library
-       Glide.with(mContext).load(trip.getThumbnail()).into(holder.driverImage);
+        Tripe tripe = tripeList.get(position);
+        holder.from.setText(tripe.getFrom());
+        holder.to.setText(tripe.getTo() );
+        holder.date.setText(tripe.getDate() );
+        holder.price.setText(tripe.getPrice());
+
+holder.userCard.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(mContext,Trip_information.class);
+        mContext.startActivity(intent);
+
+
+    }
+});
+        // loading tripe cover using Glide library
+       Glide.with(mContext).load(tripe.getThumbnail()).into(holder.driverImage);
 
         holder.dots.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,7 +120,7 @@ public class TripsAdapter extends RecyclerView.Adapter<TripsAdapter.MyViewHolder
                     return true;
 
                 case R.id.action_reserve_trip:
-                    Toast.makeText(mContext, "Reserve Trip", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "Reserve Tripe", Toast.LENGTH_SHORT).show();
                     return true;
                 default:
             }
@@ -116,6 +130,7 @@ public class TripsAdapter extends RecyclerView.Adapter<TripsAdapter.MyViewHolder
 
     @Override
     public int getItemCount() {
-        return tripList.size();
+        return tripeList.size();
     }
+
 }

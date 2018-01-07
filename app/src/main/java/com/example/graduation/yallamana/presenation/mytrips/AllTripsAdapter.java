@@ -8,14 +8,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.PopupMenu;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.graduation.yallamana.R;
 import com.example.graduation.yallamana.Trip_information;
-import com.example.graduation.yallamana.util.network.api.Trip;
+import com.example.graduation.yallamana.util.network.api.Tripe;
 
 import java.util.List;
 
@@ -23,7 +21,7 @@ import java.util.List;
 public class AllTripsAdapter extends RecyclerView.Adapter<AllTripsAdapter.MyViewHolder> {
 
     private Context mContext;
-    private List<Trip> tripList;
+    private List<Tripe> tripeList;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 //        public TextView from, to,date;
@@ -40,9 +38,9 @@ public class AllTripsAdapter extends RecyclerView.Adapter<AllTripsAdapter.MyView
     }
 
 
-    public AllTripsAdapter(Context mContext, List<Trip> tripList) {
+    public AllTripsAdapter(Context mContext, List<Tripe> tripeList) {
         this.mContext = mContext;
-        this.tripList = tripList;
+        this.tripeList = tripeList;
     }
 
     @Override
@@ -55,7 +53,7 @@ public class AllTripsAdapter extends RecyclerView.Adapter<AllTripsAdapter.MyView
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
-//        Trip trip = tripList.get(position);
+//        Tripe trip = tripeList.get(position);
 //        holder.from.setText(trip.getFrom());
 //        holder.to.setText(trip.getTo() );
 //        holder.date.setText(trip.getDate() );
@@ -101,7 +99,7 @@ public class AllTripsAdapter extends RecyclerView.Adapter<AllTripsAdapter.MyView
                     return true;
 
                 case R.id.action_cancle_trip:
-                    Toast.makeText(mContext, "Cancle Trip", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "Cancle Tripe", Toast.LENGTH_SHORT).show();
                     return true;
                 default:
             }
@@ -111,6 +109,6 @@ public class AllTripsAdapter extends RecyclerView.Adapter<AllTripsAdapter.MyView
 
     @Override
     public int getItemCount() {
-        return tripList.size();
+        return tripeList.size();
     }
 }

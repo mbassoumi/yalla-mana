@@ -1,11 +1,11 @@
 package com.example.graduation.yallamana.presenation.alltrips;
 
-import android.app.FragmentManager;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Bundle;
-import android.service.voice.VoiceInteractionSession;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -21,10 +21,10 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.example.graduation.yallamana.Drawer_List;
-import com.example.graduation.yallamana.Mywallet_f;
 import com.example.graduation.yallamana.R;
-import com.example.graduation.yallamana.RequestedTripFragment;
-import com.example.graduation.yallamana.util.network.api.Trip;
+import com.example.graduation.yallamana.RequestActivity;
+import com.example.graduation.yallamana.util.network.api.Tripe;
+import com.example.graduation.yallamana.util.network.api.User1;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +33,8 @@ public class AllTripsActivity extends AppCompatActivity {
     private Menu menu;
     private RecyclerView recyclerView;
     private TripsAdapter adapter;
-    private List<Trip> tripList;
+    private List<Tripe> tripeList;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,16 +45,19 @@ public class AllTripsActivity extends AppCompatActivity {
         toolbar.setTitle("Trips");
         ///////////////////////////
 
-       toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
+        sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
 
 
         setSupportActionBar(toolbar);
 
         initCollapsingToolbar();
-        toolbar.setNavigationOnClickListener(new View.OnClickListener(){
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(AllTripsActivity.this,Drawer_List.class);
+                Intent intent = new Intent(AllTripsActivity.this, Drawer_List.class);
+                User1 user = null;
+               // intent.putExtra("userInfo", user);
                 startActivity(intent);
                 finish();
             }
@@ -64,23 +68,25 @@ public class AllTripsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Request trip", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
-                RequestedTripFragment request = new RequestedTripFragment();
-
-// add
-                android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                ft.add(R.id.fram, request);
-                ft.commit();
-
+                        .setAction("Action", null).show();
+                String type = sharedPreferences.getString("type", "noValue");
+                if (type.equals("rider")) {
+                    Intent intent = new Intent(AllTripsActivity.this, RequestActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Intent intent = new Intent(AllTripsActivity.this, RequestActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
             }
         });
 
 
-
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view_alltrips);
 
-        tripList = new ArrayList<>();
-        adapter = new TripsAdapter(this, tripList);
+        tripeList = new ArrayList<>();
+        adapter = new TripsAdapter(this, tripeList);
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(mLayoutManager);
@@ -164,27 +170,17 @@ public class AllTripsActivity extends AppCompatActivity {
 
         };
 
-        Trip a = new Trip("Ramallah", "13-12-2017", covers[0],"Nablus","20 Nis");
-        tripList.add(a);
+        Tripe a = new Tripe("Ramallah", "13-12-2017", covers[0], "Nablus", "30 Nis");
+        tripeList.add(a);
 
-        a = new Trip("Ramallah", "13-12-2017", covers[1],"Nablus","20 Nis");
-        tripList.add(a);
-        a = new Trip("Ramallah", "3-12-2017", covers[2],"Nablus","20 Nis");
-        tripList.add(a);
-        a = new Trip("Ramallah", "13-12-2017", covers[0],"Nablus","20 Nis");
-        tripList.add(a);
-        a = new Trip("Al-Bireh","13-12-2017", covers[3],"Nablus","20 Nis");
-        tripList.add(a);
-        a = new Trip("Ramallah", "13-12-2017", covers[1],"Nablus","20 Nis");
-        tripList.add(a);
-        a = new Trip("Ramallah", "13-12-2017", covers[2],"Nablus","20 Nis");
-        tripList.add(a);
-        a = new Trip("Ramallah","13-12-2017", covers[0],"Nablus","20 Nis");
-        tripList.add(a);
-        a = new Trip("Hebron","13-12-2017", covers[0],"Jericho","20 Nis");
-        tripList.add(a);
-        a = new Trip("Jericho", "13-12-2017", covers[1],"Nablus","20 Nis");
-        tripList.add(a);
+
+        a = new Tripe("Al-Bireh", "13-12-2017", covers[3], "Birzeit", "10 Nis");
+        tripeList.add(a);
+
+        a = new Tripe("Hebron", "13-12-2017", covers[0], "Jericho", "20 Nis");
+        tripeList.add(a);
+        a = new Tripe("Jericho", "13-12-2017", covers[1], "Nablus", "20 Nis");
+        tripeList.add(a);
 
         adapter.notifyDataSetChanged();
     }
@@ -234,6 +230,7 @@ public class AllTripsActivity extends AppCompatActivity {
         Resources r = getResources();
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -253,10 +250,17 @@ public class AllTripsActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_add) {
             // check if user or driver then decid to offer or request
-           RequestedTripFragment request = new RequestedTripFragment();
-            android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.fram , request,"Request");
-            ft.commit();
+            String type = sharedPreferences.getString("type", "noValue");
+            if (type.equals("rider")) {
+                Intent intent = new Intent(AllTripsActivity.this, RequestActivity.class);
+                startActivity(intent);
+                finish();
+            } else {
+                Intent intent = new Intent(AllTripsActivity.this, RequestActivity.class);
+                startActivity(intent);
+                finish();
+            }
+
             return true;
         }
 

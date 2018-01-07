@@ -1,11 +1,6 @@
 package com.example.graduation.yallamana.presenation.login;
 
 
-import com.example.graduation.yallamana.data.DataRepository;
-
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
-
 /**
  * Created by Mais
 
@@ -13,11 +8,11 @@ import io.reactivex.schedulers.Schedulers;
 
 public class LoginPresenter {
     private LoginView loginView;
-   private DataRepository dataRepository;
+   //private DataRepository dataRepository;
 
     public LoginPresenter(LoginView loginView) {
         this.loginView = loginView;
-      dataRepository = DataRepository.getInstance();
+     // dataRepository = DataRepository.getInstance();
     }
 
     public void submitLogin(String phone) {

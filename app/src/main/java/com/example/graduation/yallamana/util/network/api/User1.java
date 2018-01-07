@@ -5,7 +5,9 @@ package com.example.graduation.yallamana.util.network.api;
  */import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class User1 {
+import java.io.Serializable;
+
+public class User1 implements Serializable {
 
     @SerializedName("id")
     @Expose
@@ -40,6 +42,8 @@ public class User1 {
     @SerializedName("deleted_at")
     @Expose
     private Object deletedAt;
+
+
 
     public Integer getId() {
         return id;

@@ -26,15 +26,16 @@
             android:theme="?attr/actionBarTheme"
             android:title="@string/new_user"
             android:titleTextColor="#FFFFFF" />
+
         <android.support.design.widget.TextInputLayout
             android:id="@+id/firstName"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/toolbar"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="24dp"
-            android:layout_height="wrap_content">
+            android:layout_marginTop="24dp">
 
             <EditText
                 android:id="@+id/firstName1"
@@ -47,15 +48,16 @@
                 android:textSize="18sp" />
 
         </android.support.design.widget.TextInputLayout>
+
         <android.support.design.widget.TextInputLayout
             android:id="@+id/LastName"
             android:layout_width="wrap_content"
 
+            android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/firstName"
             android:layout_alignStart="@+id/firstName"
             android:layout_below="@+id/firstName"
-            android:layout_marginTop="16dp"
-            android:layout_height="wrap_content">
+            android:layout_marginTop="16dp">
 
             <EditText
                 android:id="@+id/lastName1"
@@ -68,16 +70,17 @@
                 android:textSize="18sp" />
 
         </android.support.design.widget.TextInputLayout>
+
         <android.support.design.widget.TextInputLayout
             android:id="@+id/mobil"
             android:layout_width="wrap_content"
 
+            android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/LastName"
             android:layout_alignStart="@+id/LastName"
             android:layout_below="@+id/LastName"
-            android:layout_marginTop="16dp"
 
-            android:layout_height="wrap_content">
+            android:layout_marginTop="16dp">
 
             <EditText
                 android:id="@+id/mobile"
@@ -91,9 +94,6 @@
                 android:textSize="18sp" />
 
         </android.support.design.widget.TextInputLayout>
-
-
-
 
 
         <android.support.design.widget.TextInputLayout
@@ -115,7 +115,6 @@
                 android:layout_centerVertical="true"
                 android:ems="12"
                 android:hint="@string/email"
-
                 android:textSize="18sp" />
 
         </android.support.design.widget.TextInputLayout>
@@ -149,15 +148,13 @@
 
         <ImageButton
             android:id="@+id/userImage"
-            android:layout_width="150dp"
-            android:layout_height="108dp"
+            android:layout_width="wrap_content"
+            android:layout_height="130dp"
+            android:layout_alignEnd="@+id/linear"
+            android:layout_alignRight="@+id/linear"
             android:layout_alignTop="@+id/firstName"
-            android:layout_marginLeft="25dp"
-            android:layout_marginStart="25dp"
-            android:layout_toEndOf="@+id/firstName"
-            android:layout_toRightOf="@+id/firstName"
             android:background="@color/white"
-            android:src="@drawable/ic_image_black_24dp" />
+            android:src="@drawable/unknown_user" />
 
         <android.support.v7.widget.LinearLayoutCompat
             android:id="@+id/linear"
@@ -165,7 +162,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/gender"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
 
             android:orientation="horizontal"
             android:weightSum="2">
@@ -204,6 +201,7 @@
                 android:id="@+id/linearLayoutCompat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="64dp"
                 android:layout_weight="1"
                 android:orientation="vertical"
                 android:weightSum="2">
@@ -240,21 +238,19 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/linear"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="2dp"
             android:text="@string/connect_with"
             android:textColor="#4CAF50"
             android:textSize="18sp" />
 
         <com.google.android.gms.common.SignInButton
             android:id="@+id/sign_in_button"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/textView3"
-            android:layout_alignStart="@+id/textView3"
             android:layout_below="@+id/textView3"
+            android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            android:layout_marginTop="16dp"
-            tools:layout_editor_absoluteX="54dp">
+            android:layout_marginTop="2dp">
 
         </com.google.android.gms.common.SignInButton>
 

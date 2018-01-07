@@ -8,121 +8,122 @@ android:layout_height="wrap_content"
 card_view:cardUseCompatPadding="true">
 
 
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="200dp"
-
-    android:background="?android:selectableItemBackground"
-    android:padding="10dp">
-
-    <android.support.v7.widget.AppCompatImageButton xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/profile_image"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/btn"
-        android:src="@drawable/no_pic_person"
-        />
-
-    <TextView
-        android:id="@+id/txt_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/txt_date"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/txt_date"
-        android:layout_marginTop="24dp"
-        android:fontFamily="sans-serif-condensed"
-        android:textColor="@android:color/black"
-        android:textSize="24sp" />
-
-    <TextView
-        android:id="@+id/txt_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txt_name"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="25dp"
-        android:layout_toEndOf="@+id/profile_image"
-        android:layout_toRightOf="@+id/profile_image"
-        android:textColor="?attr/colorButtonNormal"
-        android:textSize="14sp" />
-
-    <TextView
-        android:id="@+id/post_area"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:layout_below="@+id/profile_image"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@color/cardview_light_background"
-        android:ems="10"
-        android:fontFamily="sans-serif-condensed"
-        android:inputType="textMultiLine"
-        android:textColor="@color/cardview_dark_background"
-        android:textSize="14sp" />
+        android:background="?android:selectableItemBackground"
+        android:padding="10dp">
 
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-android:background="@drawable/btn"
-        android:layout_below="@+id/post_area"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
+        <android.support.v7.widget.AppCompatImageButton xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
 
-        android:orientation="horizontal"
-        >
-
-        <ImageButton
-            android:id="@+id/comment_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:background="@color/white"
             android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/btn"
+            android:src="@drawable/unknown_user" />
 
-
-            android:src="@drawable/ic_comment_black_24dp" />
-        />
         <TextView
+            android:id="@+id/txt_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
+            android:layout_alignLeft="@+id/txt_date"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/txt_date"
+            android:layout_marginTop="24dp"
+            android:fontFamily="sans-serif-condensed"
+            android:text="Majd Bassoumi"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/txt_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_name"
             android:layout_marginLeft="16dp"
-            android:text="200K"
+            android:layout_marginStart="25dp"
+            android:layout_toEndOf="@+id/profile_image"
+            android:layout_toRightOf="@+id/profile_image"
+            android:text="10-1-2018"
+            android:textColor="?attr/colorButtonNormal"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/post_area"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_below="@+id/profile_image"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/cardview_light_background"
+            android:ems="10"
+            android:fontFamily="sans-serif-condensed"
+            android:inputType="textMultiLine"
+            android:text="Hi , is there a road crisis between Rammalh and Bierzeit?!"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/post_area"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/btn"
+
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/comment_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="4dp"
+
+
+                android:background="@color/white"
+                android:src="@drawable/ic_comment_black_24dp" />
             />
 
-        <ImageButton
-            android:id="@+id/like_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginLeft="32dp"
-            android:background="@color/white"
-            android:src="@drawable/ic_thumb_up_black_24dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:text="10"
+                android:textSize="14sp" />
 
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:layout_marginLeft="16dp"
-            android:text="200K"
-            />
-    </LinearLayout>
+            <ImageButton
+                android:id="@+id/like_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="4dp"
+                android:background="@color/white"
+                android:src="@drawable/ic_thumb_up_black_24dp" />
+
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:text="30"
+                android:textSize="14sp" />
+        </LinearLayout>
 
 
-
-
-
-
-</RelativeLayout>
+    </RelativeLayout>
 
 
 </android.support.v7.widget.CardView>

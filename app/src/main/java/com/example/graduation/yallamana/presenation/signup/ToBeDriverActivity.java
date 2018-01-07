@@ -217,7 +217,7 @@ public class ToBeDriverActivity extends AppCompatActivity {
     // add items into spinner dynamically
     public void addItemsOnSpinner2() {
 
-        spinner2 = (Spinner) findViewById(R.id.spinner2);
+        spinner2 = (Spinner) findViewById(R.id.spinner_year);
         List<String> list = new ArrayList<String>();
         list.add("list 1");
         list.add("list 2");
@@ -229,15 +229,15 @@ public class ToBeDriverActivity extends AppCompatActivity {
     }
 
     public void addListenerOnSpinnerItemSelection() {
-        spinner1 = (Spinner) findViewById(R.id.spinner);
+        spinner1 = (Spinner) findViewById(R.id.spinner_riders);
         spinner1.setOnItemSelectedListener(new CustomOnItemSelectedListener());
     }
 
     // get the selected dropdown list value
     public void addListenerOnButton() {
 
-        spinner1 = (Spinner) findViewById(R.id.spinner);
-        spinner2 = (Spinner) findViewById(R.id.spinner2);
+        spinner1 = (Spinner) findViewById(R.id.spinner_year);
+        spinner2 = (Spinner) findViewById(R.id.spinner_riders);
        yalla_Button = (Button) findViewById(R.id.yalla_Button);
 
        yalla_Button.setOnClickListener(new View.OnClickListener() {
