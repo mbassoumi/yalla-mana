@@ -1,17 +1,12 @@
 package com.example.graduation.yallamana.presenation.post.fragments;
 
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -23,14 +18,13 @@ import android.widget.TextView;
 
 import com.example.graduation.yallamana.R;
 import com.example.graduation.yallamana.presenation.post.utils.CommentAdapter;
-import com.example.graduation.yallamana.presenation.post.utils.PostAdapter;
-import com.example.graduation.yallamana.presenation.post.Post;
 import com.example.graduation.yallamana.util.network.api.Comment;
+import com.example.graduation.yallamana.util.network.api.Post;
+import com.example.graduation.yallamana.util.network.api.Trip;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.zip.Inflater;
 
 
 /**
@@ -61,17 +55,17 @@ public class CommentFragment extends android.support.v4.app.Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        comments  = (List<Comment>) getArguments().getSerializable("pasts");
 
-        comments = new ArrayList<>();
         random = new Random();
 
         //set dummy data
-        for (int i = 0; i < 10; i++) {
-           Comment comment = new Comment();
-            comment.setUserName("Mais helou ");
-            comment.setComment("Hi i want t say hi ............................................ bye");
-            comments.add(comment);
-        }
+//        for (int i = 0; i < 10; i++) {
+//           Comment comment = new Comment();
+//            comment.setUserName("Mais helou ");
+//            comment.setComment("Hi i want t say hi ............................................ bye");
+//            comments.add(comment);
+//        }
         //find view by id and attaching adapter for the RecyclerView
         RecyclerView recyclerView = (RecyclerView) getActivity().findViewById(R.id.command_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));

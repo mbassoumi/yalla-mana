@@ -25,23 +25,27 @@
             android:textColor="#4CAF50"
             android:textSize="18sp" />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/licenseImagecar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_alignLeft="@+id/textView4"
             android:layout_alignStart="@+id/textView4"
             android:layout_below="@+id/textView4"
             android:layout_marginLeft="0dp"
             android:layout_marginTop="32dp"
+            android:scaleType="fitXY"
+
             android:background="#FFFFFF"
             android:src="@drawable/ic_file_upload_black_24dp" />
 
 
-        <ImageButton
+        <ImageView
             android:id="@+id/CarImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:scaleType="fitXY"
+
             android:layout_alignLeft="@+id/licenseImagecar"
             android:layout_alignStart="@+id/licenseImagecar"
             android:layout_below="@+id/licenseImagecar"

@@ -1,8 +1,16 @@
 package com.example.graduation.yallamana.presenation.mytrips;
 
+import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+
+import com.example.graduation.yallamana.util.network.api.Trip;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -10,10 +18,14 @@ import android.support.v4.app.FragmentStatePagerAdapter;
  */
 
 public class HomeViewPagerAdapter extends FragmentStatePagerAdapter {
+    List<Trip> today,future,past,requests;
 
-
-    public HomeViewPagerAdapter(FragmentManager fm) {
+    public HomeViewPagerAdapter(FragmentManager fm, List<Trip>today,List<Trip> future,List<Trip> past,List<Trip> requests) {
         super(fm);
+        this.today=today;
+        this.future=future;
+        this.past=past;
+        this.requests=requests;
     }
 
     @Override
@@ -23,18 +35,41 @@ public class HomeViewPagerAdapter extends FragmentStatePagerAdapter {
             case 0:
 
 
-                TodayFragment today = new TodayFragment();
+                TodayFragment todays = new TodayFragment();
+                Bundle b = new Bundle();
+                b.putParcelableArrayList("todays", (ArrayList<? extends Parcelable>) today);
+                todays.setArguments(b);
 
-                return today;
+                        todays.setArguments(b);
+
+                return todays;
             case 1:
 
-               FutureFragment future = new FutureFragment();
-                return future;
+               FutureFragment futures = new FutureFragment();
+
+                Bundle b3 = new Bundle();
+
+                b3.putParcelableArrayList("futures", (ArrayList<? extends Parcelable>) future);
+                futures.setArguments(b3);
+                return futures;
 
 
             case 2:
-                PastFragment past = new PastFragment();
-                return past;
+                PastFragment pasts = new PastFragment();
+
+                Bundle b2 = new Bundle();
+                b2.putParcelableArrayList("pasts", (ArrayList<? extends Parcelable>) past);
+               /* b2.putSerializable("todays", (Serializable) past); */
+                pasts.setArguments(b2);
+                return pasts;
+            case 3:
+                RequestFragment  request= new RequestFragment();
+
+                Bundle b5 = new Bundle();
+                b5.putParcelableArrayList("requests", (ArrayList<? extends Parcelable>)requests);
+               /* b2.putSerializable("todays", (Serializable) past); */
+                request.setArguments(b5);
+                return request;
         }
         return null;
     }
@@ -42,7 +77,7 @@ public class HomeViewPagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public int getCount() {
 
-        return 3;
+        return 4;
     }
 
 }

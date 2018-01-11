@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -35,7 +34,9 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="16dp"
+                    android:adjustViewBounds="true"
                     android:background="@drawable/btn"
+                    android:scaleType="fitCenter"
                     android:src="@drawable/no_pic_person" />
 
                 <TextView
@@ -99,8 +100,7 @@
                     android:layout_marginLeft="16dp"
                     android:layout_toEndOf="@+id/textView8"
                     android:layout_toRightOf="@+id/textView8"
-                    android:text="Ramallah"
-                    android:textColor="#BDBDBD"
+                    android:textColor="#808080  "
                     android:textSize="18dp" />
 
 
@@ -124,8 +124,7 @@
                     android:layout_marginLeft="16dp"
                     android:layout_toEndOf="@+id/textView9"
                     android:layout_toRightOf="@+id/textView9"
-                    android:text="Ramallah"
-                    android:textColor="#BDBDBD"
+                    android:textColor="#808080  "
                     android:textSize="18dp" />
 
             </RelativeLayout>
@@ -134,8 +133,7 @@
                 android:id="@+id/rel5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/rel4"
-                android:layout_marginTop="16dp">
+                android:layout_below="@+id/rel4">
 
                 <TextView
                     android:id="@+id/textView11"
@@ -155,8 +153,8 @@
                     android:layout_alignBottom="@+id/trip_still_time2"
                     android:layout_alignLeft="@+id/textView11"
                     android:layout_alignStart="@+id/textView11"
-                    android:text="12-12-2012"
-                    android:textColor="#BDBDBD"
+                    android:text="2018-1-11  11:00"
+                    android:textColor="#808080  "
                     android:textSize="18dp" />
 
                 <TextView
@@ -169,7 +167,8 @@
                     android:layout_toRightOf="@+id/trip_still_time1"
                     android:text="7:00 "
                     android:textColor="#BDBDBD"
-                    android:textSize="18dp" />
+                    android:textSize="18dp"
+                    android:visibility="invisible" />
 
             </RelativeLayout>
 
@@ -177,8 +176,7 @@
                 android:id="@+id/rel4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/rel3"
-                android:layout_marginTop="16dp">
+                android:layout_below="@+id/rel3">
 
                 <TextView
                     android:id="@+id/textView10"
@@ -197,8 +195,7 @@
                     android:layout_below="@+id/textView10"
                     android:layout_marginBottom="8dp"
                     android:layout_marginLeft="16dp"
-                    android:text="12-12-2012"
-                    android:textColor="#BDBDBD"
+                    android:textColor="#808080  "
                     android:textSize="18dp" />
 
                 <TextView
@@ -209,8 +206,7 @@
                     android:layout_marginBottom="8dp"
                     android:layout_marginLeft="16dp"
                     android:layout_toRightOf="@+id/trip_time1"
-                    android:text="7:00 "
-                    android:textColor="#BDBDBD"
+                    android:textColor="#808080  "
                     android:textSize="18dp" />
 
             </RelativeLayout>
@@ -226,11 +222,10 @@
                     android:id="@+id/text10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginStart="16dp"
+                    android:layout_alignLeft="@+id/text60"
+
+                    android:layout_alignParentTop="true"
+                    android:layout_alignStart="@+id/text60"
                     android:text="@string/number_of_riders"
                     android:textColor="#000000"
                     android:textSize="20sp" />
@@ -239,10 +234,34 @@
                     android:id="@+id/number_rider"
                     android:layout_width="40dp"
                     android:layout_height="25dp"
-                    android:layout_toEndOf="@+id/text10"
-                    android:text="7"
                     android:textAlignment="center"
-                    android:textColor="@color/black"
+                    android:layout_toRightOf="@id/text10"
+                    android:textColor="#808080  "
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/text60"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_below="@id/text10"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Current riders number:"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/current_number_rider"
+                    android:layout_width="40dp"
+                    android:layout_height="25dp"
+                    android:layout_alignBaseline="@+id/text60"
+                    android:layout_alignBottom="@+id/text60"
+                    android:layout_toEndOf="@+id/text60"
+                    android:layout_toRightOf="@+id/text60"
+                    android:textAlignment="center"
+                    android:textColor="#808080  "
                     android:textSize="20sp" />
             </RelativeLayout>
 
@@ -270,18 +289,17 @@
                     android:id="@+id/price"
                     android:layout_width="40dp"
                     android:layout_height="25dp"
-                    android:layout_toEndOf="@+id/text12"
-                    android:text="10"
+                    android:layout_toRightOf="@+id/text12"
                     android:textAlignment="center"
-                    android:textColor="@color/black"
+                    android:textColor="#808080  "
                     android:textSize="20sp" />
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/relativeLayout4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/relativeLayout3"
-                android:id="@+id/relativeLayout4">
+                android:layout_below="@+id/relativeLayout3">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -351,6 +369,8 @@
                 android:background="@drawable/mybutton"
                 android:text="@string/action_reserve_trip"
                 android:textColor="@color/white" />
+
+
         </RelativeLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>

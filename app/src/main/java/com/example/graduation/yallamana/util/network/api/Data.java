@@ -17,10 +17,99 @@ public class Data {
     private Boolean newUser;
     @SerializedName("cities")
     @Expose
-    private List<Cities> cities ;
+    private List<Cities> cities=null ;
     @SerializedName("token")
     @Expose
     private String token;
+    @SerializedName("trip")
+    @Expose
+    private Trip trip;
+    @SerializedName("trips")
+    @Expose
+    private List<Trip> trips = null;
+//    @SerializedName("unaccepted_trips")
+//    @Expose
+//    private List<UnacceptedTrip> unacceptedTrips = null;
+
+    @SerializedName("past_trips")
+    @Expose
+    private List<Trip> pastTrips = null;
+    @SerializedName("requested_trips")
+    @Expose
+    private List<Trip> requestTrips = null;
+    @SerializedName("today_trips")
+    @Expose
+    private List<Trip> todayTrips = null;
+    @SerializedName("future_trips")
+    @Expose
+    private List<Trip> futureTrips = null;
+    @SerializedName("posts")
+    @Expose
+    private List<Post> posts = null;
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
+    }
+
+    public List<Trip> getRequestTrips() {
+        return requestTrips;
+    }
+
+    public void setRequestTrips(List<Trip> requestTrips) {
+        this.requestTrips = requestTrips;
+    }
+
+    public List<Trip> getPastTrips() {
+        return pastTrips;
+    }
+
+    public void setPastTrips(List<Trip> pastTrips) {
+        this.pastTrips = pastTrips;
+    }
+
+    public List<Trip> getTodayTrips() {
+        return todayTrips;
+    }
+
+    public void setTodayTrips(List<Trip> todayTrips) {
+        this.todayTrips = todayTrips;
+    }
+
+    public List<Trip> getFutureTrips() {
+        return futureTrips;
+    }
+
+    public void setFutureTrips(List<Trip> futureTrips) {
+        this.futureTrips = futureTrips;
+    }
+
+    public Trip getTrip() {
+        return trip;
+    }
+
+    public void setTrip(Trip trip) {
+        this.trip = trip;
+    }
+
+    public List<Trip> getTrips() {
+        return trips;
+    }
+
+    public void setTrips(List<Trip> trips) {
+        this.trips = trips;
+    }
+//
+//    public List<UnacceptedTrip> getUnacceptedTrips() {
+//        return unacceptedTrips;
+//    }
+//
+//    public void setUnacceptedTrips(List<UnacceptedTrip> unacceptedTrips) {
+//        this.unacceptedTrips = unacceptedTrips;
+//    }
 
     public List<Cities> getCities() {
         return cities;

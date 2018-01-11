@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.example.graduation.yallamana.presenation.alltrips.AllTripsActivity;
 import com.example.graduation.yallamana.presenation.mytrips.TripsActivity;
 import com.example.graduation.yallamana.presenation.post.PostActivity;
+import com.example.graduation.yallamana.presenation.signup.DriverActivity;
 import com.example.graduation.yallamana.presenation.signup.ToBeDriverActivity;
 import com.example.graduation.yallamana.util.network.api.NewUser;
 import com.example.graduation.yallamana.util.network.api.User1;
@@ -116,6 +117,7 @@ public class Drawer_List extends AppCompatActivity
            return super.onOptionsItemSelected(item);
        }
    */
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -123,7 +125,6 @@ public class Drawer_List extends AppCompatActivity
         int id = item.getItemId();
  String type = sharedPreferences.getString("type", "noValue");
         if (type.equals("rider")) {
-     /*This drawer list can use fragment to show its options*/
 
             if (id == R.id.M_mytrip) {
                 Intent intent = new Intent(this, TripsActivity.class);
@@ -160,8 +161,9 @@ public class Drawer_List extends AppCompatActivity
                 startActivity(intent);
                 finish();
             }
+
         }
-        else {
+      else {
             if (id == R.id.M_mytrip) {
                 Intent intent = new Intent(this, TripsActivity.class);
                 startActivity(intent);
@@ -187,16 +189,25 @@ public class Drawer_List extends AppCompatActivity
                 ft.commit();
 
 
-            } else if  (id == R.id.M_post) {
+            } else if (id == R.id.M_post) {
                 Intent intent = new Intent(this, PostActivity.class);
                 startActivity(intent);
                 finish();
 
+            } else if (id == R.id.M_be_driver) {
+                Intent intent = new Intent(this, DriverActivity.class);
+
+                startActivity(intent);
+                finish();
             }
+                /*This drawer list can use fragment to show its options*/
             Menu nav_Menu = navigationView.getMenu();
             nav_Menu.findItem(R.id.M_be_driver).setVisible(false);
 
         }
+
+
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

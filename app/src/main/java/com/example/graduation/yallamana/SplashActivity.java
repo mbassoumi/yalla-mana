@@ -8,6 +8,7 @@ package com.example.graduation.yallamana;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -31,25 +32,46 @@ public class SplashActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        SharedPreferences SP = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
+        String token= SP.getString("token","NoValue");
+        String number =SP.getString("number","NoValue");
+
         ConnectivityManager connectionManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         wifiCheck = connectionManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
 
 
         if (wifiCheck.isConnected()) {
-            // Do whatever here
+      
+      // Do whatever here
 
             new Handler().postDelayed(new Runnable() {
 
-                @Override
+          
+      @Override
                 public void run() {
 
-                    //Intent t= new Intent(getApplicationContext(),MainActivity.class);
-                    Intent t= new Intent(getApplicationContext(),SignupActivity.class);
-                    t.putExtra("userPhon"," ");
-                    finish();
-                    startActivity(t);
+          if (token.equals("NoValue") && number.equals("NoValue"))
+          {
+              Intent my =new Intent(SplashActivity.this,MainActivity.class);
+              startActivity(my);
+              finish();
 
-                }
+          }
+
+          else {
+
+              Intent my =new Intent(SplashActivity.this,Drawer_List.class);
+              startActivity(my);
+              finish();
+          }
+      //Intent t= new Intent(getApplicationContext(),SignupActivity.class);
+               
+  //   t.putExtra("userPhon"," ");
+  
+
+                         
+
+        }
             }, SPLASH_TIME_OUT);
 
         } else {
@@ -60,9 +82,22 @@ public class SplashActivity extends Activity {
 
                 @Override
                 public void run() {
+                    if (token.equals("NoValue") && number.equals("NoValue"))
+                    {
+                        Intent my =new Intent(SplashActivity.this,MainActivity.class);
+                        startActivity(my);
+                        finish();
 
-                    Intent t= new Intent(getApplicationContext(),SignupActivity.class);
-                   t.putExtra("userPhon"," ");
+                    }
+
+                    else {
+
+                        Intent my =new Intent(SplashActivity.this,Drawer_List.class);
+                        startActivity(my);
+                        finish();
+                    }
+                    Intent t= new Intent(getApplicationContext(),MainActivity.class);
+                 //  t.putExtra("userPhon"," ");
                     startActivity(t);
                     finish();
                 }

@@ -3,11 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.graduation.yallamana.presenation.post.fragments.DashboardFragment">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/fragment">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical" />
+</RelativeLayout>
 
 </FrameLayout>

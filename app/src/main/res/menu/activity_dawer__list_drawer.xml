@@ -6,12 +6,12 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/M_mytrip"
-            android:title="My tripe"
+            android:title="My trip"
             android:icon="@drawable/my_trip__8dp"
             ></item>
         <item
             android:id="@+id/M_Trip"
-            android:title="Trip"
+            android:title="Trips"
             android:icon="@drawable/trip_8dp"/>
         <item
             android:id="@+id/M_mywallet"

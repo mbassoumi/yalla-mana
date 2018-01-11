@@ -6,13 +6,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.MultiAutoCompleteTextView;
 import android.widget.TextView;
 
 import com.example.graduation.yallamana.R;
-import com.example.graduation.yallamana.presenation.post.Post;
 import com.example.graduation.yallamana.util.network.api.Comment;
 
 import java.util.List;
@@ -63,14 +61,18 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         if (holder instanceof UserViewHolder) {
            Comment comment = comments.get(position);
             UserViewHolder userViewHolder = (UserViewHolder) holder;
-            userViewHolder.name.setText(comment.getUserName());
-            userViewHolder.comment.setText(comment.getComment());
+            userViewHolder.name.setText(comment.getUserID().getName());
+          userViewHolder.comment.setText(comment.getBody());
 
         }
     }
 
     @Override
     public int getItemCount() {
+        if (comments==null){
+            return 0;
+
+        }
         return comments.size();
     }
 

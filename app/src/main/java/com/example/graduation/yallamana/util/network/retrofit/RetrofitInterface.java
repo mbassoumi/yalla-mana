@@ -7,24 +7,30 @@ package com.example.graduation.yallamana.util.network.retrofit;
 
 import com.example.graduation.yallamana.util.network.api.CheckUser;
 import com.example.graduation.yallamana.util.network.api.Cities;
+import com.example.graduation.yallamana.util.network.api.Comment;
+import com.example.graduation.yallamana.util.network.api.Comment1;
 import com.example.graduation.yallamana.util.network.api.Example;
 import com.example.graduation.yallamana.util.network.api.NewTrip;
 import com.example.graduation.yallamana.util.network.api.NewUser;
 import com.example.graduation.yallamana.util.network.api.Trip;
-import com.example.graduation.yallamana.util.network.api.User1;
-
 
 import java.util.List;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
+import retrofit2.http.Path;
 
 /**
  * Created by Mais
  */
-import retrofit2.Call;
 
 
 public interface RetrofitInterface {
@@ -33,20 +39,54 @@ public interface RetrofitInterface {
     Call<Example> getTokenLogin(@Body CheckUser checkUser);
 
     // when user sign up . send info
+    @Multipart
     @POST("api/auth/signup")
-    Call<Example> setUserInfo(@Body NewUser newuser);
+    Call<Example> setUserInfo(@Part MultipartBody.Part file,@Part ("name") RequestBody  name,
+                              @Part ("phone")RequestBody number,@Part ("email") RequestBody  email,
+                              @Part ("gender")RequestBody gender,@Part ("type")RequestBody type);
+
+    @Multipart
+    @POST("api/auth/signup")
+    Call<Example> uploadRiderFile(@Part MultipartBody.Part file, @Header("Authorization") String token);
+//    @POST("api/auth/signup")
+//    Call<Example> uploadDriverFile(@Part MultipartBody.Part file1,@Part MultipartBody.Part file2,@Part MultipartBody.Part file3,@Part MultipartBody.Part file4,@Part MultipartBody.Part file5, @Header("Authorization") String token);
 
     // get cities
     @GET("api/city")
-    Call<List<Cities>> getCities( );
-    @GET("api/trip")
-    Call<List<Trip>> getTrips( );
-    @POST("api/trip/offer")
-    Call<Trip> setOfferTrip(@Header("Token") String token, @Body NewTrip offer);
-    @POST("api/trip/request")
-    Call<Trip> setRequestTrip(@Header("Token") String token,@Body NewTrip request);
+    Call<Example> getCities();
 
-//    @POST("/api/auth/login")
+    @GET("api/trip")
+    Call<Example> getTrips(@Header("Authorization") String token);
+
+    @GET("api/trip/{id}")
+    Call<Example> getTripInfo(@Header("Authorization") String token, @Path("id") int id );
+
+    @POST("api/trip/offer")
+    Call<Trip> setOfferTrip(@Header("Authorization") String token, @Body NewTrip offer);
+
+    @POST("api/trip/request")
+    Call<Trip> setRequestTrip(@Header("Authorization") String token, @Body NewTrip request);
+
+    @POST("api/trip/{id}/reserve")
+    Call<Example> reverseTrip(@Header("Authorization") String token, @Path("id") int id );
+    @POST("api/trip/{id}/cancel-reservation")
+    Call<Example> cancleTrip(@Header("Authorization") String token, @Path("id") int id );
+    @GET("api/trip/my-trips")
+    Call<Example> getMyTrips(@Header("Authorization") String token);
+    @GET("api/post/my_post")
+    Call<Example> getMyPosts(@Header("Authorization") String token);
+    @GET("api/post")
+    Call<Example> getAllPosts(@Header("Authorization") String token);
+
+    @DELETE("api/post/{id}")
+    Call<Example> deletPost(@Header("Authorization") String token,@Path("id") int id);
+    @POST("api/post")
+    Call<Example> addPost(@Header("Authorization") String token,@Body  Comment1 comment );
+    @POST("api/comment")
+    Call<Example> addNewComment(@Header("Authorization") String token, @Body Comment1 comment);
+//
+//    @GET(" api/comment")
+//    Call<Example> getComments(@Header("Authorization") String token);
 //    Observable<Boolean> getToken(@Body String usernumber);@GET("/exalt/users/username/{user}")
 // //   Observable<User> getUser(@Path("user") String username);
 //

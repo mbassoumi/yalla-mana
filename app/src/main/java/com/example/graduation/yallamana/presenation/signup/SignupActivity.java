@@ -1,8 +1,10 @@
 package com.example.graduation.yallamana.presenation.signup;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -12,14 +14,11 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.graduation.yallamana.Drawer_List;
@@ -43,8 +42,14 @@ import com.google.firebase.auth.FirebaseUser;
 import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import pub.devrel.easypermissions.EasyPermissions;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -52,7 +57,7 @@ import retrofit2.Response;
 import static com.facebook.login.widget.ProfilePictureView.TAG;
 
 
-public class SignupActivity extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
+public class SignupActivity extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener, EasyPermissions.PermissionCallbacks {
 
 
     private SignInButton sign;
@@ -60,23 +65,21 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
     private static final int REQ_CODE = 9001;
     private EditText firstName, lastName, email, phone;
     private Toolbar mToolBar;
-    private ImageButton driverButton, riderButton;
+    private ImageView driverButton, riderButton;
     private ImageView userImage;
     private Spinner genderSpinner;
     private Bitmap image, bitmap;
     private Uri filePath;
-    private String selectedFilePath ,gender, imagePath, imgString, authant_phone;
+    private String selectedFilePath, gender, imagePath, imgString, authant_phone;
     NetworkInfo wifiCheck;
-
-
+    private static final int REQUEST_GALLERY_CODE = 200;
+    private static final int READ_REQUEST_CODE = 300;
+    NewUser riderUser;
     RetrofitInterface retrofitInterface;
     // [START declare_auth]
+    private String emailPattern;
 
     private FirebaseAuth mAuth;
-
-    // [END declare_auth]
-
-
     private CallbackManager mCallbackManager;
 
 
@@ -91,8 +94,8 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         Intent i = getIntent();
         Bundle bundle = getIntent().getExtras();
         authant_phone = bundle.getString("userPhone");
-
-     //   Toast.makeText(SignupActivity.this, authant_phone, Toast.LENGTH_SHORT).show();
+        emailPattern = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+        //   Toast.makeText(SignupActivity.this, authant_phone, Toast.LENGTH_SHORT).show();
 
         mToolBar = (Toolbar) findViewById(R.id.toolbar);
         mToolBar.setTitle(R.string.new_user);
@@ -111,13 +114,13 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         email = (EditText) findViewById(R.id.email1);
         phone = (EditText) findViewById(R.id.mobile);
         phone.setText(authant_phone);
-       // phone.setEnabled(false);
+        // phone.setEnabled(false);
 
 
-      //  String hint1 = firstName.getHint().toString();
-      //  String hint2 = lastName.getHint().toString();
-       // firstName.setHint(Html.fromHtml(hint1 + "<font color=\"red\">*</font>"));
-      //  lastName.setHint(Html.fromHtml(hint2 + "<font color=\"red\">*</font>"));
+        //  String hint1 = firstName.getHint().toString();
+        //  String hint2 = lastName.getHint().toString();
+        // firstName.setHint(Html.fromHtml(hint1 + "<font color=\"red\">*</font>"));
+        //  lastName.setHint(Html.fromHtml(hint2 + "<font color=\"red\">*</font>"));
         userImage = (ImageView) findViewById(R.id.userImage);
 
 //        mToolBar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -144,7 +147,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
             }
         });
 /////////////////////////////////////rider//////////////////////////////////////////////////////////
-        riderButton = (ImageButton) findViewById(R.id.rider);
+        riderButton = (ImageView) findViewById(R.id.rider);
 
         riderButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -158,37 +161,44 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                     Toast.makeText(SignupActivity.this, "Last name cant be empty!", Toast.LENGTH_LONG).show();
 
 
+                } else if (email.getText().toString().isEmpty()) {
+                    Toast.makeText(SignupActivity.this, "Email cant be empty!", Toast.LENGTH_LONG).show();
                 } else {
+                    if (!email.getText().toString().matches(emailPattern)) {
+                        Toast.makeText(getApplicationContext(), "Invalid email address", Toast.LENGTH_SHORT).show();
+
+                    } else {
 //                Intent intent = new Intent(SignupActivity.this,Drawer_List.class);
 //                startActivity(intent);
 //                finish();
 
-                    NewUser riderUser;
-                    String userName = firstName.getText().toString() + " " + lastName.getText().toString();
-                    String number = phone.getText().toString();
-                    String emaill = email.getText().toString();
 
-                    //Adding setOnItemSelectedListener method on spinner.
-                    String userGender = genderSpinner.getSelectedItem().toString();
-                    Log.i(TAG, "gender" + userGender);
+                        String userName = firstName.getText().toString() + " " + lastName.getText().toString();
+                        String number = phone.getText().toString();
+                        String emaill = email.getText().toString();
+
+                        //Adding setOnItemSelectedListener method on spinner.
+                        String userGender = genderSpinner.getSelectedItem().toString();
+                        Log.i(TAG, "gender" + userGender);
 
 
-                    riderUser = new NewUser(userName, number, "rider", userGender, emaill);
+                        riderUser = new NewUser(userName, number, "rider", userGender, emaill);
 
-                    skip(riderUser);
+                        skip(riderUser);
 //                    getIntent().putExtra("riderUser", riderUser);
 //
-//                    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+//                    FragmentTransaction ft = get
+// SupportFragmentManager().beginTransaction();
 //                    RiderFragment f1 = new RiderFragment();
 //                    ft.replace(R.id.frame_container, f1);
 //                    ft.commit();
+                    }
                 }
             }
 
-
         });
 ////////////////////driverrr//////////////////////////////////////////////////////////////////
-        driverButton = (ImageButton) findViewById(R.id.driver);
+        driverButton = (ImageView) findViewById(R.id.driver);
 
         driverButton.setOnClickListener(new View.OnClickListener() {
 
@@ -201,7 +211,13 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                 } else if (lastName.getText().toString().isEmpty()) {
                     Toast.makeText(SignupActivity.this, "Last name cant be empty!", Toast.LENGTH_LONG).show();
 
-                }  else {
+                } else if (email.getText().toString().isEmpty()) {
+                    Toast.makeText(SignupActivity.this, "Email cant be empty!", Toast.LENGTH_LONG).show();
+                } else {
+                    if (!email.getText().toString().matches(emailPattern)) {
+                        Toast.makeText(getApplicationContext(), "Invalid email address", Toast.LENGTH_SHORT).show();
+
+                    } else {
                     String userName = firstName.getText().toString() + " " + lastName.getText().toString();
                     String number = phone.getText().toString();
                     String emaill = email.getText().toString();
@@ -221,7 +237,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
 
 
                 }
-            }
+            }}
 
         });
 
@@ -263,6 +279,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         startActivityForResult(signInIntent, REQ_CODE);
     }
 
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -273,8 +290,9 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
             handleSignInResult(result);
         } else if (resultCode == RESULT_OK) {
             Uri targetUri = data.getData();
+            imagePath = getRealPathFromURIPath(targetUri, SignupActivity.this);
             userImage.setImageURI(targetUri);
-            imagePath = targetUri.getPath().toString();
+            //  imagePath = targetUri.getPath().toString();
             filePath = data.getData();
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
@@ -290,6 +308,17 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         }
 
 
+    }
+
+    private String getRealPathFromURIPath(Uri targetUri, SignupActivity signupActivity) {
+        Cursor cursor = signupActivity.getContentResolver().query(targetUri, null, null, null, null);
+        if (cursor == null) {
+            return targetUri.getPath();
+        } else {
+            cursor.moveToFirst();
+            int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+            return cursor.getString(idx);
+        }
     }
 
 
@@ -322,8 +351,87 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
 
     ////   reguest for new user as rider
     private void skip(NewUser riderUser) {
+        if (EasyPermissions.hasPermissions(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+            File file = new File(imagePath);
+            RequestBody type = RequestBody.create(MediaType.parse("multipart/form-data"), riderUser.getType());
 
-        Call<Example> call2 = retrofitInterface.setUserInfo(riderUser);
+            RequestBody name = RequestBody.create(MediaType.parse("multipart/form-data"), riderUser.getName());
+            RequestBody number = RequestBody.create(MediaType.parse("multipart/form-data"), riderUser.getPhone());
+            RequestBody email = RequestBody.create(MediaType.parse("multipart/form-data"), riderUser.getEmail());
+            RequestBody gender = RequestBody.create(MediaType.parse("multipart/form-data"), riderUser.getGender());
+            RequestBody fileBody = RequestBody.create(MediaType.parse("image/*"), file);
+            MultipartBody.Part filePart = MultipartBody.Part.createFormData("photo", file.getName(), fileBody);
+            Call<Example> call2 = retrofitInterface.setUserInfo(filePart, name, number, email, gender, type);
+            // Toast.makeText(getApplicationContext(), "imagee"+encodedImage, Toast.LENGTH_SHORT).show();
+
+            call2.enqueue(new Callback<Example>() {
+                @Override
+                public void onResponse(Call<Example> call, Response<Example> response) {
+                    Example example = response.body();
+                    Data data = example.getData();
+                    Boolean userStatus = data.getNewUser();
+                    User1 riderInfo = data.getUser();
+                    if (response.code() == 200) {
+                        SharedPreferences sharedPref = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPref.edit();
+                        editor.putString("token", data.getToken().toString());
+                        editor.putString("type", riderInfo.getType().toString());
+                        editor.putString("number", riderInfo.getPhone().toString());
+                        editor.putString("name", riderInfo.getName().toString());
+                        editor.putString("email", riderInfo.getEmail().toString());
+                        // editor.putStringSet("user", (Set<String>) riderInfo);
+
+                        editor.commit();
+                        Toast.makeText(getApplicationContext(), "Welcome to your profile :)", Toast.LENGTH_SHORT).show();
+
+                        Intent i = new Intent(SignupActivity.this, Drawer_List.class);
+
+
+                        // i.putExtra("userInfo",riderInfo);
+                        startActivity(i);
+
+                        finish();
+                    } else if (response.code() == 400) {
+                        Toast.makeText(getApplicationContext(), "You are already registed !", Toast.LENGTH_LONG).show();
+
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Ops! something goes wrong", Toast.LENGTH_LONG).show();
+
+                    }
+
+
+                }
+
+
+                @Override
+                public void onFailure(Call<Example> call, Throwable t) {
+
+                    call2.cancel();
+                }
+            });
+        } else {
+            EasyPermissions.requestPermissions(this, getString(R.string.read_file), READ_REQUEST_CODE, Manifest.permission.READ_EXTERNAL_STORAGE);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, SignupActivity.this);
+    }
+
+    @Override
+    public void onPermissionsGranted(int requestCode, List<String> perms) {
+        File file = new File(imagePath);
+
+        RequestBody name = RequestBody.create(MediaType.parse("multipart/form-data"), riderUser.getName());
+        RequestBody type = RequestBody.create(MediaType.parse("multipart/form-data"), riderUser.getType());
+        RequestBody number = RequestBody.create(MediaType.parse("multipart/form-data"), riderUser.getPhone());
+        RequestBody email = RequestBody.create(MediaType.parse("multipart/form-data"), riderUser.getEmail());
+        RequestBody gender = RequestBody.create(MediaType.parse("multipart/form-data"), riderUser.getGender());
+        RequestBody fileBody = RequestBody.create(MediaType.parse("image/*"), file);
+        MultipartBody.Part filePart = MultipartBody.Part.createFormData("photo", file.getName(), fileBody);
+        Call<Example> call2 = retrofitInterface.setUserInfo(filePart, name, number, email, gender, type);
         // Toast.makeText(getApplicationContext(), "imagee"+encodedImage, Toast.LENGTH_SHORT).show();
 
         call2.enqueue(new Callback<Example>() {
@@ -340,6 +448,8 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                     editor.putString("type", riderInfo.getType().toString());
                     editor.putString("number", riderInfo.getPhone().toString());
                     editor.putString("name", riderInfo.getName().toString());
+                    editor.putString("email", riderInfo.getEmail().toString());
+                    // editor.putStringSet("user", (Set<String>) riderInfo);
 
                     editor.commit();
                     Toast.makeText(getApplicationContext(), "Welcome to your profile :)", Toast.LENGTH_SHORT).show();
@@ -347,7 +457,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                     Intent i = new Intent(SignupActivity.this, Drawer_List.class);
 
 
-                   // i.putExtra("userInfo",riderInfo);
+                    // i.putExtra("userInfo",riderInfo);
                     startActivity(i);
 
                     finish();
@@ -370,6 +480,10 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
             }
         });
 
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, List<String> perms) {
 
     }
 

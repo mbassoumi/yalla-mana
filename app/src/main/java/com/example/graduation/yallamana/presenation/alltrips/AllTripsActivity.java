@@ -1,5 +1,6 @@
 package com.example.graduation.yallamana.presenation.alltrips;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -21,20 +22,39 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.example.graduation.yallamana.Drawer_List;
+import com.example.graduation.yallamana.OfferActivity;
 import com.example.graduation.yallamana.R;
 import com.example.graduation.yallamana.RequestActivity;
+import com.example.graduation.yallamana.util.network.api.Car;
+import com.example.graduation.yallamana.util.network.api.Cities;
+import com.example.graduation.yallamana.util.network.api.Data;
+import com.example.graduation.yallamana.util.network.api.Date;
+import com.example.graduation.yallamana.util.network.api.Example;
+import com.example.graduation.yallamana.util.network.api.Riders;
+import com.example.graduation.yallamana.util.network.api.Trip;
+import com.example.graduation.yallamana.util.network.api.TripAttr;
 import com.example.graduation.yallamana.util.network.api.Tripe;
 import com.example.graduation.yallamana.util.network.api.User1;
+import com.example.graduation.yallamana.util.network.retrofit.ApiClient;
+import com.example.graduation.yallamana.util.network.retrofit.RetrofitInterface;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AllTripsActivity extends AppCompatActivity {
     private Menu menu;
     private RecyclerView recyclerView;
     private TripsAdapter adapter;
-    private List<Tripe> tripeList;
+    private List<Trip> tripeList;
     private SharedPreferences sharedPreferences;
+    RetrofitInterface retrofitInterface;
+    String fromC, toC, time,priceT;
+    double price;
+    int riderNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +64,7 @@ public class AllTripsActivity extends AppCompatActivity {
         toolbar.setTitleTextColor(getResources().getColor(R.color.white));
         toolbar.setTitle("Trips");
         ///////////////////////////
+        retrofitInterface = ApiClient.getClient().create(RetrofitInterface.class);
 
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
         sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
@@ -57,7 +78,7 @@ public class AllTripsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(AllTripsActivity.this, Drawer_List.class);
                 User1 user = null;
-               // intent.putExtra("userInfo", user);
+                // intent.putExtra("userInfo", user);
                 startActivity(intent);
                 finish();
             }
@@ -72,10 +93,14 @@ public class AllTripsActivity extends AppCompatActivity {
                 String type = sharedPreferences.getString("type", "noValue");
                 if (type.equals("rider")) {
                     Intent intent = new Intent(AllTripsActivity.this, RequestActivity.class);
+                    intent.putExtra("back","all");
+
                     startActivity(intent);
                     finish();
                 } else {
-                    Intent intent = new Intent(AllTripsActivity.this, RequestActivity.class);
+                    Intent intent = new Intent(AllTripsActivity.this, OfferActivity.class);
+                    intent.putExtra("back","all");
+
                     startActivity(intent);
                     finish();
                 }
@@ -113,13 +138,92 @@ public class AllTripsActivity extends AppCompatActivity {
                 }
             }
         });
-        prepareTrips();
-
+       // prepareTrips();
+        getAllTrips();
 //        try {
 //            Glide.with(this).load(R.drawable.map_trips).into((ImageView) findViewById(R.id.backdrop));
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //        }
+    }
+
+    private void getAllTrips() {
+        final ProgressDialog progressDoalog;
+        progressDoalog = new ProgressDialog(AllTripsActivity.this);
+        progressDoalog.setMax(100);
+     //   progressDoalog.setMessage("Its loading....");
+      //  progressDoalog.setTitle("ProgressDialog bar example");
+        progressDoalog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        // show it
+        progressDoalog.show();
+        SharedPreferences sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
+        String token = "Bearer " + sharedPreferences.getString("token", "noValue");
+
+        Call<Example> call2 = retrofitInterface.getTrips(token);
+        call2.enqueue(new Callback<Example>() {
+
+            @Override
+            public void onResponse(Call<Example> call, Response<Example> response) {
+
+                Example example = response.body();
+                Data data = example.getData();
+                List<Trip> trips = data.getTrips();
+                Cities from, to;
+                Date dateTrip;
+                int[] covers = new int[]{
+                        R.drawable.person1,
+
+                        R.drawable.unknown_user,
+                        R.drawable.person2,
+                        R.drawable.unknown_user,
+                        R.drawable.person1,
+
+
+                };
+                int id,  seatsNumber;
+                User1 driver ;
+                Car car;
+                TripAttr attributes;
+                String stuats;
+                Riders riders;
+                boolean cancle, delete, reserve, hasUser;
+                for (int i = 0; i < trips.size(); i++) {
+                    from = trips.get(i).getStartPoint();
+                    to = trips.get(i).getEndPoint();
+                    fromC = from.getName().getEn().toString();
+                    toC = to.getName().getEn().toString();
+                    dateTrip = trips.get(i).getDate();
+                    time = dateTrip.getDate() + " " + dateTrip.getTime();
+                    price = trips.get(i).getPrice();
+                    priceT = price + " Nis";
+                    seatsNumber = trips.get(i).getSeatsNumber();
+                    id = trips.get(i).getId();
+                    driver = trips.get(i).getDriver();
+                    car = trips.get(i).getCar();
+                    attributes = trips.get(i).getAttributes();
+                    stuats = trips.get(i).getStuats();
+                    riders = trips.get(i).getRiders();
+                    cancle = trips.get(i).isCancle();
+                    delete = trips.get(i).isDelete();
+                    reserve = trips.get(i).isReserve();
+                    hasUser = trips.get(i).isHasUser();
+
+                    Trip a = new Trip(id, seatsNumber, from, to, driver, car, dateTrip, price, stuats, attributes, riders, cancle, delete, reserve, hasUser);
+                    tripeList.add(a);
+                }
+
+                adapter.notifyDataSetChanged();
+                progressDoalog.dismiss();
+
+            }
+
+            @Override
+            public void onFailure(Call<Example> call, Throwable t) {
+
+                progressDoalog.dismiss();
+                call2.cancel();
+            }
+        });
     }
 
     /**
@@ -159,28 +263,30 @@ public class AllTripsActivity extends AppCompatActivity {
 
      */
     private void prepareTrips() {
-        int[] covers = new int[]{
-                R.drawable.person1,
-
-                R.drawable.unknown_user,
-                R.drawable.person2,
-                R.drawable.unknown_user,
-                R.drawable.person1,
 
 
-        };
+//        int[] covers = new int[]{
+//                R.drawable.person1,
+//
+//                R.drawable.unknown_user,
+//                R.drawable.person2,
+//                R.drawable.unknown_user,
+//                R.drawable.person1,
+//
+//
+//        };
 
-        Tripe a = new Tripe("Ramallah", "13-12-2017", covers[0], "Nablus", "30 Nis");
-        tripeList.add(a);
-
-
-        a = new Tripe("Al-Bireh", "13-12-2017", covers[3], "Birzeit", "10 Nis");
-        tripeList.add(a);
-
-        a = new Tripe("Hebron", "13-12-2017", covers[0], "Jericho", "20 Nis");
-        tripeList.add(a);
-        a = new Tripe("Jericho", "13-12-2017", covers[1], "Nablus", "20 Nis");
-        tripeList.add(a);
+//        Tripe a = new Tripe("Ramallah", "13-12-2017", covers[0], "Nablus", "30 Nis");
+//        tripeList.add(a);
+//
+//
+//        a = new Tripe("Al-Bireh", "13-12-2017", covers[3], "Birzeit", "10 Nis");
+//        tripeList.add(a);
+//
+//        a = new Tripe("Hebron", "13-12-2017", covers[0], "Jericho", "20 Nis");
+//        tripeList.add(a);
+//        a = new Tripe("Jericho", "13-12-2017", covers[1], "Nablus", "20 Nis");
+//        tripeList.add(a);
 
         adapter.notifyDataSetChanged();
     }
@@ -253,10 +359,14 @@ public class AllTripsActivity extends AppCompatActivity {
             String type = sharedPreferences.getString("type", "noValue");
             if (type.equals("rider")) {
                 Intent intent = new Intent(AllTripsActivity.this, RequestActivity.class);
+                intent.putExtra("back","all");
+
                 startActivity(intent);
                 finish();
             } else {
-                Intent intent = new Intent(AllTripsActivity.this, RequestActivity.class);
+                Intent intent = new Intent(AllTripsActivity.this, OfferActivity.class);
+                intent.putExtra("back","all");
+
                 startActivity(intent);
                 finish();
             }

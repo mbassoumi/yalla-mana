@@ -1,13 +1,17 @@
 package com.example.graduation.yallamana.presenation.post;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -16,7 +20,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 
-
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
@@ -25,26 +30,50 @@ import android.widget.TextView;
 
 import com.example.graduation.yallamana.Drawer_List;
 import com.example.graduation.yallamana.R;
+import com.example.graduation.yallamana.presenation.post.fragments.AddPostFragment;
 import com.example.graduation.yallamana.presenation.post.utils.HomeViewPagerAdapter;
+import com.example.graduation.yallamana.presenation.post.utils.PostAdapter;
+import com.example.graduation.yallamana.util.network.api.Data;
+import com.example.graduation.yallamana.util.network.api.Example;
+import com.example.graduation.yallamana.util.network.api.Post;
+import com.example.graduation.yallamana.util.network.retrofit.ApiClient;
+import com.example.graduation.yallamana.util.network.retrofit.RetrofitInterface;
+
+import java.util.List;
+import java.util.Random;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class PostActivity extends AppCompatActivity  {
 
 
-    private Menu menu;
+   private Menu menu;
+    private List<Post> allPosts;
+    private PostAdapter postAdapter;
+    private Random random;
+    List <Post> myPost;
     TextView user_name;
     CollapsingToolbarLayout collapsingToolbarLayout;
+    SharedPreferences sharedPreferences;
+   TabLayout tabLayout;
+    ViewPager viewPager;
+    String name;
+    HomeViewPagerAdapter homeViewPagerAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post);
         final Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
-       ViewPager viewPager=(ViewPager)findViewById(R.id.viewPager);
+       viewPager=(ViewPager)findViewById(R.id.viewPager);
        user_name =(TextView)findViewById(R.id.user_name);
-      final TabLayout tabLayout=(TabLayout)findViewById(R.id.tabs);
+        tabLayout=(TabLayout)findViewById(R.id.tabs);
 
+        sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
+        name =  sharedPreferences.getString("name", "noValue");
 
-        HomeViewPagerAdapter homeViewPagerAdapter;
 
         mToolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
         mToolbar.setTitle("");
@@ -62,57 +91,17 @@ public class PostActivity extends AppCompatActivity  {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                AddPostFragment fragment = new AddPostFragment();
+                FragmentManager fragmentManager =getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
             }
         });
 
 
-        homeViewPagerAdapter = new HomeViewPagerAdapter(getSupportFragmentManager());
-        viewPager.setAdapter(homeViewPagerAdapter);
-        tabLayout.setupWithViewPager(viewPager);
-        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
-
-        tabLayout.getTabAt(0).setIcon(R.drawable.ic_home_black_24dp);
-        tabLayout.getTabAt(0).select();
-        tabLayout.getTabAt(0).getIcon().setColorFilter(ContextCompat.getColor(PostActivity.this, R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
-
-        tabLayout.getTabAt(1).setIcon(R.drawable.ic_dashboard_black_24dp);
-        tabLayout.getTabAt(2).setIcon(R.drawable.ic_notifications_black_24dp);
-
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                AppBarLayout appbar =(AppBarLayout)findViewById(R.id.appbar);
-                Toolbar toolbar =(Toolbar)findViewById(R.id.toolbar);
-              tab.getIcon().setColorFilter(ContextCompat.getColor(PostActivity.this, R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
-                if (tabLayout.getTabAt(1).isSelected()||tabLayout.getTabAt(2).isSelected()){
-                    CoordinatorLayout.LayoutParams params =(CoordinatorLayout.LayoutParams)appbar.getLayoutParams();
-                    params.height = 0; // COLLAPSED_HEIGHT
-
-                    appbar.setLayoutParams(params);
-                    appbar.setExpanded(false);
-                }
-                else{
-                    CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) appbar.getLayoutParams();
-                    params.height =370; // EXPANDED_HEIGHT
-
-                    appbar.setLayoutParams(params);
-                    appbar.setExpanded(true);}
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-                tab.getIcon().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_IN);
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
-
+      getPosts();
         AppBarLayout mAppBarLayout = (AppBarLayout) findViewById(R.id.appbar);
         mAppBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             boolean isShow = false;
@@ -120,14 +109,16 @@ public class PostActivity extends AppCompatActivity  {
 
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+
                 if (scrollRange == -1) {
                     scrollRange = appBarLayout.getTotalScrollRange();
                 }
                 if (scrollRange + verticalOffset == 0) {
                     isShow = true;
                     collapsingToolbarLayout =(CollapsingToolbarLayout)findViewById(R.id.collapsing_toolbar);
-                    collapsingToolbarLayout.setTitle(user_name.getText().toString());
+                  collapsingToolbarLayout.setTitle(name);
                     collapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE);
+
                     showOption(R.id.action_add);
 
 
@@ -136,10 +127,112 @@ public class PostActivity extends AppCompatActivity  {
                 } else if (isShow) {
                     isShow = false;
                    collapsingToolbarLayout =(CollapsingToolbarLayout)findViewById(R.id.collapsing_toolbar);
-                    collapsingToolbarLayout.setTitle("");
-
+                    collapsingToolbarLayout.setTitle(name);
+                 user_name.setText("");
                     hideOption(R.id.action_add);
                 }
+            }
+        });
+    }
+
+    private void getPosts() {
+
+        sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
+        String token = "Bearer " + sharedPreferences.getString("token", "noValue");
+        RetrofitInterface retrofitInterface;
+        retrofitInterface = ApiClient.getClient().create(RetrofitInterface.class);
+
+        Call<Example> call2 = retrofitInterface.getMyPosts(token);
+        call2.enqueue(new Callback<Example>() {
+
+
+            @Override
+            public void onResponse(Call<Example> call, Response<Example> response) {
+                Example example = response.body();
+                Data data = example.getData();
+                myPost=data.getPosts();
+                //find view by id and attaching adapter for the RecyclerView
+              getAll();
+
+
+            }
+
+            @Override
+            public void onFailure(Call<Example> call, Throwable t) {
+
+            }
+        });
+
+
+    }
+
+    private void getAll() {
+        sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
+        String token = "Bearer " + sharedPreferences.getString("token", "noValue");
+        RetrofitInterface retrofitInterface;
+        retrofitInterface = ApiClient.getClient().create(RetrofitInterface.class);
+
+        Call<Example> call2 = retrofitInterface.getAllPosts(token);
+        call2.enqueue(new Callback<Example>() {
+
+
+            @Override
+            public void onResponse(Call<Example> call, Response<Example> response) {
+                Example example = response.body();
+                Data data = example.getData();
+                allPosts=data.getPosts();
+                homeViewPagerAdapter = new HomeViewPagerAdapter(getSupportFragmentManager(),myPost,allPosts);
+                viewPager.setAdapter(homeViewPagerAdapter);
+                tabLayout.setupWithViewPager(viewPager);
+                tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+
+                tabLayout.getTabAt(0).setIcon(R.drawable.ic_home_black_24dp);
+                tabLayout.getTabAt(0).getIcon().setColorFilter(ContextCompat.getColor(PostActivity.this, R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
+                tabLayout.getTabAt(0).select();
+
+                tabLayout.getTabAt(1).setIcon(R.drawable.ic_dashboard_black_24dp);
+
+                tabLayout.getTabAt(2).setIcon(R.drawable.ic_notifications_black_24dp);
+
+                tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+                    @Override
+                    public void onTabSelected(TabLayout.Tab tab) {
+//                        AppBarLayout appbar =(AppBarLayout)findViewById(R.id.appbar);
+//                        Toolbar toolbar =(Toolbar)findViewById(R.id.toolbar);
+//                        tab.getIcon().setColorFilter(ContextCompat.getColor(PostActivity.this, R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
+//                        if (tabLayout.getTabAt(1).isSelected()||tabLayout.getTabAt(2).isSelected()){
+//                            CoordinatorLayout.LayoutParams params =(CoordinatorLayout.LayoutParams)appbar.getLayoutParams();
+//                            params.height = 0; // COLLAPSED_HEIGHT
+//                            appbar.setLayoutParams(params);
+//                           //toolbar.setTitle(name);
+//                            appbar.setExpanded(false);
+//                        }
+//                        else{
+//                            CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) appbar.getLayoutParams();
+//                            params.height =290*3; // EXPANDED_HEIGHT
+//                          user_name.setText(name);
+//
+//                            appbar.setLayoutParams(params);
+//                            appbar.setExpanded(true);}
+                    }
+
+                    @Override
+                    public void onTabUnselected(TabLayout.Tab tab) {
+                        tab.getIcon().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_IN);
+
+                    }
+
+                    @Override
+                    public void onTabReselected(TabLayout.Tab tab) {
+
+                    }
+                });
+
+            }
+
+            @Override
+            public void onFailure(Call<Example> call, Throwable t) {
+
             }
         });
     }
@@ -162,6 +255,12 @@ public class PostActivity extends AppCompatActivity  {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_add) {
+            AddPostFragment fragment = new AddPostFragment();
+            FragmentManager fragmentManager =getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.fragment, fragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
             return true;
         }
 

@@ -71,7 +71,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="32dp"
                         android:fontFamily="sans-serif-condensed"
-                        android:text="User name"
                         android:textColor="@android:color/background_light"
                         android:textSize="24dp"
                         android:textStyle="bold" />

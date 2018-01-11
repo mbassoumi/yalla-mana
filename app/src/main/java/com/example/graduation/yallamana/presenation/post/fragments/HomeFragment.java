@@ -1,12 +1,11 @@
 package com.example.graduation.yallamana.presenation.post.fragments;
 
 
-import android.graphics.Color;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -23,13 +22,19 @@ import android.widget.TextView;
 
 import com.example.graduation.yallamana.R;
 import com.example.graduation.yallamana.presenation.post.utils.PostAdapter;
-import com.example.graduation.yallamana.presenation.post.Post;
-import com.example.graduation.yallamana.util.network.api.Tripe;
+import com.example.graduation.yallamana.util.network.api.Data;
+import com.example.graduation.yallamana.util.network.api.Example;
+import com.example.graduation.yallamana.util.network.api.Post;
+import com.example.graduation.yallamana.util.network.api.Trip;
+import com.example.graduation.yallamana.util.network.retrofit.ApiClient;
+import com.example.graduation.yallamana.util.network.retrofit.RetrofitInterface;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.zip.Inflater;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 /**
@@ -44,8 +49,9 @@ public class HomeFragment extends android.support.v4.app.Fragment {
     private Random random;
     private Menu menu;
     TextView user_name;
+    List <Post> myPost;
     CollapsingToolbarLayout collapsingToolbarLayout;
-
+    SharedPreferences sharedPreferences;
 
     @Nullable
     @Override
@@ -59,67 +65,22 @@ public class HomeFragment extends android.support.v4.app.Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        myPost = (List<Post>) getArguments().getSerializable("my");
 
 
-        posts = new ArrayList<>();
+
+
         random = new Random();
 
-        //set dummy data
 
 
-        Post post = new Post();
-        post.setName("Mais AbuHelou ");
-        post.setDate("9-1-2018");
-        post.setPost("Hi i want t say hi ");
-        posts.add(post);
-        post.setName("Mais AbuHelou ");
-        post.setDate("11-1-2018");
-        post.setPost("There is any one here want to go to Jericho ");
-        posts.add(post);
-
-
-//        for (int i = 0; i < 3; i++) {
-//            Post post = new Post();
-//            post.setName("Mais helou ");
-//            post.setDate("9-1-2018");
-//            post.setPost("Hi i want t say hi ");
-//            posts.add(post);
-//        }
         //find view by id and attaching adapter for the RecyclerView
         RecyclerView recyclerView = (RecyclerView) getActivity().findViewById(R.id.recycler_view1);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        postAdapter = new PostAdapter(recyclerView, posts, getActivity());
+        postAdapter = new PostAdapter(recyclerView, myPost, getActivity(),sharedPreferences);
         recyclerView.setAdapter(postAdapter);
 
 
-//        AppBarLayout mAppBarLayout = (AppBarLayout) getActivity().findViewById(R.id.appbar);
-//        mAppBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
-//            boolean isShow = false;
-//            int scrollRange = -1;
-//
-//            @Override
-//            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-//                if (scrollRange == -1) {
-//                    scrollRange = appBarLayout.getTotalScrollRange();
-//                }
-//                if (scrollRange + verticalOffset == 0) {
-//                    isShow = true;
-//                    collapsingToolbarLayout = (CollapsingToolbarLayout) getActivity().findViewById(R.id.collapsing_toolbar);
-//                    collapsingToolbarLayout.setTitle(user_name.getText().toString());
-//                    collapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE);
-//                    showOption(R.id.action_add);
-//
-//
-//                    showOption(R.id.action_add);
-//                } else if (isShow) {
-//                    isShow = false;
-//                    collapsingToolbarLayout = (CollapsingToolbarLayout) getActivity().findViewById(R.id.collapsing_toolbar);
-//                    collapsingToolbarLayout.setTitle("");
-//
-//                    hideOption(R.id.action_add);
-//                }
-//            }
-//        });
     }
 
 

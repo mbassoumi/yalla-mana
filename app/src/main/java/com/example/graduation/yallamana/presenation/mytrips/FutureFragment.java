@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.graduation.yallamana.R;
+import com.example.graduation.yallamana.util.network.api.Trip;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,9 +25,12 @@ public class FutureFragment extends Fragment {
 
 
     RecyclerView recyclerView;
-    private List<Trips> trips;
+    private List<Trip> trips;
     private TripAdapter tripAdapter;
     private Random random;
+
+
+
 
 
     @Nullable
@@ -34,21 +38,6 @@ public class FutureFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(
                 R.layout.fragment_future, container, false);
-//        final CollapsingToolbarLayout toolbarC = (CollapsingToolbarLayout)getActivity().findViewById(R.id.collapsing_toolbar);
-//
-//        toolbarC.setVisibility(View.GONE);
-//
-//        AppBarLayout appbar = (AppBarLayout)getActivity(). findViewById(R.id.appbar);
-//        Toolbar toolbar= (Toolbar)getActivity(). findViewById(R.id.toolbar);
-//        ImageView image = (ImageView) getActivity().findViewById(R.id.backdrop);
-//        TextView text =(TextView)getActivity().findViewById(R.id.user_name);
-//        appbar.setVisibility(View.GONE);
-//        toolbar.setVisibility(View.GONE);
-//        appbar.setVisibility(View.GONE);
-//        appbar.setExpanded(false);
-//
-//        text.setVisibility(View.GONE);
-
 
         return rootView;
     }
@@ -56,29 +45,26 @@ public class FutureFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        trips  = (List<Trip>) getArguments().getSerializable("futures");
 
 
-//        android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar) getActivity().findViewById(R.id.toolbar);
 //
-//        toolbar.setTitle("All contents");
-//        // Person p = new Person("Mais","21",1);
-
-       trips = new ArrayList<>();
+//       trips = new ArrayList<>();
         random = new Random();
 
-        //set dummy data
-        for (int i = 0; i < 10; i++) {
-            Trips trip = new Trips();
-            trip.setFrom("Ramallah");
-            trip.setDate("3-12-2017");
-            trip.setTo("Nablus");
-            trips.add(trip);
-        }
+//        //set dummy data
+//        for (int i = 0; i < 10; i++) {
+//            Trips trip = new Trips();
+//            trip.setFrom("Nablus");
+//            trip.setDate("1-2-2018 10:00");
+//            trip.setTo("Ramallah");
+//            trips.add(trip);
+//        }
         //find view by id and attaching adapter for the RecyclerView
         RecyclerView recyclerView = (RecyclerView)getActivity(). findViewById(R.id.recycler_view5);
-      final  FloatingActionButton mFab =(FloatingActionButton)getActivity().findViewById(R.id.fab);
+    //  final  FloatingActionButton mFab =(FloatingActionButton)getActivity().findViewById(R.id.fab);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        tripAdapter = new TripAdapter(recyclerView, trips, getActivity());
+        tripAdapter = new TripAdapter(recyclerView, trips,getActivity(),"future");
         recyclerView.setAdapter(tripAdapter);
 
 
@@ -86,11 +72,5 @@ public class FutureFragment extends Fragment {
     }
 
 
-    /*    RecyclerView rv = (RecyclerView)getActivity().findViewById(R.id.rv);
-        rv.setHasFixedSize(true);
 
-
-        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
-        rv.setLayoutManager(llm);
-       */
 }

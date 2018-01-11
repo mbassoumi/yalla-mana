@@ -1,14 +1,22 @@
 package com.example.graduation.yallamana.util.network.api;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
 
 /**
  * Created by m_7el on 1/6/2018.
  */
 
-public class Trip {
+public class Trip  implements Parcelable{
 
+    @SerializedName("id")
+    @Expose
+    private int id ;
     @SerializedName("seats_number")
     @Expose
     private int seatsNumber;
@@ -28,7 +36,7 @@ public class Trip {
     private Car car;
     @SerializedName("date")
     @Expose
-    private String date;
+    private Date date;
     @SerializedName("price")
     @Expose
     private double price;
@@ -50,15 +58,75 @@ public class Trip {
     @SerializedName("can_reserve")
     @Expose
     private boolean reserve;
-
-    public Trip(int seatsNumber, Cities startPoint, Cities endPoint,String date, double price, String stuats, TripAttr attributes) {
+    @SerializedName("has_user")
+    @Expose
+    private boolean hasUser;
+    public Trip(int id, int seatsNumber, Cities startPoint, Cities endPoint,
+                User1 driver, Car car, Date date, double price, String stuats,
+                TripAttr attributes, Riders riders,boolean cancle,
+                boolean delete, boolean reserve, boolean hasUser) {
+        this.id = id;
         this.seatsNumber = seatsNumber;
         this.startPoint = startPoint;
         this.endPoint = endPoint;
+        this.driver = driver;
+        this.car = car;
         this.date = date;
         this.price = price;
         this.stuats = stuats;
         this.attributes = attributes;
+        this.riders = riders;
+        this.cancle = cancle;
+        this.delete = delete;
+        this.reserve = reserve;
+        this.hasUser = hasUser;
+    }
+
+    protected Trip(Parcel in) {
+        id = in.readInt();
+        seatsNumber = in.readInt();
+        price = in.readDouble();
+        stuats = in.readString();
+        cancle = in.readByte() != 0;
+        delete = in.readByte() != 0;
+        reserve = in.readByte() != 0;
+        hasUser = in.readByte() != 0;
+    }
+
+    public static final Creator<Trip> CREATOR = new Creator<Trip>() {
+        @Override
+        public Trip createFromParcel(Parcel in) {
+            return new Trip(in);
+        }
+
+        @Override
+        public Trip[] newArray(int size) {
+            return new Trip[size];
+        }
+    };
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public boolean isHasUser() {
+        return hasUser;
+    }
+
+    public void setHasUser(boolean hasUser) {
+        this.hasUser = hasUser;
     }
 
     public int getSeatsNumber() {
@@ -99,14 +167,6 @@ public class Trip {
 
     public void setCar(Car car) {
         this.car = car;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
     }
 
     public double getPrice() {
@@ -163,5 +223,23 @@ public class Trip {
 
     public void setReserve(boolean reserve) {
         this.reserve = reserve;
+    }
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeInt(seatsNumber);
+        dest.writeDouble(price);
+        dest.writeString(stuats);
+        dest.writeByte((byte) (cancle ? 1 : 0));
+        dest.writeByte((byte) (delete ? 1 : 0));
+        dest.writeByte((byte) (reserve ? 1 : 0));
+        dest.writeByte((byte) (hasUser ? 1 : 0));
     }
 }

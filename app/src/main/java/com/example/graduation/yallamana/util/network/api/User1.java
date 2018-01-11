@@ -21,6 +21,9 @@ public class User1 implements Serializable {
     @SerializedName("api_token")
     @Expose
     private String apiToken;
+    @SerializedName("email")
+    @Expose
+    private String email;
     @SerializedName("photo")
     @Expose
     private Object photo;
@@ -133,4 +136,11 @@ public class User1 implements Serializable {
         this.deletedAt = deletedAt;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }

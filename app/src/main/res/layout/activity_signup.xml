@@ -146,14 +146,16 @@
             android:visibility="visible" />
 
 
-        <ImageButton
+        <ImageView
             android:id="@+id/userImage"
-            android:layout_width="wrap_content"
+            android:layout_width="130dp"
             android:layout_height="130dp"
-            android:layout_alignEnd="@+id/linear"
-            android:layout_alignRight="@+id/linear"
-            android:layout_alignTop="@+id/firstName"
-            android:background="@color/white"
+            android:layout_above="@+id/mobil"
+            android:layout_alignLeft="@+id/spinner5"
+            android:layout_alignStart="@+id/spinner5"
+            android:adjustViewBounds="true"
+
+            android:scaleType="fitXY"
             android:src="@drawable/unknown_user" />
 
         <android.support.v7.widget.LinearLayoutCompat
@@ -176,12 +178,14 @@
                 android:orientation="vertical"
                 android:weightSum="2">
 
-                <ImageButton
+                <ImageView
                     android:id="@+id/rider"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_weight="1"
                     android:background="#FFFFFF"
+                    android:scaleType="fitXY"
+
                     android:src="@drawable/ic_person_outline_black_24dp" />
 
                 <TextView
@@ -203,11 +207,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="64dp"
                 android:layout_weight="1"
+
                 android:orientation="vertical"
                 android:weightSum="2">
 
 
-                <ImageButton
+                <ImageView
                     android:id="@+id/driver"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
@@ -216,6 +221,8 @@
                     android:layout_alignRight="@+id/linear"
                     android:layout_alignTop="@+id/linear"
                     android:layout_weight="1"
+                    android:scaleType="fitXY"
+
                     android:background="#FFFFFF"
                     android:src="@drawable/ic_directions_car_black_48dp" />
 

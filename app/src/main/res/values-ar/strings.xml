@@ -293,6 +293,7 @@
     <string name="car_model">Car model:</string>
     <string name="car_year">Car year:</string>
     <string name="car_type">Car type:</string>
+    <string name="splash">splash</string>
 
     <string-array name="gender_arrays">
 

@@ -25,6 +25,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -318,7 +319,7 @@ String modeeel=carModeel.getText().toString();
         //  addListenerOnSpinnerItemSelection();
         attributess=new Attributes(carType,bankAccount,check2,check1);
 
-        ImageButton LicenseImage = (ImageButton) findViewById(R.id.licenseImage);
+        ImageView LicenseImage = (ImageView) findViewById(R.id.licenseImage);
 
         LicenseImage.setOnClickListener(new View.OnClickListener() {
 
@@ -332,7 +333,7 @@ String modeeel=carModeel.getText().toString();
             }
 
         });
-        ImageButton idImage = (ImageButton) findViewById(R.id.idImage);
+        ImageView idImage = (ImageView) findViewById(R.id.idImage);
 
         idImage.setOnClickListener(new View.OnClickListener() {
 
@@ -350,34 +351,34 @@ String modeeel=carModeel.getText().toString();
     }
 
     private void skip(NewUser driverUser) {
-
-        Call<Example> call2 = retrofitInterface.setUserInfo(driverUser);
-        // Toast.makeText(getApplicationContext(), "imagee"+encodedImage, Toast.LENGTH_SHORT).show();
-
-        call2.enqueue(new Callback<Example>() {
-            @Override
-            public void onResponse(Call<Example> call, Response<Example> response) {
-
-                if (response.code() == 403) {
-                Toast.makeText(getApplicationContext(), "Thank you , we will contact you soon :)", Toast.LENGTH_SHORT).show();
-                moveToMyProfile();
-            }
-
-
-                else {
-                    Toast.makeText(getApplicationContext(), response.message().toString(), Toast.LENGTH_LONG).show();
-
-                }
-            }
-
-
-            @Override
-            public void onFailure(Call<Example> call, Throwable t) {
-
-                call2.cancel();
-            }
-        });
-
+//
+//        Call<Example> call2 = retrofitInterface.setUserInfo(driverUser);
+//        // Toast.makeText(getApplicationContext(), "imagee"+encodedImage, Toast.LENGTH_SHORT).show();
+//
+//        call2.enqueue(new Callback<Example>() {
+//            @Override
+//            public void onResponse(Call<Example> call, Response<Example> response) {
+//
+//                if (response.code() == 403) {
+//                Toast.makeText(getApplicationContext(), "Thank you , we will contact you soon :)", Toast.LENGTH_SHORT).show();
+//                moveToMyProfile();
+//            }
+//
+//
+//                else {
+//                    Toast.makeText(getApplicationContext(), response.message().toString(), Toast.LENGTH_LONG).show();
+//
+//                }
+//            }
+//
+//
+//            @Override
+//            public void onFailure(Call<Example> call, Throwable t) {
+//
+//                call2.cancel();
+//            }
+//        });
+//
 
     }
 
