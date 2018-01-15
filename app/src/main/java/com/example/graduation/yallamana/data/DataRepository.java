@@ -3,13 +3,6 @@ package com.example.graduation.yallamana.data;
 
 import com.example.graduation.yallamana.data.local.LocalDataSource;
 import com.example.graduation.yallamana.data.remote.RemoteDataSource;
-import com.example.graduation.yallamana.util.network.api.Comment;
-import com.example.graduation.yallamana.util.network.api.CommentReaction;
-import com.example.graduation.yallamana.util.network.api.Post;
-import com.example.graduation.yallamana.util.network.api.PostReaction;
-import com.example.graduation.yallamana.util.network.api.User;
-
-import java.util.List;
 
 import io.reactivex.Observable;
 
@@ -36,12 +29,12 @@ public class DataRepository {
         return dataRepository;
     }
 
-    public Observable<Boolean> getToken(String usernumber) {
-        if (remote)
-            return remoteDataSource.getToken(usernumber);
-        else
-            return localDataSource.getToken(usernumber);
-    }
+//    public Observable<Boolean> getToken(String usernumber) {
+//        if (remote)
+//            return remoteDataSource.getToken(usernumber);
+//        else
+//            return localDataSource.getToken(usernumber);
+//    }
 
 //    public Observable<User> getUser(String username) {
 //        if (remote)

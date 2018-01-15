@@ -19,7 +19,7 @@ import android.widget.Toast;
 import com.example.graduation.yallamana.presenation.login.MainActivity;
 import com.example.graduation.yallamana.presenation.signup.SignupActivity;
 import com.example.graduation.yallamana.util.Navigator;
-
+import com.example.graduation.yallamana.util.network.api.User1;
 
 
 public class SplashActivity extends Activity {
@@ -65,9 +65,9 @@ public class SplashActivity extends Activity {
               finish();
           }
       //Intent t= new Intent(getApplicationContext(),SignupActivity.class);
-               
+
   //   t.putExtra("userPhon"," ");
-  
+
 
                          
 
@@ -93,6 +93,9 @@ public class SplashActivity extends Activity {
                     else {
 
                         Intent my =new Intent(SplashActivity.this,Drawer_List.class);
+                        User1 user=null;
+
+                        my.putExtra("userInfo",user);
                         startActivity(my);
                         finish();
                     }

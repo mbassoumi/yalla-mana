@@ -20,6 +20,7 @@ import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.graduation.yallamana.Drawer_List;
 import com.example.graduation.yallamana.OfferActivity;
@@ -33,7 +34,6 @@ import com.example.graduation.yallamana.util.network.api.Example;
 import com.example.graduation.yallamana.util.network.api.Riders;
 import com.example.graduation.yallamana.util.network.api.Trip;
 import com.example.graduation.yallamana.util.network.api.TripAttr;
-import com.example.graduation.yallamana.util.network.api.Tripe;
 import com.example.graduation.yallamana.util.network.api.User1;
 import com.example.graduation.yallamana.util.network.retrofit.ApiClient;
 import com.example.graduation.yallamana.util.network.retrofit.RetrofitInterface;
@@ -49,12 +49,19 @@ public class AllTripsActivity extends AppCompatActivity {
     private Menu menu;
     private RecyclerView recyclerView;
     private TripsAdapter adapter;
+
+
     private List<Trip> tripeList;
     private SharedPreferences sharedPreferences;
     RetrofitInterface retrofitInterface;
-    String fromC, toC, time,priceT;
+    String fromC, toC, time, priceT;
     double price;
     int riderNumber;
+
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +85,7 @@ public class AllTripsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(AllTripsActivity.this, Drawer_List.class);
                 User1 user = null;
-                // intent.putExtra("userInfo", user);
+                intent.putExtra("userInfo", user);
                 startActivity(intent);
                 finish();
             }
@@ -93,13 +100,13 @@ public class AllTripsActivity extends AppCompatActivity {
                 String type = sharedPreferences.getString("type", "noValue");
                 if (type.equals("rider")) {
                     Intent intent = new Intent(AllTripsActivity.this, RequestActivity.class);
-                    intent.putExtra("back","all");
+                    intent.putExtra("back", "all");
 
                     startActivity(intent);
                     finish();
                 } else {
                     Intent intent = new Intent(AllTripsActivity.this, OfferActivity.class);
-                    intent.putExtra("back","all");
+                    intent.putExtra("back", "all");
 
                     startActivity(intent);
                     finish();
@@ -138,7 +145,7 @@ public class AllTripsActivity extends AppCompatActivity {
                 }
             }
         });
-       // prepareTrips();
+        // prepareTrips();
         getAllTrips();
 //        try {
 //            Glide.with(this).load(R.drawable.map_trips).into((ImageView) findViewById(R.id.backdrop));
@@ -151,12 +158,12 @@ public class AllTripsActivity extends AppCompatActivity {
         final ProgressDialog progressDoalog;
         progressDoalog = new ProgressDialog(AllTripsActivity.this);
         progressDoalog.setMax(100);
-     //   progressDoalog.setMessage("Its loading....");
-      //  progressDoalog.setTitle("ProgressDialog bar example");
+         progressDoalog.setMessage("loading....");
+        //  progressDoalog.setTitle("ProgressDialog bar example");
         progressDoalog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         // show it
         progressDoalog.show();
-        SharedPreferences sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
+       sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
         String token = "Bearer " + sharedPreferences.getString("token", "noValue");
 
         Call<Example> call2 = retrofitInterface.getTrips(token);
@@ -164,24 +171,16 @@ public class AllTripsActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(Call<Example> call, Response<Example> response) {
-
+            if (response.code()==200){
                 Example example = response.body();
                 Data data = example.getData();
                 List<Trip> trips = data.getTrips();
                 Cities from, to;
+
                 Date dateTrip;
-                int[] covers = new int[]{
-                        R.drawable.person1,
 
-                        R.drawable.unknown_user,
-                        R.drawable.person2,
-                        R.drawable.unknown_user,
-                        R.drawable.person1,
-
-
-                };
-                int id,  seatsNumber;
-                User1 driver ;
+                int id, seatsNumber;
+                User1 driver;
                 Car car;
                 TripAttr attributes;
                 String stuats;
@@ -213,7 +212,12 @@ public class AllTripsActivity extends AppCompatActivity {
                 }
 
                 adapter.notifyDataSetChanged();
-                progressDoalog.dismiss();
+                progressDoalog.dismiss();}
+else{
+    progressDoalog.dismiss();
+    Toast.makeText(getApplicationContext(), "something goes wrong", Toast.LENGTH_LONG).show();
+
+}
 
             }
 
@@ -262,34 +266,6 @@ public class AllTripsActivity extends AppCompatActivity {
     /**
 
      */
-    private void prepareTrips() {
-
-
-//        int[] covers = new int[]{
-//                R.drawable.person1,
-//
-//                R.drawable.unknown_user,
-//                R.drawable.person2,
-//                R.drawable.unknown_user,
-//                R.drawable.person1,
-//
-//
-//        };
-
-//        Tripe a = new Tripe("Ramallah", "13-12-2017", covers[0], "Nablus", "30 Nis");
-//        tripeList.add(a);
-//
-//
-//        a = new Tripe("Al-Bireh", "13-12-2017", covers[3], "Birzeit", "10 Nis");
-//        tripeList.add(a);
-//
-//        a = new Tripe("Hebron", "13-12-2017", covers[0], "Jericho", "20 Nis");
-//        tripeList.add(a);
-//        a = new Tripe("Jericho", "13-12-2017", covers[1], "Nablus", "20 Nis");
-//        tripeList.add(a);
-
-        adapter.notifyDataSetChanged();
-    }
 
     /**
      * RecyclerView item decoration - give equal margin around grid item
@@ -359,13 +335,13 @@ public class AllTripsActivity extends AppCompatActivity {
             String type = sharedPreferences.getString("type", "noValue");
             if (type.equals("rider")) {
                 Intent intent = new Intent(AllTripsActivity.this, RequestActivity.class);
-                intent.putExtra("back","all");
+                intent.putExtra("back", "all");
 
                 startActivity(intent);
                 finish();
             } else {
                 Intent intent = new Intent(AllTripsActivity.this, OfferActivity.class);
-                intent.putExtra("back","all");
+                intent.putExtra("back", "all");
 
                 startActivity(intent);
                 finish();

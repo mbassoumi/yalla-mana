@@ -1,16 +1,21 @@
 package com.example.graduation.yallamana.presenation.post.utils;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.MultiAutoCompleteTextView;
 import android.widget.TextView;
 
 import com.example.graduation.yallamana.R;
+import com.example.graduation.yallamana.Trip_information;
+import com.example.graduation.yallamana.presenation.post.PostActivity;
 import com.example.graduation.yallamana.util.network.api.Comment;
 
 import java.util.List;
@@ -25,6 +30,7 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private List<Comment> comments;
     private int visibleThreshold = 5;
     private int lastVisibleItem, totalItemCount;
+    private Context mContext;
 
     public CommentAdapter(RecyclerView recyclerView, List<Comment> comments, Activity activity) {
         this.comments = comments;
@@ -61,8 +67,9 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         if (holder instanceof UserViewHolder) {
            Comment comment = comments.get(position);
             UserViewHolder userViewHolder = (UserViewHolder) holder;
-            userViewHolder.name.setText(comment.getUserID().getName());
-          userViewHolder.comment.setText(comment.getBody());
+            userViewHolder.name.setText(comment.getUserID().getName().toString());
+            userViewHolder.comment.setText(comment.getBody().toString());
+
 
         }
     }
@@ -81,14 +88,15 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     private class UserViewHolder extends RecyclerView.ViewHolder {
         public TextView name;
-        public MultiAutoCompleteTextView comment;
+        public TextView comment;
         public ImageView comentedimage;
+
 
         public UserViewHolder(View view) {
             super(view);
-            name = (TextView) view.findViewById(R.id.txt_name);
-          comment=(MultiAutoCompleteTextView) view.findViewById(R.id.comment_area);
-          comentedimage=(ImageView)view.findViewById(R.id.imageView3);
+            name = (TextView) view.findViewById(R.id.user_name);
+          comment=(TextView) view.findViewById(R.id.comment_area);
+            comentedimage=(ImageView)view.findViewById(R.id.imageView3);
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.example.graduation.yallamana.presenation.post;
 
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -27,9 +28,11 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.graduation.yallamana.Drawer_List;
 import com.example.graduation.yallamana.R;
+import com.example.graduation.yallamana.presenation.alltrips.AllTripsActivity;
 import com.example.graduation.yallamana.presenation.post.fragments.AddPostFragment;
 import com.example.graduation.yallamana.presenation.post.utils.HomeViewPagerAdapter;
 import com.example.graduation.yallamana.presenation.post.utils.PostAdapter;
@@ -53,6 +56,7 @@ public class PostActivity extends AppCompatActivity  {
     private List<Post> allPosts;
     private PostAdapter postAdapter;
     private Random random;
+    ProgressDialog progressDoalog;
     List <Post> myPost;
     TextView user_name;
     CollapsingToolbarLayout collapsingToolbarLayout;
@@ -61,6 +65,8 @@ public class PostActivity extends AppCompatActivity  {
     ViewPager viewPager;
     String name;
     HomeViewPagerAdapter homeViewPagerAdapter;
+    private FloatingActionButton fab;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,6 +81,11 @@ public class PostActivity extends AppCompatActivity  {
         name =  sharedPreferences.getString("name", "noValue");
 
 
+        progressDoalog = new ProgressDialog(PostActivity.this);
+        progressDoalog.setMax(100);
+        progressDoalog.setMessage("loading....");
+        //  progressDoalog.setTitle("ProgressDialog bar example");
+        progressDoalog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         mToolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
         mToolbar.setTitle("");
         setSupportActionBar(mToolbar);
@@ -87,14 +98,15 @@ public class PostActivity extends AppCompatActivity  {
                 finish();
             }
         });
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+     fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                fab.hide();
                 AddPostFragment fragment = new AddPostFragment();
                 FragmentManager fragmentManager =getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment, fragment);
+                fragmentTransaction.replace(R.id.main_content, fragment);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
             }
@@ -102,6 +114,10 @@ public class PostActivity extends AppCompatActivity  {
 
 
       getPosts();
+        collapsingToolbarLayout =(CollapsingToolbarLayout)findViewById(R.id.collapsing_toolbar);
+        collapsingToolbarLayout.setTitle(name);
+        collapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE);
+
         AppBarLayout mAppBarLayout = (AppBarLayout) findViewById(R.id.appbar);
         mAppBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             boolean isShow = false;
@@ -115,9 +131,6 @@ public class PostActivity extends AppCompatActivity  {
                 }
                 if (scrollRange + verticalOffset == 0) {
                     isShow = true;
-                    collapsingToolbarLayout =(CollapsingToolbarLayout)findViewById(R.id.collapsing_toolbar);
-                  collapsingToolbarLayout.setTitle(name);
-                    collapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE);
 
                     showOption(R.id.action_add);
 
@@ -126,17 +139,18 @@ public class PostActivity extends AppCompatActivity  {
                     showOption(R.id.action_add);
                 } else if (isShow) {
                     isShow = false;
-                   collapsingToolbarLayout =(CollapsingToolbarLayout)findViewById(R.id.collapsing_toolbar);
-                    collapsingToolbarLayout.setTitle(name);
-                 user_name.setText("");
+
                     hideOption(R.id.action_add);
                 }
             }
         });
     }
 
+
     private void getPosts() {
 
+        // show it
+        progressDoalog.show();
         sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
         String token = "Bearer " + sharedPreferences.getString("token", "noValue");
         RetrofitInterface retrofitInterface;
@@ -148,17 +162,25 @@ public class PostActivity extends AppCompatActivity  {
 
             @Override
             public void onResponse(Call<Example> call, Response<Example> response) {
-                Example example = response.body();
-                Data data = example.getData();
-                myPost=data.getPosts();
-                //find view by id and attaching adapter for the RecyclerView
-              getAll();
+                if(response.code()==200) {
+                    Example example = response.body();
+                    Data data = example.getData();
+                    myPost = data.getPosts();
+                    //find view by id and attaching adapter for the RecyclerView
+                    getAll();
+                }
+else{
+                    progressDoalog.dismiss();
+                    Toast.makeText(getApplicationContext(), "something goes wrong", Toast.LENGTH_LONG).show();
 
-
+                }
             }
 
             @Override
             public void onFailure(Call<Example> call, Throwable t) {
+                progressDoalog.dismiss();
+                Toast.makeText(getApplicationContext(), "something goes wrong", Toast.LENGTH_LONG).show();
+
 
             }
         });
@@ -178,28 +200,49 @@ public class PostActivity extends AppCompatActivity  {
 
             @Override
             public void onResponse(Call<Example> call, Response<Example> response) {
-                Example example = response.body();
-                Data data = example.getData();
-                allPosts=data.getPosts();
-                homeViewPagerAdapter = new HomeViewPagerAdapter(getSupportFragmentManager(),myPost,allPosts);
-                viewPager.setAdapter(homeViewPagerAdapter);
-                tabLayout.setupWithViewPager(viewPager);
-                tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+                if (response.code()==200) {
+                    Example example = response.body();
+                    Data data = example.getData();
+                    allPosts = data.getPosts();
 
-                tabLayout.getTabAt(0).setIcon(R.drawable.ic_home_black_24dp);
-                tabLayout.getTabAt(0).getIcon().setColorFilter(ContextCompat.getColor(PostActivity.this, R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
-                tabLayout.getTabAt(0).select();
+                    progressDoalog.dismiss();}
+                else{
+                    progressDoalog.dismiss();
+                    Toast.makeText(getApplicationContext(), "something goes wrong", Toast.LENGTH_LONG).show();
 
-                tabLayout.getTabAt(1).setIcon(R.drawable.ic_dashboard_black_24dp);
 
-                tabLayout.getTabAt(2).setIcon(R.drawable.ic_notifications_black_24dp);
+                }
+            }
 
-                tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-                    @Override
-                    public void onTabSelected(TabLayout.Tab tab) {
+            @Override
+            public void onFailure(Call<Example> call, Throwable t) {
+                progressDoalog.dismiss();
+                Toast.makeText(getApplicationContext(), "something goes wrong", Toast.LENGTH_LONG).show();
+
+
+            }
+        });
+        homeViewPagerAdapter = new HomeViewPagerAdapter(getSupportFragmentManager(), myPost, allPosts);
+        viewPager.setAdapter(homeViewPagerAdapter);
+        tabLayout.setupWithViewPager(viewPager);
+        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+
+        tabLayout.getTabAt(0).setIcon(R.drawable.ic_home_black_24dp);
+        tabLayout.getTabAt(0).getIcon().setColorFilter(ContextCompat.getColor(PostActivity.this, R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
+
+        tabLayout.getTabAt(1).setIcon(R.drawable.ic_dashboard_black_24dp);
+        tabLayout.getTabAt(1).select();
+
+
+        tabLayout.getTabAt(2).setIcon(R.drawable.ic_notifications_black_24dp);
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.getCurrentItem();
 //                        AppBarLayout appbar =(AppBarLayout)findViewById(R.id.appbar);
 //                        Toolbar toolbar =(Toolbar)findViewById(R.id.toolbar);
-//                        tab.getIcon().setColorFilter(ContextCompat.getColor(PostActivity.this, R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
+                tab.getIcon().setColorFilter(ContextCompat.getColor(PostActivity.this, R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
 //                        if (tabLayout.getTabAt(1).isSelected()||tabLayout.getTabAt(2).isSelected()){
 //                            CoordinatorLayout.LayoutParams params =(CoordinatorLayout.LayoutParams)appbar.getLayoutParams();
 //                            params.height = 0; // COLLAPSED_HEIGHT
@@ -214,24 +257,16 @@ public class PostActivity extends AppCompatActivity  {
 //
 //                            appbar.setLayoutParams(params);
 //                            appbar.setExpanded(true);}
-                    }
+            }
 
-                    @Override
-                    public void onTabUnselected(TabLayout.Tab tab) {
-                        tab.getIcon().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_IN);
-
-                    }
-
-                    @Override
-                    public void onTabReselected(TabLayout.Tab tab) {
-
-                    }
-                });
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+                tab.getIcon().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_IN);
 
             }
 
             @Override
-            public void onFailure(Call<Example> call, Throwable t) {
+            public void onTabReselected(TabLayout.Tab tab) {
 
             }
         });
@@ -255,10 +290,11 @@ public class PostActivity extends AppCompatActivity  {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_add) {
+            fab.hide();
             AddPostFragment fragment = new AddPostFragment();
             FragmentManager fragmentManager =getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.fragment, fragment);
+            fragmentTransaction.replace(R.id.main_content, fragment);
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
             return true;

@@ -4,13 +4,6 @@ package com.example.graduation.yallamana.data;
 /**
  * Created by Mais
  */
-import com.example.graduation.yallamana.util.network.api.Comment;
-import com.example.graduation.yallamana.util.network.api.CommentReaction;
-import com.example.graduation.yallamana.util.network.api.Post;
-import com.example.graduation.yallamana.util.network.api.PostReaction;
-import com.example.graduation.yallamana.util.network.api.User;
-
-import java.util.List;
 
 import io.reactivex.Observable;
 
@@ -20,7 +13,7 @@ public abstract class DataSource {
     public DataSource() {
     }
 
-    public abstract Observable<Boolean> getToken(String usernumber);
+ //   public abstract Observable<Boolean> getToken(String usernumber);
 
 //    public abstract Observable<User> getUser(String username);
 //

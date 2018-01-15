@@ -23,6 +23,7 @@ import com.example.graduation.yallamana.util.network.api.Name;
 import com.example.graduation.yallamana.util.network.api.NewTrip;
 import com.example.graduation.yallamana.util.network.api.Trip;
 import com.example.graduation.yallamana.util.network.api.TripAttr;
+import com.example.graduation.yallamana.util.network.api.User1;
 import com.example.graduation.yallamana.util.network.retrofit.ApiClient;
 import com.example.graduation.yallamana.util.network.retrofit.RetrofitInterface;
 
@@ -41,7 +42,12 @@ public class EditAccountActivity extends AppCompatActivity {
     RetrofitInterface mApiService;
 private EditText userName,userNumber,userEmail;
 private  Button edit;
+    private String get;
 
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,12 +61,17 @@ private  Button edit;
         userEmail=(EditText)findViewById(R.id.user_email_edit);
         userName=(EditText)findViewById(R.id.user_name_edit);
         userNumber=(EditText)findViewById(R.id.user_number_edit);
+        userEmail.setText(sharedPreferences.getString("email","noValue"));
+        userName.setText(sharedPreferences.getString("name","noValue"));
+        userNumber.setText(sharedPreferences.getString("number","noValue"));
         tool.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(EditAccountActivity.this,Setting.class);
-                startActivity(intent);
-                finish();
+
+                    Intent intent = new Intent(EditAccountActivity.this,Setting.class);
+                    startActivity(intent);
+                    finish();
+
             }
         });
         mApiService = ApiClient.getClient().create(RetrofitInterface.class);

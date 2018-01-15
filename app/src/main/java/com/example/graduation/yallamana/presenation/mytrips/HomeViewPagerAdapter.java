@@ -19,6 +19,7 @@ import java.util.List;
 
 public class HomeViewPagerAdapter extends FragmentStatePagerAdapter {
     List<Trip> today,future,past,requests;
+    int tabs;
 
     public HomeViewPagerAdapter(FragmentManager fm, List<Trip>today,List<Trip> future,List<Trip> past,List<Trip> requests) {
         super(fm);
@@ -26,6 +27,7 @@ public class HomeViewPagerAdapter extends FragmentStatePagerAdapter {
         this.future=future;
         this.past=past;
         this.requests=requests;
+
     }
 
     @Override
@@ -34,24 +36,23 @@ public class HomeViewPagerAdapter extends FragmentStatePagerAdapter {
         switch (position) {
             case 0:
 
-
-                TodayFragment todays = new TodayFragment();
-                Bundle b = new Bundle();
-                b.putParcelableArrayList("todays", (ArrayList<? extends Parcelable>) today);
-                todays.setArguments(b);
-
-                        todays.setArguments(b);
-
-                return todays;
-            case 1:
-
-               FutureFragment futures = new FutureFragment();
+                FutureFragment futures = new FutureFragment();
 
                 Bundle b3 = new Bundle();
 
                 b3.putParcelableArrayList("futures", (ArrayList<? extends Parcelable>) future);
                 futures.setArguments(b3);
                 return futures;
+            case 1:
+
+
+                TodayFragment todays = new TodayFragment();
+                Bundle b = new Bundle();
+                b.putParcelableArrayList("todays", (ArrayList<? extends Parcelable>) today);
+                todays.setArguments(b);
+
+
+                return todays;
 
 
             case 2:

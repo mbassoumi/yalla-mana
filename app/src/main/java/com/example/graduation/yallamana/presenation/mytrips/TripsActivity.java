@@ -1,5 +1,6 @@
 package com.example.graduation.yallamana.presenation.mytrips;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -62,6 +63,10 @@ public class TripsActivity extends AppCompatActivity {
     int riderNumber;
     List<Trip> futureTrip,pastTrip,todayTrip,requestedTrip;
     @Override
+    public void onBackPressed() {
+        finish();
+    }
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mytips);
@@ -80,7 +85,10 @@ public class TripsActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                User1 riderInfo=null;
                 Intent intent = new Intent(TripsActivity.this,Drawer_List.class);
+                intent.putExtra("userInfo",riderInfo);
+
                 startActivity(intent);
                 finish();
             }
@@ -89,70 +97,87 @@ public class TripsActivity extends AppCompatActivity {
     }
 
     public  void getMytrip(){
-
+        final ProgressDialog progressDoalog;
+        progressDoalog = new ProgressDialog(TripsActivity.this);
+        progressDoalog.setMax(100);
+        progressDoalog.setMessage("loading....");
+        //  progressDoalog.setTitle("ProgressDialog bar example");
+        progressDoalog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        // show it
+        progressDoalog.show();
          sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
         String token = "Bearer " + sharedPreferences.getString("token", "noValue");
-
+        retrofitInterface = ApiClient.getClient().create(RetrofitInterface.class);
         Call<Example> call2 = retrofitInterface.getMyTrips(token);
         call2.enqueue(new Callback<Example>() {
 
             @Override
             public void onResponse(Call<Example> call, Response<Example> response) {
+if (response.code()==200) {
+    Example example = response.body();//Data data = example.getData();
+    List<Trip> future = example.getData().getFutureTrips();
+    List<Trip> today = example.getData().getTodayTrips();
+    List<Trip> past = example.getData().getPastTrips();
+    List<Trip> request = example.getData().getRequestTrips();
+    Cities from, to;
+    Date dateTrip;
+    int id, seatsNumber;
+    User1 driver;
+    Car car;
+    TripAttr attributes;
+    String stuats;
+    Riders riders;
+    boolean cancle, delete, reserve, hasUser;
+    todayTrip = today;
 
-                Example example = response.body();//Data data = example.getData();
-                List<Trip> future = example.getData().getFutureTrips();
-                List<Trip>  today =example.getData().getTodayTrips();
-                List<Trip> past= example.getData().getPastTrips();
-                List<Trip> request= example.getData().getRequestTrips();
-                Cities from, to;
-                Date dateTrip;
-                int id,  seatsNumber;
-                User1 driver ;
-                Car car;
-                TripAttr attributes;
-                String stuats;
-                Riders riders;
-                boolean cancle, delete, reserve, hasUser;
-               todayTrip=today;
+    futureTrip = future;
+    // Toast.makeText(getApplicationContext(), futureTrip.size(), Toast.LENGTH_SHORT).show();
+    requestedTrip = request;
+    pastTrip = past;
+    homeViewPagerAdapter = new HomeViewPagerAdapter(getSupportFragmentManager(), todayTrip, futureTrip, pastTrip, requestedTrip);
 
-                futureTrip=future;
-               // Toast.makeText(getApplicationContext(), futureTrip.size(), Toast.LENGTH_SHORT).show();
-requestedTrip=request;
-                pastTrip=past;
-                homeViewPagerAdapter = new HomeViewPagerAdapter(getSupportFragmentManager(),todayTrip,futureTrip,pastTrip,requestedTrip);
+    viewPager.setAdapter(homeViewPagerAdapter);
+    tabLayout.setupWithViewPager(viewPager);
+    tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
 
-                viewPager.setAdapter(homeViewPagerAdapter);
-                tabLayout.setupWithViewPager(viewPager);
-                tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
-                tabLayout.getTabAt(0).setText("Future");
+    tabLayout.getTabAt(0).setText("Future");
 
-                tabLayout.getTabAt(1).setText("Today");
-                tabLayout.getTabAt(1).select();
-                tabLayout.getTabAt(2).setText("Past");
-                tabLayout.getTabAt(3).setText("Requested");
-                tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-                    @Override
-                    public void onTabSelected(TabLayout.Tab tab) {
+    tabLayout.getTabAt(1).setText("Today");
+    tabLayout.getTabAt(1).select();
+    tabLayout.getTabAt(2).setText("Past");
+    tabLayout.getTabAt(3).setText("Requested");
+    tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        @Override
+        public void onTabSelected(TabLayout.Tab tab) {
+viewPager.getCurrentItem();
+        }
 
-                    }
+        @Override
+        public void onTabUnselected(TabLayout.Tab tab) {
 
-                    @Override
-                    public void onTabUnselected(TabLayout.Tab tab) {
+        }
 
-                    }
+        @Override
+        public void onTabReselected(TabLayout.Tab tab) {
 
-                    @Override
-                    public void onTabReselected(TabLayout.Tab tab) {
+        }
+    });
+    progressDoalog.dismiss();
 
-                    }
-                });
+}
+else{
+    progressDoalog.dismiss();
 
+    Toast.makeText(getApplicationContext(), "something goes wrong", Toast.LENGTH_LONG).show();
+}
 
             }
 
             @Override
             public void onFailure(Call<Example> call, Throwable t) {
+                progressDoalog.dismiss();
 
+                Toast.makeText(getApplicationContext(), "something goes wrong", Toast.LENGTH_LONG).show();
                 call2.cancel();
             }
         });

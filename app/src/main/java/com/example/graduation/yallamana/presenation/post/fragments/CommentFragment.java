@@ -1,10 +1,13 @@
 package com.example.graduation.yallamana.presenation.post.fragments;
 
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -13,10 +16,12 @@ import android.view.ViewGroup;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 
 import com.example.graduation.yallamana.R;
+import com.example.graduation.yallamana.presenation.post.PostActivity;
 import com.example.graduation.yallamana.presenation.post.utils.CommentAdapter;
 import com.example.graduation.yallamana.util.network.api.Comment;
 import com.example.graduation.yallamana.util.network.api.Post;
@@ -40,6 +45,7 @@ public class CommentFragment extends android.support.v4.app.Fragment {
     private Menu menu;
     TextView user_name;
     CollapsingToolbarLayout collapsingToolbarLayout;
+    private Activity mContext;
 
 
     @Nullable
@@ -55,8 +61,19 @@ public class CommentFragment extends android.support.v4.app.Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        comments  = (List<Comment>) getArguments().getSerializable("pasts");
+        comments  = (List<Comment>) getArguments().getSerializable("comment");
+        ImageButton close=(ImageButton)view.findViewById(R.id.close);
+       close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AppCompatActivity myActivity = (AppCompatActivity) v.getContext();
 
+                Intent i = new Intent(myActivity, PostActivity.class);
+                startActivity(i);
+                myActivity.overridePendingTransition(0,0);
+
+            }
+        });
         random = new Random();
 
         //set dummy data

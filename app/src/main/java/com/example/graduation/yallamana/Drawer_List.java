@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.graduation.yallamana.presenation.alltrips.AllTripsActivity;
 import com.example.graduation.yallamana.presenation.mytrips.TripsActivity;
 import com.example.graduation.yallamana.presenation.post.PostActivity;
@@ -25,26 +26,31 @@ import com.example.graduation.yallamana.util.network.api.NewUser;
 import com.example.graduation.yallamana.util.network.api.User1;
 import com.mikhaellopez.circularimageview.CircularImageView;
 
+import java.io.File;
+
 public class Drawer_List extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     NavigationView navigationView ;
     TextView name,number;
     private SharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dawer__list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+     //   toolbar.setBackgroundColor(getResources().getColor(R.color.white));
 //
-//        Intent i= getIntent();
-//        User1 riderUser = (User1) i.getSerializableExtra("userInfo");
+      Intent i= getIntent();
+      User1 riderUser = (User1) i.getSerializableExtra("userInfo");
 
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+
         drawer.addDrawerListener(toggle);
         toggle.syncState();
        navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -55,6 +61,7 @@ public class Drawer_List extends AppCompatActivity
         View header = navigationView.getHeaderView(0);
         name = (TextView) header.findViewById(R.id.user_namee);
         number = (TextView) header.findViewById(R.id.user_numberr);
+        LinearLayout linear =(LinearLayout)header.findViewById(R.id.header);
         //if (!riderUser.getName().toString().equals(null)) {
 //    name.setText(riderUser.getName().toString());
 ////
@@ -65,19 +72,26 @@ public class Drawer_List extends AppCompatActivity
     number.setText(sharedPreferences.getString("number","noValue"));
 
 //
-//        CircularImageView profile_image = (CircularImageView) header.findViewById(R.id.profile_image);
+        if (riderUser!=null) {
+            CircularImageView profile_image = (CircularImageView) header.findViewById(R.id.profile_image);
+
+//            Glide.with(this)
+//                .load(riderUser.getPhoto())
+//                .into(profile_image);}
+        }
 //        TextView name = (TextView) header.findViewById(R.id.user_namee);
 //        TextView number = (TextView) header.findViewById(R.id.user_numberr);
 //
 //        name.setText(riderUser.getName().toString());
 //        number.setText(riderUser.getPhone().toString());
-//        header.setOnClickListener(new View.OnClickListener() {
+//       linear.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
-//                EditAccountFragment fa = new EditAccountFragment();
-//                android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-//                ft.replace(R.id.fram, fa, "Edit Account");
-//                ft.commit();
+//                Intent intent = new Intent(Drawer_List.this,EditAccountActivity.class);
+//               startActivity(intent);
+//               intent.putExtra("hi","edit");
+//               finish();
+//
 //
 //            }
 //        });
@@ -196,7 +210,6 @@ public class Drawer_List extends AppCompatActivity
 
             } else if (id == R.id.M_be_driver) {
                 Intent intent = new Intent(this, DriverActivity.class);
-
                 startActivity(intent);
                 finish();
             }

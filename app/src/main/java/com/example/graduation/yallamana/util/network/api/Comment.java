@@ -30,6 +30,7 @@ public class Comment implements Parcelable{
     @Expose
     private User1 userID;
 
+
     protected Comment(Parcel in) {
         id = in.readInt();
         postID = in.readInt();

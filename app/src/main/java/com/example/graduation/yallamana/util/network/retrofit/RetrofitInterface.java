@@ -39,19 +39,16 @@ public interface RetrofitInterface {
     Call<Example> getTokenLogin(@Body CheckUser checkUser);
 
     // when user sign up . send info
-    @Multipart
+    
     @POST("api/auth/signup")
-    Call<Example> setUserInfo(@Part MultipartBody.Part file,@Part ("name") RequestBody  name,
-                              @Part ("phone")RequestBody number,@Part ("email") RequestBody  email,
-                              @Part ("gender")RequestBody gender,@Part ("type")RequestBody type);
-
-    @Multipart
-    @POST("api/auth/signup")
-    Call<Example> uploadRiderFile(@Part MultipartBody.Part file, @Header("Authorization") String token);
+    Call<Example> setUserInfo(@Body NewUser newUser);
+    
+//    @POST("api/auth/signup")
+  //  Call<Example> uploadRiderFile(@Part MultipartBody.Part file, @Header("Authorization") String token);
 //    @POST("api/auth/signup")
 //    Call<Example> uploadDriverFile(@Part MultipartBody.Part file1,@Part MultipartBody.Part file2,@Part MultipartBody.Part file3,@Part MultipartBody.Part file4,@Part MultipartBody.Part file5, @Header("Authorization") String token);
 
-    // get cities
+    // get citie
     @GET("api/city")
     Call<Example> getCities();
 
@@ -71,6 +68,8 @@ public interface RetrofitInterface {
     Call<Example> reverseTrip(@Header("Authorization") String token, @Path("id") int id );
     @POST("api/trip/{id}/cancel-reservation")
     Call<Example> cancleTrip(@Header("Authorization") String token, @Path("id") int id );
+    @POST("api/trip/{id}/accept")
+    Call<Example> acceptTrip(@Header("Authorization") String token, @Path("id") int id );
     @GET("api/trip/my-trips")
     Call<Example> getMyTrips(@Header("Authorization") String token);
     @GET("api/post/my_post")
@@ -81,45 +80,8 @@ public interface RetrofitInterface {
     @DELETE("api/post/{id}")
     Call<Example> deletPost(@Header("Authorization") String token,@Path("id") int id);
     @POST("api/post")
-    Call<Example> addPost(@Header("Authorization") String token,@Body  Comment1 comment );
+    Call<Example> addPost(@Header("Authorization") String token,@Body  String body );
     @POST("api/comment")
     Call<Example> addNewComment(@Header("Authorization") String token, @Body Comment1 comment);
-//
-//    @GET(" api/comment")
-//    Call<Example> getComments(@Header("Authorization") String token);
-//    Observable<Boolean> getToken(@Body String usernumber);@GET("/exalt/users/username/{user}")
-// //   Observable<User> getUser(@Path("user") String username);
-//
-//    @POST("/exalt/users")
-//    Observable<User> addUser(@Body User user);
-//
-//    @PUT("/exalt/users")
-//    Observable<User> updateUser(@Body User user);
-//
-//    @GET("/exalt/users/{user}/posts/{limit}/{offset}")
-//    Observable<List<Post>> getPosts(@Path("user") String username, @Path("limit") String limit, @Path("offset") String offset);
-//
-//    @GET("/exalt/users/{user}/posts")
-//    Observable<List<Post>> getPosts(@Path("user") String username);
-//
-//    @POST("/exalt/users/{user}/posts")
-//    Observable<Post> addPost(@Path("user") String username, @Body Post post);
-//
-//    @DELETE("/exalt/posts/{id}")
-//    Observable<Void> deletePost(@Path("id") long postId);
-//
-//
-//    @POST("/exalt/users/{user}/posts/{postId}")
-//    Observable<Comment> addComment(@Path("user") String username, @Path("postId") long postId, @Body Comment comment);
-//
-//    @DELETE("/exalt/comments/{id}")
-//    Observable<Void> deleteComment(@Path("id") long commentId);
-//
-//    @GET("/exalt/users/{user}/posts/{postId}/comments/{limit}/{offset}")
-//    Observable<List<Comment>> getComments(@Path("user") String username, @Path("postId") long postId, @Path("limit") String limit, @Path("offset") String offset);
-//
-//    @GET("/exalt/users/{user}/posts/{postId}/comments")
-//    Observable<List<Comment>> getComments(@Path("user") String username, @Path("postId") long postId);
-
 
 }

@@ -32,10 +32,10 @@ public class NewUser implements Serializable {
 
     @SerializedName("photo")
     @Expose
-    private File photo;
+    private String photo;
     @SerializedName("driver_licence")
     @Expose
-//    private File driverLicence;
+
 private String driverLicence;
     @SerializedName("type")
 
@@ -96,11 +96,11 @@ private String driverLicence;
     }
 
 
-    public File getPhoto() {
+    public String getPhoto() {
         return photo;
     }
 
-    public void setPhoto(File photo) {
+    public void setPhoto(String photo) {
         this.photo = photo;
     }
 
@@ -116,7 +116,7 @@ private String driverLicence;
     public NewUser(String name, String phone, String email, String gender, String driverLicence, String type, Car car) {
         this.name = name;
         this.phone = phone;
-        this.photo = photo;
+
         this.driverLicence = driverLicence;
         this.type = type;
         this.car = car;

@@ -116,11 +116,12 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 //                    myActivity.startActivity(intent);
                     CommentFragment Comment = new CommentFragment();
                     Bundle b2 = new Bundle();
-                    b2.putParcelableArrayList("comment", (ArrayList<? extends Parcelable>) post.getComments());
+                 List< Comment> comment =post.getComments();
+                    b2.putParcelableArrayList("comment", (ArrayList<? extends Parcelable>) comment );
                     Comment.setArguments(b2);
                     FragmentManager fragmentManager = myActivity.getSupportFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.fragment, Comment);
+                    fragmentTransaction.replace(R.id.main_content, Comment);
                     fragmentTransaction.commit();
 
                 }
@@ -170,9 +171,17 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
                         @Override
                         public void onResponse(Call<Example> call, Response<Example> response) {
+                            AppCompatActivity myActivity = (AppCompatActivity) v.getContext();
 
-                            Toast.makeText(getApplicationContext(), "You comment added ", Toast.LENGTH_SHORT).show();
+                            if (response.code()==200){
+    Toast.makeText(myActivity, "You comment added ", Toast.LENGTH_LONG).show();
+    userViewHolder.addComment.setText("");
 
+                        }
+                        else {
+    Toast.makeText(myActivity, "You comment not  added ", Toast.LENGTH_LONG).show();
+
+}
                         }
 
                         @Override

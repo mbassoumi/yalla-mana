@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.graduation.yallamana.presenation.post.PostActivity;
+import com.example.graduation.yallamana.util.network.api.User1;
 
 import java.util.ArrayList;
 
@@ -25,7 +26,10 @@ public class Setting extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
     private static String LOG_TAG = "CardViewActivity";
 
-
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +43,10 @@ public class Setting extends AppCompatActivity {
         tool.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                User1 riderInfo=null;
                 Intent intent = new Intent(Setting.this, Drawer_List.class);
+                intent.putExtra("userInfo",riderInfo);
+
                 startActivity(intent);
                 finish();
             }

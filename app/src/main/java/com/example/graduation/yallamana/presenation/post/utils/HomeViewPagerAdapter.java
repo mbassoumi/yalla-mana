@@ -23,7 +23,7 @@ import java.util.List;
 public class HomeViewPagerAdapter extends FragmentStatePagerAdapter {
     List<Post>mypost;
     List<Post>allposts;
-
+int tabs;
 
     public HomeViewPagerAdapter(FragmentManager fm, List<Post> mypost, List<Post>allposts) {
         super(fm);

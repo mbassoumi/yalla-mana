@@ -2,13 +2,6 @@ package com.example.graduation.yallamana.data.local;
 
 
 import com.example.graduation.yallamana.data.DataSource;
-import com.example.graduation.yallamana.util.network.api.Comment;
-import com.example.graduation.yallamana.util.network.api.CommentReaction;
-import com.example.graduation.yallamana.util.network.api.Post;
-import com.example.graduation.yallamana.util.network.api.PostReaction;
-import com.example.graduation.yallamana.util.network.api.User;
-
-import java.util.List;
 
 import io.reactivex.Observable;
 
@@ -29,11 +22,11 @@ public class LocalDataSource extends DataSource {
         }
         return localDataSource;
     }
-
-    @Override
-    public Observable<Boolean> getToken(String username) {
-        return null;
-    }
+//
+//    @Override
+//    public Observable<Boolean> getToken(String username) {
+//        return null;
+//    }
 
 //    @Override
 //    public Observable<User> getUser(String username) {

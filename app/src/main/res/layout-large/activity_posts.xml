@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cardview_light_background"
+    android:fitsSystemWindows="true">
+
+
+    <!-- List View -->
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="88dp"
+        android:layout_marginTop="64dp"
+
+        android:background="@drawable/btn"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/post_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/textView3"
+            android:layout_marginBottom="24dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="30dp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:text="@string/cancel"
+            android:textColor="@color/green" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/post_ok"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:layout_weight="1"
+            android:text="@string/update_status"
+            android:textAlignment="center"
+            android:textColor="@color/cardview_dark_background"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/post_ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignTop="@+id/post_area"
+            android:layout_marginEnd="15dp"
+            android:layout_marginTop="30dp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:text="Post"
+            android:textColor="@color/dot_inactive_screen1" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/post_area"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/linearLayout"
+        android:background="@drawable/btn"
+        android:ems="10"
+        android:hint="Want to share your update?"
+        android:inputType="textPersonName" />
+
+    <ImageButton
+        android:id="@+id/add_image"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/post_area"
+        android:background="?android:attr/colorBackground"
+        app:srcCompat="@drawable/ic_add_a_photo_black_24dp" />
+</RelativeLayout>

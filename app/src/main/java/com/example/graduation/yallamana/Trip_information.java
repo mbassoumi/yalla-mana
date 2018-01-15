@@ -1,10 +1,12 @@
 package com.example.graduation.yallamana;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -15,8 +17,10 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.graduation.yallamana.presenation.alltrips.AllTripsActivity;
 import com.example.graduation.yallamana.presenation.mytrips.TripsActivity;
+import com.example.graduation.yallamana.util.network.api.Car;
 import com.example.graduation.yallamana.util.network.api.Cities;
 import com.example.graduation.yallamana.util.network.api.Data;
 import com.example.graduation.yallamana.util.network.api.Example;
@@ -26,6 +30,7 @@ import com.example.graduation.yallamana.util.network.retrofit.RetrofitInterface;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -45,7 +50,9 @@ public class Trip_information extends AppCompatActivity {
     private Button reserve;
     private ImageButton carInfo, music, wifi, smoke, men, women;
     Cities fromC,toC;
+    Car car;
     int riderNumbers =0;
+    private String token;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -62,7 +69,6 @@ public class Trip_information extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
-
         retrofitInterface = ApiClient.getClient().create(RetrofitInterface.class);
         from = (TextView) findViewById(R.id.from_info);
         to = (TextView) findViewById(R.id.to_info);
@@ -78,7 +84,7 @@ public class Trip_information extends AppCompatActivity {
         women = (ImageButton) findViewById(R.id.image_women);
         smoke = (ImageButton) findViewById(R.id.image_smoke_info);
         music = (ImageButton) findViewById(R.id.image_music_info);
-        timeStill=(TextView)findViewById(R.id.trip_still_time1) ;
+      //  timeStill=(TextView)findViewById(R.id.trip_still_time1) ;
         curentRiders=(TextView)findViewById(R.id.current_number_rider);
         reserve=(Button)findViewById(R.id.reserve);
         if(status.equals("all")){
@@ -96,7 +102,7 @@ public class Trip_information extends AppCompatActivity {
             reserve.setText("Rating");
 
         }
-        else if (status.equals("future") || status.equals("future")){
+        else if (status.equals("future") || status.equals("today")){
             reserve.setText("Cancle");
 
         }
@@ -126,98 +132,32 @@ public class Trip_information extends AppCompatActivity {
         });
         getTripinfo();
         SharedPreferences sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
-        String token = "Bearer " + sharedPreferences.getString("token", "noValue");
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
+//        editor.putString("type", car.getModelType().toString());
+//        editor.putString("year", car.getModelYear().toString());
+//        editor.commit();
+        token = "Bearer " + sharedPreferences.getString("token", "noValue");
 
 
       reserve.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
               if (reserve.getText().equals("Reserve")) {
-                  if (curentRiders.getText().equals(seatsNumber.getText().toString())) {
-                      Toast.makeText(getApplicationContext(), "Sorry the trip now full !", Toast.LENGTH_SHORT).show();
+//                   if (curentRiders.getText().equals(seatsNumber.getText().toString())) {
+//                      Toast.makeText(getApplicationContext(), "Sorry the trip now full !", Toast.LENGTH_SHORT).show();
+//
+//                  }
 
-                  }
+                  reserveTrip();
+              } else if (reserve.getText().equals("Cancle"))
 
-                  Call<Example> call2 = retrofitInterface.reverseTrip(token, tripId);
-                  call2.enqueue(new Callback<Example>() {
-                      @Override
-                      public void onResponse(Call<Example> call, Response<Example> response) {
-                          Example example = response.body();
-                          if (response.code() == 200) {
-                              reserve.getText().equals("Cancle");
-                              Toast.makeText(getApplicationContext(), example.getMessage().toString(), Toast.LENGTH_SHORT).show();
+              {
+                  cancleTrip();
+              } else if (reserve.getText().equals("Accept")) {
 
-                          } else {
-                              Toast.makeText(getApplicationContext(), example.getMessage().toString(), Toast.LENGTH_SHORT).show();
-
-                          }
-
-                      }
-
-                      @Override
-                      public void onFailure(Call<Example> call, Throwable t) {
-
-                      }
-
-                  });
+                  acceptTrip();
               }
 
-                 else if(reserve.getText().equals("Cancle"))
-
-          {
-              Call<Example> call2 = retrofitInterface.cancleTrip(token, tripId);
-              call2.enqueue(new Callback<Example>() {
-                  @Override
-                  public void onResponse(Call<Example> call, Response<Example> response) {
-                      Example example = response.body();
-                      if (response.code() == 200) {
-                          reserve.getText().equals("Reserve");
-                          Toast.makeText(getApplicationContext(), example.getMessage().toString(), Toast.LENGTH_SHORT).show();
-
-                      } else {
-                          //
-                          Toast.makeText(getApplicationContext(), example.getMessage().toString(), Toast.LENGTH_SHORT).show();
-
-                      }
-
-                  }
-
-                  @Override
-                  public void onFailure(Call<Example> call, Throwable t) {
-
-                  }
-
-              });
-          }
-              if (reserve.getText().equals("Accept")) {
-                  if (curentRiders.getText().equals(seatsNumber.getText().toString())) {
-                      Toast.makeText(getApplicationContext(), "Sorry the trip now full !", Toast.LENGTH_SHORT).show();
-
-                  }
-
-                  Call<Example> call2 = retrofitInterface.reverseTrip(token, tripId);
-                  call2.enqueue(new Callback<Example>() {
-                      @Override
-                      public void onResponse(Call<Example> call, Response<Example> response) {
-                          Example example = response.body();
-                          if (response.code() == 200) {
-                              reserve.setEnabled(false);
-                              Toast.makeText(getApplicationContext(), example.getMessage().toString(), Toast.LENGTH_SHORT).show();
-
-                          } else {
-                              Toast.makeText(getApplicationContext(), example.getMessage().toString(), Toast.LENGTH_SHORT).show();
-
-                          }
-
-                      }
-
-                      @Override
-                      public void onFailure(Call<Example> call, Throwable t) {
-
-                      }
-
-                  });
-              }
 
           }
 
@@ -230,13 +170,106 @@ public class Trip_information extends AppCompatActivity {
             public void onClick(View v) {
                 FragmentTransaction manage = getSupportFragmentManager().beginTransaction();
                 Pop_car_info pop = new Pop_car_info();
+//                Bundle b2 = new Bundle();
+//                b2.putParcelableArrayList("car", car);
                 pop.show(manage, null);
             }
         });
 
     }
 
+    private void acceptTrip() {
+        Call<Example> call2 = retrofitInterface.acceptTrip(token, tripId);
+        call2.enqueue(new Callback<Example>() {
+            @Override
+            public void onResponse(Call<Example> call, Response<Example> response) {
+                Example example = response.body();
+                if (response.code() == 200) {
+                    reserve.setEnabled(false);
+                    Toast.makeText(getApplicationContext(), example.getMessage().toString(), Toast.LENGTH_SHORT).show();
+
+                } else {
+                    Toast.makeText(getApplicationContext(), example.getMessage().toString(), Toast.LENGTH_SHORT).show();
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<Example> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "accepted", Toast.LENGTH_LONG).show();
+                call2.cancel();
+            }
+
+        });
+    }
+
+    private void cancleTrip() {
+        Call<Example> call2 = retrofitInterface.cancleTrip(token, tripId);
+        call2.enqueue(new Callback<Example>() {
+            @Override
+            public void onResponse(Call<Example> call, Response<Example> response) {
+                Example example = response.body();
+                if (response.code() == 200) {
+                    reserve.getText().equals("Reserve");
+                    Toast.makeText(getApplicationContext(), example.getMessage().toString(), Toast.LENGTH_SHORT).show();
+
+                } else {
+                    //
+                    Toast.makeText(getApplicationContext(), example.getMessage().toString(), Toast.LENGTH_SHORT).show();
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<Example> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "canceled", Toast.LENGTH_LONG).show();
+                call2.cancel();
+
+            }
+
+        });
+    }
+
+    private void reserveTrip() {
+        Call<Example> call2 = retrofitInterface.reverseTrip(token, tripId);
+        call2.enqueue(new Callback<Example>() {
+            @Override
+            public void onResponse(Call<Example> call, Response<Example> response) {
+                Example example = response.body();
+                if (response.code() == 200) {
+                    reserve.getText().equals("Cancle");
+                    Toast.makeText(getApplicationContext(), example.getMessage().toString(), Toast.LENGTH_SHORT).show();
+
+                } else {
+                    Toast.makeText(getApplicationContext(), example.getMessage().toString(), Toast.LENGTH_SHORT).show();
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<Example> call, Throwable t) {
+
+                Toast.makeText(getApplicationContext(), "reserved ", Toast.LENGTH_LONG).show();
+
+                call2.cancel();
+
+            }
+
+        });
+    }
+
     private void getTripinfo() {
+        final ProgressDialog progressDoalog;
+        progressDoalog = new ProgressDialog(Trip_information.this);
+        progressDoalog.setMax(100);
+         progressDoalog.setMessage(" loading....");
+        //  progressDoalog.setTitle("ProgressDialog bar example");
+        progressDoalog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        // show it
+        progressDoalog.show();
         SharedPreferences sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
         String token = "Bearer " + sharedPreferences.getString("token", "noValue");
 
@@ -245,52 +278,105 @@ public class Trip_information extends AppCompatActivity {
 
             @Override
             public void onResponse(Call<Example> call, Response<Example> response) {
-                Example example = response.body();
-                Data data = example.getData();
-                trip = data.getTrip();
+                if (response.code()==200) {
+                    Example example = response.body();
+                    Data data = example.getData();
+                    trip = data.getTrip();
 
-                fromC=trip.getStartPoint();
-                toC=trip.getEndPoint();
+                    fromC = trip.getStartPoint();
+                    toC = trip.getEndPoint();
 
-                from.setText(fromC.getName().getEn().toString());
-                to.setText(toC.getName().getEn().toString());
-                price.setText(trip.getPrice()+" Nis");
-                seatsNumber.setText(trip.getSeatsNumber()+"");
-                driverNumber.setText(trip.getDriver().getPhone().toString());
-                driverName.setText(trip.getDriver().getName().toString());
-                date.setText(trip.getDate().getDate());
-                time.setText(trip.getDate().getTime());
-                timeStill.setText("2018-1-8 11:00");
-                curentRiders.setText( riderNumbers+"");
-                if (trip.isHasUser()){
-                    reserve.setText("Cancle");
+                    from.setText(fromC.getName().getEn().toString());
+                    to.setText(toC.getName().getEn().toString());
+                    price.setText(trip.getPrice() + " Nis");
+                    seatsNumber.setText(trip.getSeatsNumber() + "");
+                    if(trip.getDriver()==null){
+                        driverNumber.setText("-------");
+                        driverName.setText("no driver ");}
+                        else{
+                        driverNumber.setText(trip.getDriver().getPhone());
+                    driverName.setText(trip.getDriver().getName());}
+
+                    date.setText(trip.getDate().getDate());
+                    time.setText(trip.getDate().getTime());
+                  //  timeStill.setText("2018-1-8 11:00");
+                    car = trip.getCar();
+                    curentRiders.setText(riderNumbers + "");
+//                    if (!trip.isCancle()){
+//                        reserve.setVisibility(View.INVISIBLE);
+//                    }
+
+                    if (trip.isHasUser()) {
+                        reserve.setText("Cancle");
+                    }
+
+                    boolean boy =trip.getAttributes().isBoys();
+                    if (trip.getAttributes().isBoys()) {
+                        men.setImageDrawable(getResources().getDrawable(R.drawable.ic_men_green_24dp));
+
+
+                    }
+                    if (trip.getAttributes().isGirls()) {
+                        women.setImageDrawable(getResources().getDrawable(R.drawable.ic_face_green_24dp));
+
+
+                    }
+                    if (!trip.getAttributes().isSmoke()) {
+                        smoke.setImageDrawable(getResources().getDrawable(R.drawable.ic_smoke_free_green_24dp));
+
+
+                    }
+                    if (trip.getAttributes().isWifi()) {
+                        wifi.setImageDrawable(getResources().getDrawable(R.drawable.ic_wifi_green_8dp));
+
+
+                    }
+                    if (trip.getAttributes().isMusic()) {
+                        music.setImageDrawable(getResources().getDrawable(R.drawable.ic_music_note_green_24dp));
+
+
+                    }
+                    if (trip.getAttributes().isBoys()) {
+                        men.setImageDrawable(getResources().getDrawable(R.drawable.ic_men_green_24dp));
+
+
+                    }
+                    if (trip.getAttributes().isGirls()) {
+                        women.setImageDrawable(getResources().getDrawable(R.drawable.ic_face_green_24dp));
+
+
+                    }
+                    if (!trip.getAttributes().isSmoke()) {
+                        smoke.setImageDrawable(getResources().getDrawable(R.drawable.ic_smoke_free_green_24dp));
+
+
+                    }
+                    if (trip.getAttributes().isWifi()) {
+                        wifi.setImageDrawable(getResources().getDrawable(R.drawable.ic_wifi_green_8dp));
+
+
+                    }
+                    if (trip.getAttributes().isMusic()) {
+                        music.setImageDrawable(getResources().getDrawable(R.drawable.ic_music_note_green_24dp));
+
+
+                    }
+                    progressDoalog.dismiss();
                 }
-                if (trip.getAttributes().isBoys()){
-                    men.setImageDrawable(getResources().getDrawable(R.drawable.ic_men_green_24dp));
+           else {
+                    progressDoalog.dismiss();
 
-
-                }if (trip.getAttributes().isGirls()){
-                    women.setImageDrawable(getResources().getDrawable(R.drawable.ic_face_green_24dp));
-
-
-                }if (!trip.getAttributes().isSmoke()){
-                    smoke.setImageDrawable(getResources().getDrawable(R.drawable.ic_smoke_free_green_24dp));
-
-
-                }if (trip.getAttributes().isWifi()){
-                    wifi.setImageDrawable(getResources().getDrawable(R.drawable.ic_wifi_green_8dp));
-
-
-                }if (trip.getAttributes().isMusic()){
-                    music.setImageDrawable(getResources().getDrawable(R.drawable.ic_music_note_green_24dp));
-
-
+                    Toast.makeText(getApplicationContext(), "something goes wrong", Toast.LENGTH_LONG).show();
                 }
-
             }
 
+
             @Override
-            public void onFailure(Call<Example> call, Throwable t) {
+            public void onFailure(Call<Example> call, Throwable t)
+            {
+                progressDoalog.dismiss();
+                Toast.makeText(getApplicationContext(), "something goes wrong", Toast.LENGTH_LONG).show();
+
                 call2.cancel();
             }
         });

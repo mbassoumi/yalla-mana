@@ -84,7 +84,7 @@ public class TripAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-       int position1=position+1;
+    //   int position1=position+1;
         if (holder instanceof UserViewHolder) {
             Trip trip = trips.get(position);
             final UserViewHolder userViewHolder = (UserViewHolder) holder;
@@ -94,7 +94,7 @@ public class TripAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             fromC = from.getName().getEn().toString();
              toC = to.getName().getEn().toString();
              dateTrip = trip.getDate();
-            time = dateTrip.getDate() + " " + dateTrip.getTime();
+            time = dateTrip.getDate().toString()+ " " + dateTrip.getTime().toString();
 
             userViewHolder.from.setText(fromC);
             userViewHolder.to.setText(toC);

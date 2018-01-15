@@ -114,7 +114,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         email = (EditText) findViewById(R.id.email1);
         phone = (EditText) findViewById(R.id.mobile);
         phone.setText(authant_phone);
-        // phone.setEnabled(false);
+        phone.setEnabled(false);
 
 
         //  String hint1 = firstName.getHint().toString();
@@ -278,7 +278,10 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(client);
         startActivityForResult(signInIntent, REQ_CODE);
     }
-
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -351,17 +354,18 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
 
     ////   reguest for new user as rider
     private void skip(NewUser riderUser) {
-        if (EasyPermissions.hasPermissions(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
-            File file = new File(imagePath);
-            RequestBody type = RequestBody.create(MediaType.parse("multipart/form-data"), riderUser.getType());
-
-            RequestBody name = RequestBody.create(MediaType.parse("multipart/form-data"), riderUser.getName());
-            RequestBody number = RequestBody.create(MediaType.parse("multipart/form-data"), riderUser.getPhone());
-            RequestBody email = RequestBody.create(MediaType.parse("multipart/form-data"), riderUser.getEmail());
-            RequestBody gender = RequestBody.create(MediaType.parse("multipart/form-data"), riderUser.getGender());
-            RequestBody fileBody = RequestBody.create(MediaType.parse("image/*"), file);
-            MultipartBody.Part filePart = MultipartBody.Part.createFormData("photo", file.getName(), fileBody);
-            Call<Example> call2 = retrofitInterface.setUserInfo(filePart, name, number, email, gender, type);
+//        if (EasyPermissions.hasPermissions(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+//            File file = new File(imagePath);
+//            RequestBody type = RequestBody.create(MediaType.parse("multipart/form-data"), riderUser.getType());
+//
+//            RequestBody name = RequestBody.create(MediaType.parse("multipart/form-data"), riderUser.getName());
+//            RequestBody number = RequestBody.create(MediaType.parse("multipart/form-data"), riderUser.getPhone());
+//            RequestBody email = RequestBody.create(MediaType.parse("multipart/form-data"), riderUser.getEmail());
+//            RequestBody gender = RequestBody.create(MediaType.parse("multipart/form-data"), riderUser.getGender());
+//            RequestBody fileBody = RequestBody.create(MediaType.parse("image/*"), file);
+//            MultipartBody.Part filePart = MultipartBody.Part.createFormData("photo", file.getName(), fileBody);
+//
+            Call<Example> call2 = retrofitInterface.setUserInfo(riderUser);
             // Toast.makeText(getApplicationContext(), "imagee"+encodedImage, Toast.LENGTH_SHORT).show();
 
             call2.enqueue(new Callback<Example>() {
@@ -387,7 +391,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                         Intent i = new Intent(SignupActivity.this, Drawer_List.class);
 
 
-                        // i.putExtra("userInfo",riderInfo);
+                        i.putExtra("userInfo",riderInfo);
                         startActivity(i);
 
                         finish();
@@ -409,9 +413,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                     call2.cancel();
                 }
             });
-        } else {
-            EasyPermissions.requestPermissions(this, getString(R.string.read_file), READ_REQUEST_CODE, Manifest.permission.READ_EXTERNAL_STORAGE);
-        }
+
     }
 
     @Override
@@ -431,7 +433,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         RequestBody gender = RequestBody.create(MediaType.parse("multipart/form-data"), riderUser.getGender());
         RequestBody fileBody = RequestBody.create(MediaType.parse("image/*"), file);
         MultipartBody.Part filePart = MultipartBody.Part.createFormData("photo", file.getName(), fileBody);
-        Call<Example> call2 = retrofitInterface.setUserInfo(filePart, name, number, email, gender, type);
+        Call<Example> call2 = retrofitInterface.setUserInfo(riderUser);
         // Toast.makeText(getApplicationContext(), "imagee"+encodedImage, Toast.LENGTH_SHORT).show();
 
         call2.enqueue(new Callback<Example>() {
@@ -457,7 +459,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                     Intent i = new Intent(SignupActivity.this, Drawer_List.class);
 
 
-                    // i.putExtra("userInfo",riderInfo);
+                    i.putExtra("userInfo",riderInfo);
                     startActivity(i);
 
                     finish();

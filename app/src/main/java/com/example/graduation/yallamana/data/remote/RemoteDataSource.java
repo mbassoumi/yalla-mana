@@ -3,20 +3,16 @@ package com.example.graduation.yallamana.data.remote;
 
 
 import com.example.graduation.yallamana.data.DataSource;
-import com.example.graduation.yallamana.util.network.api.Comment;
-import com.example.graduation.yallamana.util.network.api.CommentReaction;
-import com.example.graduation.yallamana.util.network.api.Post;
-import com.example.graduation.yallamana.util.network.api.PostReaction;
-import com.example.graduation.yallamana.util.network.api.User;
 import com.example.graduation.yallamana.util.network.retrofit.RetrofitInterface;
 import com.example.graduation.yallamana.util.network.retrofit.RxErrorHandlingCallAdapterFactory;
 
-import java.util.List;
+import java.io.IOException;
 
 import io.reactivex.Observable;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
 
+import okhttp3.Request;
 import retrofit2.Retrofit;
 import retrofit2.converter.jackson.JacksonConverterFactory;
 
@@ -32,7 +28,8 @@ public class RemoteDataSource extends DataSource {
     private RemoteDataSource() {
         super();
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
-       /* httpClient.addInterceptor(chain -> {
+
+ httpClient.addInterceptor(chain -> {
             Request original = chain.request();
 
             Request request = original.newBuilder()
@@ -42,10 +39,10 @@ public class RemoteDataSource extends DataSource {
 
             return chain.proceed(request);
 
-        });*/
+        });
         OkHttpClient client = httpClient.build();
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.204.39:8080/")
+                .baseUrl("http://yalla-mana.appspot.com/")
                 .addConverterFactory(JacksonConverterFactory.create())
                 .addCallAdapterFactory(RxErrorHandlingCallAdapterFactory.create())
                 .client(client)
@@ -60,11 +57,11 @@ public class RemoteDataSource extends DataSource {
         }
         return remoteDataSource;
     }
-
-    @Override
-    public Observable<Boolean> getToken(String usernumber) {
-        return api.getToken(usernumber);
-    }
+//
+//    @Override
+//    public Observable<Boolean> getToken(String usernumber) {
+//        return api.getToken(usernumber);
+//    }
 
 //    @Override
 //    public Observable<User> getUser(String username) {

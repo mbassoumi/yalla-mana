@@ -43,7 +43,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import retrofit2.Call;
@@ -449,7 +448,8 @@ public class MainActivity extends AppCompatActivity implements
                                 editor.putString("token", data.getToken().toString());
                                 editor.putString("type", user1.getType().toString());
                                 editor.putString("number", user1.getPhone().toString());
-                                editor.putString("name", user1.getName().toString());
+                                editor.putString("name", user1.getName().toString());  
+                               editor.putString("email", user1.getEmail().toString());
 
                                 editor.commit();
 
@@ -464,7 +464,7 @@ public class MainActivity extends AppCompatActivity implements
                                 Log.d("status", user1.getStatus() + "");
                                 Toast.makeText(getApplicationContext(), "You rigested as a driver we will contact with you soon",
                                         Toast.LENGTH_LONG).show();
-                                       // signOut();
+                                        signOut();
 
 
                                 //  Intent intent = new Intent(MainActivity.this,Drawer_List.class);
@@ -559,89 +559,7 @@ public class MainActivity extends AppCompatActivity implements
 
                 /// mStatusText.setText("Authenticating....!");
                 progressBar.setVisibility(View.VISIBLE);
-              //  startPhoneNumberVerification(phone);
-
-                    mAuth.signOut();
-                    updateUI(STATE_INITIALIZED);
-
-                    Example examplee = new Example();
-
-                    //  Toast.makeText(getApplicationContext(), "the user  " + phoneNumber, Toast.LENGTH_SHORT).show();
-
-                    CheckUser checkUser = new CheckUser();
-                    checkUser.setPhone(phoneNumber);
-
-                    Call<Example> call2 = retrofitInterface.getTokenLogin(checkUser);
-                    call2.enqueue(new Callback<Example>() {
-                        @Override
-                        public void onResponse(Call<Example> call, Response<Example> response) {
-                            Example example = response.body();
-                            Data data = example.getData();
-                            Boolean userStatus = data.getNewUser();
-                            User1 user1 = data.getUser();
-                            Toast.makeText(getApplicationContext(),  example.getMessage(), Toast.LENGTH_SHORT).show();
-                            if (response.code() == 200) {
-                                if (!userStatus.booleanValue()) {
-                                    // if new user go and sign up
-
-                                    // Do awesome stuff
-
-
-                                    if (user1.getStatus().equals("active")) {
-                                        Log.d("status", user1.getStatus() + "");
-// shared prefrances :token , number,type
-
-                                        SharedPreferences sharedPref = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
-                                        SharedPreferences.Editor editor = sharedPref.edit();
-                                        editor.putString("token", data.getToken().toString());
-                                        editor.putString("type", user1.getType().toString());
-                                        editor.putString("number", user1.getPhone().toString());
-                                        editor.putString("name", user1.getName().toString());
-                                        editor.putString("email", user1.getEmail().toString());
-
-                                        editor.commit();
-
-                                        Toast.makeText(getApplicationContext(), "Welcome to your profile :)", Toast.LENGTH_SHORT).show();
-
-
-                                        Intent intent = new Intent(MainActivity.this, Drawer_List.class);
-                                        //   intent.putExtra("userInfo",user1);
-                                        startActivity(intent);
-                                        finish();
-                                    } else {
-                                        Log.d("status", user1.getStatus() + "");
-                                        Toast.makeText(getApplicationContext(), "You rigested as a driver we will contact with you soon",
-                                                Toast.LENGTH_LONG).show();
-                                        signOut();
-
-
-                                        //  Intent intent = new Intent(MainActivity.this,Drawer_List.class);
-//                            startActivity(intent);
-//                            finish();
-                                    }
-
-
-                                } else {
-                                    // if already user go and start
-                                    Intent intent = new Intent(MainActivity.this, SignupActivity.class);
-
-                                    intent.putExtra("userPhone",phoneNumber);
-                                    startActivity(intent);
-                                    finish();
-
-                                }
-
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(Call<Example> call, Throwable t) {
-                            Toast.makeText(getApplicationContext(),"OPs!",
-                                    Toast.LENGTH_LONG).show();
-                            call2.cancel();
-                        }
-                    });
-
+                startPhoneNumberVerification(phone);
 
                 break;
             case R.id.button_verify_phone:

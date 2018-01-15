@@ -49,7 +49,8 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
 
             if (settingType.getText().equals("Edit Account")) {
                 Intent intent = new Intent(myActivity,EditAccountActivity.class);
-                context.startActivity(intent);
+//                intent.putExtra("hi","setting");
+                myActivity.startActivity(intent);
 
             } else if (settingType.getText().equals("Notification")) {
 //                Intent intent = new Intent(context,Drawer_List.class);
