@@ -1,0 +1,108 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.graduation.yallamana.presenation.login.fragment.verificationFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFFFF"
+
+     >
+
+        <EditText
+            android:id="@+id/number4"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/number3"
+            android:layout_alignBottom="@+id/number3"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/number3"
+            android:layout_toRightOf="@+id/number3"
+            android:ems="10"
+            android:inputType="number"
+            android:textAlignment="center" />
+
+        <EditText
+            android:id="@+id/number3"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/number2"
+            android:layout_alignBottom="@+id/number2"
+            android:layout_marginLeft="51dp"
+            android:layout_marginStart="51dp"
+            android:layout_toEndOf="@+id/number1"
+            android:layout_toRightOf="@+id/number1"
+            android:ems="10"
+            android:inputType="number"
+            android:textAlignment="center" />
+
+        <Button
+            android:id="@+id/yallaButton"
+            style="@style/MyButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/mybutton"
+            android:text="@string/verify"
+            android:textColor="#FFFFFFFF"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:id="@+id/again"
+            style="@style/MyButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:background="@android:color/transparent"
+            android:text="@string/try_again"
+            android:textColor="#4CAF50"
+            android:layout_below="@+id/yallaButton"
+            android:layout_alignLeft="@+id/yallaButton"
+            android:layout_alignStart="@+id/yallaButton" />
+
+
+        <EditText
+            android:id="@+id/number1"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/number2"
+            android:layout_marginEnd="27dp"
+            android:layout_marginRight="27dp"
+            android:layout_toLeftOf="@+id/yallaButton"
+            android:layout_toStartOf="@+id/yallaButton"
+            android:ems="10"
+            android:inputType="number"
+            android:textAlignment="center" />
+
+        <EditText
+            android:id="@+id/number2"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/yallaButton"
+            android:layout_alignEnd="@+id/yallaButton"
+            android:layout_alignRight="@+id/yallaButton"
+            android:layout_marginBottom="40dp"
+            android:layout_marginEnd="42dp"
+            android:layout_marginRight="42dp"
+            android:ems="10"
+            android:inputType="number" />
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="73dp"
+            android:layout_toLeftOf="@+id/number4"
+            android:layout_toStartOf="@+id/number4"
+            android:text="Verify Your Number"
+            android:textAlignment="center"
+            android:textColor="@color/green"
+            android:textSize="18sp" />
+    </RelativeLayout>
+</FrameLayout>
