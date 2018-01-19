@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="com.example.graduation.yallamana.presenation.signup.SignupActivity">
+
+
+    <RelativeLayout
+        android:id="@+id/relt1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="#4CAF50"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            android:title="@string/new_user"
+            android:titleTextColor="#FFFFFF" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/firstName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/toolbar"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="24dp">
+
+            <EditText
+                android:id="@+id/firstName1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:ems="6"
+                android:hint="@string/first_name"
+                android:textSize="18sp" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/LastName"
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/firstName"
+            android:layout_alignStart="@+id/firstName"
+            android:layout_below="@+id/firstName"
+            android:layout_marginTop="16dp">
+
+            <EditText
+                android:id="@+id/lastName1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:ems="6"
+                android:hint="@string/last_name"
+                android:textSize="18sp" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/mobil"
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/LastName"
+            android:layout_alignStart="@+id/LastName"
+            android:layout_below="@+id/LastName"
+
+            android:layout_marginTop="16dp">
+
+            <EditText
+                android:id="@+id/mobile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:ems="12"
+                android:hint="@string/mobile_number"
+                android:inputType="phone"
+                android:textSize="18sp" />
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_alignLeft="@+id/mobil"
+            android:layout_alignStart="@+id/mobil"
+            android:layout_below="@+id/mobil"
+            android:layout_marginTop="16dp">
+
+            <EditText
+                android:id="@+id/email1"
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:ems="12"
+                android:hint="@string/email"
+                android:textSize="18sp" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <TextView
+            android:id="@+id/gender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/email"
+            android:layout_alignStart="@+id/email"
+            android:layout_below="@+id/email"
+            android:layout_marginTop="16dp"
+            android:text="@string/gender"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <Spinner
+            android:id="@+id/spinner5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/email"
+            android:layout_alignRight="@+id/email"
+            android:layout_alignTop="@+id/gender"
+            android:dropDownWidth="match_parent"
+            android:entries="@array/gender_arrays"
+            android:popupBackground="@color/green"
+            android:prompt="@string/gender_prompt"
+            android:spinnerMode="dialog"
+            android:visibility="visible" />
+
+
+        <ImageView
+            android:id="@+id/userImage"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_above="@+id/mobil"
+            android:layout_alignLeft="@+id/spinner5"
+            android:layout_alignStart="@+id/spinner5"
+            android:adjustViewBounds="true"
+
+            android:scaleType="fitXY"
+            android:src="@drawable/unknown_user" />
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:id="@+id/linear"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/gender"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <android.support.v7.widget.LinearLayoutCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_weight="1"
+
+                android:orientation="vertical"
+                android:weightSum="2">
+
+                <ImageView
+                    android:id="@+id/rider"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:background="#FFFFFF"
+                    android:scaleType="fitXY"
+
+                    android:src="@drawable/ic_person_outline_black_24dp" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:layout_weight="1"
+                    android:text="@string/rider"
+                    android:textAppearance="@style/TextAppearance.AppCompat"
+                    android:textColor="#4CAF50"
+                    android:textSize="18sp" />
+
+            </android.support.v7.widget.LinearLayoutCompat>
+
+            <android.support.v7.widget.LinearLayoutCompat
+                android:id="@+id/linearLayoutCompat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="64dp"
+                android:layout_weight="1"
+
+                android:orientation="vertical"
+                android:weightSum="2">
+
+
+                <ImageView
+                    android:id="@+id/driver"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+
+                    android:layout_alignEnd="@+id/linear"
+                    android:layout_alignRight="@+id/linear"
+                    android:layout_alignTop="@+id/linear"
+                    android:layout_weight="1"
+                    android:scaleType="fitXY"
+
+                    android:background="#FFFFFF"
+                    android:src="@drawable/ic_directions_car_black_48dp" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:layout_weight="1"
+                    android:text="@string/driver"
+                    android:textColor="#4CAF50"
+                    android:textSize="18sp" />
+            </android.support.v7.widget.LinearLayoutCompat>
+        </android.support.v7.widget.LinearLayoutCompat>
+
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linear"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="2dp"
+            android:text="@string/connect_with"
+            android:textColor="#4CAF50"
+            android:textSize="18sp" />
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/sign_in_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView3"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="2dp">
+
+        </com.google.android.gms.common.SignInButton>
+
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

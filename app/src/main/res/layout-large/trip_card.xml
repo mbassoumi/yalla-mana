@@ -1,0 +1,120 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/card_margin"
+        android:elevation="3dp"
+        android:fadingEdgeLength="@dimen/cardview_default_radius"
+        card_view:cardCornerRadius="@dimen/card_trip_radius">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/thumbnail"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/trip_cover_height"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="false"
+                android:scaleType="fitXY"
+                android:src="@drawable/unknown_user" />
+
+            <LinearLayout
+                android:id="@+id/linear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/thumbnail"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="32dp"
+
+                android:orientation="horizontal"
+                android:weightSum="2.1">
+
+                <TextView
+                    android:id="@+id/from"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".8"
+                    android:fontFamily="sans-serif-condensed"
+                    android:hint="Ramallah"
+                    android:paddingLeft="@dimen/trip_from_padding"
+                    android:paddingRight="@dimen/trip_from_padding"
+                    android:text="Ramallah"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    />
+
+                <ImageView
+                    android:id="@+id/go"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:clickable="true"
+                    android:src="@drawable/ic_chevron_right_black_24dp"
+                    android:scaleType="fitXY" />
+                <TextView
+                    android:id="@+id/to"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textView2"
+                    android:layout_weight=".8"
+                    android:fontFamily="sans-serif-condensed"
+                    android:hint="Nablus"
+                    android:paddingLeft="@dimen/trip_from_padding"
+                    android:paddingRight="@dimen/trip_from_padding"
+                    android:text="Nablus"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_below="@id/linear"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="sans-serif-condensed"
+                android:hint="2-2-2017"
+                android:text="2-2-2017  8:00:00"
+                android:textColor="@color/grey_300"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/date"
+                android:layout_marginBottom="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="sans-serif-condensed"
+                android:paddingRight="@dimen/trip_from_padding"
+                android:text="20 Nis"
+                android:textColor="#e51b17" />
+
+            <RatingBar
+                android:id="@+id/ratingBar"
+                style="@style/Widget.AppCompat.RatingBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_below="@id/price" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>
